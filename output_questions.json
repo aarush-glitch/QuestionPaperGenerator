@@ -1,0 +1,186 @@
+{
+  "1_mark": [
+    {
+      "question": "how to generate faces on-demand via API requests?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "The best subtopic for this question would be:\n\n\"Computer Vision\"\n\nThis is because generating faces on-demand via API requests involves processing and manipulating visual data, specifically facial features. Computer vision is the field of study that focuses on enabling computers to interpret and understand visual information from images and videos, which makes it a relevant and applicable subtopic in this context.",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": "1 min",
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "what could influence public opinion, spread misinformation, or disrupt elections?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "Based on the question, I would say that it belongs to the subtopic: **AI Ethics**",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": "1 min",
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "how to build a chatbot using a Generative Al model?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "The best subtopic for this question is:\n\n**Natural Language Processing (NLP)**",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": "1 min",
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "how to prevent the generation of harmful content?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "I would say that this question belongs to \"Content Generation\" or more specifically, \"Adversarial Content Generation\". This subtopic explores the potential risks and challenges of AI-generated content, including its misuse for harmful purposes.",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": "1 min",
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "how to generate questions?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "The best subtopic for this question is:\n\n\"Natural Language Processing (NLP)\"",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": "1 min",
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    }
+  ],
+  "2_mark": [
+    {
+      "question": "how many diagrams/images are there?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "Based on the given subject (Artificial Intelligence) and the question (\"how many diagrams/images are there?\"), I would categorize this question under:\n\n**Computer Vision**\n\nThis subtopic focuses on the intersection of Artificial Intelligence and computer-aided image processing, which seems to be relevant to the inquiry about diagrams/images.",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": "2-3 min",
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "How do you train a discriminator?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "Generative Adversarial Networks (GANs)",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": "2-3 min",
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "How does the Adaptive Instance Normalization (AdalIN) work?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "The best subtopic for this question would be \"Generative Models\" or more specifically, \"Image Generation Techniques\".",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": "2-3 min",
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "How does the Al-generated content work?",
+      "topic": "General",
+      "subtopic": "The best subtopic for this question would be \"Natural Language Processing\" (NLP).",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": "2-3 min",
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "how many Al-Augmented Creativity Productivity?",
+      "topic": "General",
+      "subtopic": "A creative question!\n\nAfter analyzing the question, I'd say it belongs to the subtopic: **Cognitive Psychology** or more specifically **Creativity and Innovation Research**\n\nThe question seems to be exploring the concept of Al-Augmented Creativity Productivity, which is a fascinating area of study in cognitive psychology. The term \"augmented\" implies an enhancement or amplification of human creativity through some form of artificial intelligence (AI) or technology, which is a hot topic in current research on creativity and innovation.",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": "2-3 min",
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    }
+  ],
+  "3_mark": [
+    {
+      "question": "how to fine tune a pretrained model?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "The best subtopic for this question would be:\n\n**Model Fine-Tuning**\n\nThis subtopic falls under the broader category of **Deep Learning**, which is a subfield of Artificial Intelligence.",
+      "question_type": "descriptive",
+      "difficulty_level": "medium",
+      "time": "4-5 min",
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "how to generate text, images, audio, and video together?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "The best subtopic for this question would be:\n\n\"Multimodal Generation\"\n\nThis subtopic falls under the broader category of Artificial Intelligence and focuses on generating content that incorporates multiple modalities, such as text, images, audio, and video.",
+      "question_type": "descriptive",
+      "difficulty_level": "medium",
+      "time": "4-5 min",
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "what type of outputs can be generated?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "The best subtopic for this question would be:\n\n**Generative Models**\n\nThis subtopic falls under the broader category of Artificial Intelligence, as it specifically deals with the types of outputs that can be generated by AI systems. Generative models are a type of neural network architecture that focuses on generating new, synthetic data that resembles existing data, such as text, images, or audio. This subtopic is closely related to other areas like Natural Language Processing (NLP), Computer Vision, and Machine Learning.",
+      "question_type": "descriptive",
+      "difficulty_level": "medium",
+      "time": "4-5 min",
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "what type of conversation is the subject of the text?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "The best subtopic for this question would be \"Conversational AI\" or more specifically, \"Human-Computer Interaction (HCI)\". This is because the question is asking about the type of conversation related to Artificial Intelligence, which falls under the broader topic of HCI and Conversational AI.",
+      "question_type": "descriptive",
+      "difficulty_level": "medium",
+      "time": "4-5 min",
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "how many images can be generated?",
+      "topic": "General",
+      "subtopic": "The best subtopic for this question is likely \"Generative Adversarial Networks\" (GANs).",
+      "question_type": "descriptive",
+      "difficulty_level": "medium",
+      "time": "4-5 min",
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    }
+  ],
+  "5_mark": [
+    {
+      "question": "how to generate a diagram?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "I would say that this question belongs to the subtopic: **Data Visualization**.",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": "6-10 min",
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    }
+  ]
+}
