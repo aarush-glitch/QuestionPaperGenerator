@@ -1,0 +1,91 @@
+# Sample Queries for Information Retrieval Testing
+# ================================================
+
+# These are example queries that can be used to test the semantic search functionality
+# Each query demonstrates different aspects of the IR system
+
+## Basic Semantic Search Queries
+Natural language processing techniques
+Machine learning algorithms
+Computer vision applications
+Deep learning neural networks
+Artificial intelligence concepts
+Data mining methods
+Information retrieval systems
+Text classification approaches
+Image recognition techniques
+Chatbot development strategies
+
+## Topic-Specific Queries
+Generative adversarial networks training
+Convolutional neural network architectures
+Recurrent neural network applications
+Transfer learning in computer vision
+Sentiment analysis using NLP
+Question generation systems
+Content generation methods
+AI ethics and bias detection
+Reinforcement learning algorithms
+Feature extraction techniques
+
+## Complex Multi-Domain Queries
+How to implement natural language processing for automatic question generation?
+What are the best practices for training GANs for image synthesis?
+Explain the process of building a chatbot using transformer models
+Describe methods for preventing harmful content generation in AI systems
+How to evaluate the performance of computer vision models?
+What techniques are used for text summarization and information extraction?
+How to handle bias and fairness in machine learning models?
+Explain the architecture and training of large language models
+What are the applications of reinforcement learning in real-world scenarios?
+How to implement semantic search using vector embeddings?
+
+## Difficulty-Specific Queries
+# Easy Level
+What is machine learning?
+Define artificial intelligence
+Types of neural networks
+Basic computer vision tasks
+
+# Medium Level
+How do convolutional neural networks work?
+Explain backpropagation algorithm
+Compare supervised and unsupervised learning
+Describe the transformer architecture
+
+# Hard Level
+Implement attention mechanism in neural networks
+Design a multi-modal learning system
+Optimize large-scale distributed training
+Develop novel architectures for specific tasks
+
+## Cognitive Level Queries
+# Remembering
+List the types of machine learning
+Name common NLP tasks
+Identify components of neural networks
+
+# Understanding
+Explain how GANs work
+Describe the training process for deep learning
+Compare different optimization algorithms
+
+# Applying
+Implement a basic neural network
+Apply transfer learning to a new domain
+Use pre-trained models for specific tasks
+
+# Analyzing
+Analyze the performance of different models
+Compare various architectural choices
+Evaluate trade-offs in model design
+
+# Evaluating
+Assess the quality of generated content
+Judge the effectiveness of different approaches
+Critique existing methodologies
+
+# Creating
+Design a novel neural network architecture
+Develop new training strategies
+Create innovative applications of AI techniques

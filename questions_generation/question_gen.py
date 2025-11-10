@@ -1,17 +1,141 @@
+# import json
+# import random
+# from transformers import pipeline
+# from langchain.text_splitter import RecursiveCharacterTextSplitter
+# from langchain_ollama import OllamaLLM
+# from langchain_core.prompts import PromptTemplate
+# from langchain_core.output_parsers import StrOutputParser
+
+# # Load question generator
+# question_gen = pipeline("text2text-generation", model="iarfmoose/t5-base-question-generator")
+
+# # Load subtopic LLM
+# llm = OllamaLLM(model="llama3")
+# output_parser = StrOutputParser()
+
+# # Prompt to predict subtopic
+# subtopic_prompt = PromptTemplate.from_template("""
+# Given the subject: {topic}
+# And the question: "{question}"
+
+# What is the best subtopic this question belongs to?
+# Respond with a short academic subtopic label like "Neural Networks", "Backpropagation", etc.
+# """)
+
+# subtopic_chain = subtopic_prompt | llm | output_parser
+
+# # Configs
+# MARKS_META = {
+#     1: {"question_type": "mcq", "difficulty_level": "easy", "time": "1 min", "cognitive_level": "remembering"},
+#     2: {"question_type": "short", "difficulty_level": "medium", "time": "2-3 min", "cognitive_level": "understanding"},
+#     3: {"question_type": "descriptive", "difficulty_level": "medium", "time": "4-5 min", "cognitive_level": "applying"},
+#     5: {"question_type": "long", "difficulty_level": "hard", "time": "6-10 min", "cognitive_level": "evaluating"}
+# }
+
+# splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
+
+# def is_valid_question(q):
+#     q = q.lower().strip()
+#     return len(q) > 10 and not any(bad in q for bad in ["true", "false", "not_entailment", "entailment"])
+
+# def detect_topic(text, topic_keywords):
+#     for topic, keywords in topic_keywords.items():
+#         for kw in keywords:
+#             if kw.lower() in text.lower():
+#                 return topic
+#     return "General"
+
+# def generate_questions(text, topic_keywords, questions_per_category=5):
+#     chunks = splitter.split_text(text)
+#     seen_questions = set()
+#     used_chunks = set()
+#     marks_buckets = {1: [], 2: [], 3: [], 5: []}
+
+#     for marks in [1, 2, 3, 5]:
+#         while len(marks_buckets[marks]) < questions_per_category and len(used_chunks) < len(chunks):
+#             chunk = random.choice(chunks)
+#             if chunk in used_chunks:
+#                 continue
+#             used_chunks.add(chunk)
+
+#             result = question_gen(f"generate question: {chunk}", max_length=160 if marks > 2 else 64, do_sample=False)
+#             question = result[0]['generated_text'].strip()
+
+#             if not is_valid_question(question) or question in seen_questions:
+#                 continue
+#             seen_questions.add(question)
+
+#             topic = detect_topic(chunk, topic_keywords)
+#             subtopic = subtopic_chain.invoke({"topic": topic, "question": question}).strip()
+
+#             question_json = {
+#                 "question": question,
+#                 "topic": topic,
+#                 "subtopic": subtopic,
+#                 "question_type": MARKS_META[marks]["question_type"],
+#                 "difficulty_level": MARKS_META[marks]["difficulty_level"],
+#                 "time": MARKS_META[marks]["time"],
+#                 "cognitive_level": MARKS_META[marks]["cognitive_level"],
+#                 "marks": marks,
+#                 "image": None
+#             }
+
+#             marks_buckets[marks].append(question_json)
+
+#     return {
+#         "1_mark": marks_buckets[1],
+#         "2_mark": marks_buckets[2],
+#         "3_mark": marks_buckets[3],
+#         "5_mark": marks_buckets[5]
+#     }
+
+# def save_questions(output, filename="output_questions.json"):
+#     with open(filename, "w", encoding="utf-8") as f:
+#         json.dump(output, f, indent=2, ensure_ascii=False)
+#     print(f"✅ Saved structured questions to {filename}")
+
+# if __name__ == "__main__":
+#     with open("C:\\Users\\hp\\projects\\Question_Generator\\Data_Preprocessing\\vector_stores\\extracted_output.txt", "r", encoding="utf-8") as f:
+#         text = f.read()
+
+#     with open("C:\\Users\\hp\\projects\\Question_Generator\\Data_Preprocessing\\vector_stores\\keyword.json", "r", encoding="utf-8") as kf:
+#         topic_keywords = json.load(kf)
+
+#     print("🚀 Generating questions with subtopics...")
+#     final_questions = generate_questions(text, topic_keywords)
+#     save_questions(final_questions)
+#     print("✅ Question generation completed successfully!")
+
 import json
 import random
-from transformers import pipeline
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.llms import Ollama
+from langchain_ollama import OllamaLLM
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
-# Load question generator
-question_gen = pipeline("text2text-generation", model="iarfmoose/t5-base-question-generator")
-
-# Load subtopic LLM
-llm = Ollama(model="llama3")
+# Load Ollama LLM
+llm = OllamaLLM(model="gemma3:1b")
 output_parser = StrOutputParser()
+
+# Prompt to generate questions
+question_prompt = PromptTemplate.from_template("""
+You are a question generator for academic exams.
+
+Given this text:
+---
+{text}
+---
+
+Generate ONE question suitable for {marks}-mark category.
+- Question type: {question_type}
+- Difficulty level: {difficulty_level}
+- Cognitive level: {cognitive_level}
+
+Only return the question, no explanations.
+Important: The question must be answerable from the excerpt. Only use facts present in the excerpt; do NOT invent or generalize beyond the provided text.
+""")
+
+question_chain = question_prompt | llm | output_parser
 
 # Prompt to predict subtopic
 subtopic_prompt = PromptTemplate.from_template("""
@@ -19,7 +143,7 @@ Given the subject: {topic}
 And the question: "{question}"
 
 What is the best subtopic this question belongs to?
-Respond with a short academic subtopic label like "Neural Networks", "Backpropagation", etc.
+Respond with a single short academic subtopic label (maximum 4 words). RETURN ONLY THE LABEL (no explanation, no reasoning).
 """)
 
 subtopic_chain = subtopic_prompt | llm | output_parser
@@ -34,15 +158,33 @@ MARKS_META = {
 
 splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
 
-def is_valid_question(q):
-    q = q.lower().strip()
-    return len(q) > 10 and not any(bad in q for bad in ["true", "false", "not_entailment", "entailment"])
-
 def detect_topic(text, topic_keywords):
+    # Normalize and remove common OCR/slide markers to avoid false matches
+    cleaned = text.lower()
+    # remove bracketed markers like [DIAGRAM or IMAGE DETECTED]
+    import re
+    cleaned = re.sub(r"\[[^\]]+\]", " ", cleaned)
+
+    # Score topics by occurrences of their keywords and pick the best
+    scores = {}
     for topic, keywords in topic_keywords.items():
+        score = 0
         for kw in keywords:
-            if kw.lower() in text.lower():
-                return topic
+            pattern = re.escape(kw.lower())
+            matches = re.findall(pattern, cleaned)
+            score += len(matches)
+        scores[topic] = score
+
+    # choose topic with highest score; require at least one match otherwise use heuristics
+    if scores:
+        best_topic, best_score = max(scores.items(), key=lambda x: x[1])
+        if best_score > 0:
+            return best_topic
+
+    # heuristic fallback for literature-like text
+    if "novel" in cleaned or "author" in cleaned or "character" in cleaned or "pride" in cleaned:
+        return "Literature"
+
     return "General"
 
 def generate_questions(text, topic_keywords, questions_per_category=5):
@@ -51,20 +193,27 @@ def generate_questions(text, topic_keywords, questions_per_category=5):
     used_chunks = set()
     marks_buckets = {1: [], 2: [], 3: [], 5: []}
 
-    for marks in [1, 2, 3, 5]:
+    for marks, meta in MARKS_META.items():
         while len(marks_buckets[marks]) < questions_per_category and len(used_chunks) < len(chunks):
             chunk = random.choice(chunks)
             if chunk in used_chunks:
                 continue
             used_chunks.add(chunk)
 
-            result = question_gen(f"generate question: {chunk}", max_length=160 if marks > 2 else 64, do_sample=False)
-            question = result[0]['generated_text'].strip()
+            # Generate question with Ollama
+            question = question_chain.invoke({
+                "text": chunk,
+                "marks": marks,
+                "question_type": meta["question_type"],
+                "difficulty_level": meta["difficulty_level"],
+                "cognitive_level": meta["cognitive_level"]
+            }).strip()
 
-            if not is_valid_question(question) or question in seen_questions:
+            if not question or question in seen_questions:
                 continue
             seen_questions.add(question)
 
+            # Detect topic + subtopic
             topic = detect_topic(chunk, topic_keywords)
             subtopic = subtopic_chain.invoke({"topic": topic, "question": question}).strip()
 
@@ -72,10 +221,10 @@ def generate_questions(text, topic_keywords, questions_per_category=5):
                 "question": question,
                 "topic": topic,
                 "subtopic": subtopic,
-                "question_type": MARKS_META[marks]["question_type"],
-                "difficulty_level": MARKS_META[marks]["difficulty_level"],
-                "time": MARKS_META[marks]["time"],
-                "cognitive_level": MARKS_META[marks]["cognitive_level"],
+                "question_type": meta["question_type"],
+                "difficulty_level": meta["difficulty_level"],
+                "time": meta["time"],
+                "cognitive_level": meta["cognitive_level"],
                 "marks": marks,
                 "image": None
             }
@@ -89,19 +238,19 @@ def generate_questions(text, topic_keywords, questions_per_category=5):
         "5_mark": marks_buckets[5]
     }
 
-def save_questions(output, filename="output_questions.json"):
+def save_questions(output, filename="new_output_questions.json"):
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
     print(f"✅ Saved structured questions to {filename}")
 
 if __name__ == "__main__":
-    with open("C:\\Users\\hp\\projects\\Question_Generator\\Data_Preprocessing\\vector_stores\\extracted_output.txt", "r", encoding="utf-8") as f:
+    with open("/Users/sanatwalia/Desktop/Zomato_Showcasing/coe-project/questions_generation/extracted_output.txt", "r", encoding="utf-8") as f:
         text = f.read()
 
-    with open("C:\\Users\\hp\\projects\\Question_Generator\\Data_Preprocessing\\vector_stores\\keyword.json", "r", encoding="utf-8") as kf:
+    with open("/Users/sanatwalia/Desktop/Zomato_Showcasing/coe-project/questions_generation/keyword.json", "r", encoding="utf-8") as kf:
         topic_keywords = json.load(kf)
 
-    print("🚀 Generating questions with subtopics...")
+    print("🚀 Generating questions with Ollama...")
     final_questions = generate_questions(text, topic_keywords)
     save_questions(final_questions)
     print("✅ Question generation completed successfully!")

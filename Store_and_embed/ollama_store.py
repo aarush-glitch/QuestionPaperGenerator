@@ -1,11 +1,11 @@
 import json
 import os
 from langchain_community.vectorstores import FAISS
-from langchain_community.embeddings import OllamaEmbeddings
+from langchain_ollama import OllamaEmbeddings
 from langchain.schema import Document
 
 # Load Ollama embeddings
-embeddings = OllamaEmbeddings(model="llama3")
+embeddings = OllamaEmbeddings(model="nomic-embed-text:latest")
 
 def load_questions(file_path="questions.json"):
     with open(file_path, "r", encoding="utf-8") as f:
@@ -31,7 +31,7 @@ def load_questions(file_path="questions.json"):
 
     return docs
 
-def store_in_faiss(docs, index_path="faiss_index_ollama"):
+def store_in_faiss(docs, index_path="new_faiss_index"):
     if os.path.exists(index_path):
         print(f"🔄 FAISS index already exists at {index_path}.")
         return
@@ -42,5 +42,5 @@ def store_in_faiss(docs, index_path="faiss_index_ollama"):
     print(f"✅ Stored in FAISS at: {index_path}")
 
 if __name__ == "__main__":
-    questions = load_questions("C:\\Users\\hp\\projects\\Question_Generator\\Data_Preprocessing\\questions.json")
+    questions = load_questions("/Users/sanatwalia/Desktop/Zomato_Showcasing/coe-project/questions.json")
     store_in_faiss(questions)

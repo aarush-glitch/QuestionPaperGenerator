@@ -2,8 +2,8 @@ from langchain_community.vectorstores import FAISS
 from langchain_ollama import OllamaEmbeddings
 
 # Load embeddings & FAISS vector store
-embeddings = OllamaEmbeddings(model="llama3")
-db = FAISS.load_local("faiss_index_ollama", embeddings, allow_dangerous_deserialization=True)
+embeddings = OllamaEmbeddings(model="nomic-embed-text:latest") #changed embedding model from llama3
+db = FAISS.load_local("new_faiss_index", embeddings, allow_dangerous_deserialization=True)
 
 # Search configuration
 query = "Natural language processing techniques for text classification"

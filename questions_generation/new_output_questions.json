@@ -1,0 +1,230 @@
+{
+  "1_mark": [
+    {
+      "question": "Which of the following best describes the primary benefit of “Al-Augmented Creativity Productivity”?",
+      "topic": "General",
+      "subtopic": "Cognitive Psychology",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": "1 min",
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "What is the value of x in the equation 2x + 5 = 11?",
+      "topic": "General",
+      "subtopic": "**Algebra** \n\nThis question directly involves solving an algebraic equation, which falls under the domain of algebra.",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": "1 min",
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "Which technique does the text mention being used to disentangle features?",
+      "topic": "General",
+      "subtopic": "Neural Networks",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": "1 min",
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "What is a potential consequence of creating a deepfake video of a political leader?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "**Political Manipulation**\n\nHere’s why:\n\n*   **Political Manipulation** is the most encompassing and directly relevant subtopic. Deepfakes, by their very nature, are designed to be used for political manipulation – influencing public opinion, damaging reputations, and potentially destabilizing political processes. It’s a core concern surrounding this technology.\n\nLet me know if you’d like to explore other related subtopics!",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": "1 min",
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "What is a key principle emphasized in the text regarding model efficiency?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "Neural Networks",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": "1 min",
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    }
+  ],
+  "2_mark": [
+    {
+      "question": "Which of the following techniques is commonly used in data augmentation to generate diverse and realistic human faces?",
+      "topic": "Computer Science",
+      "subtopic": "**Generative Modeling**\n\nHere’s why:\n\n*   **Generative Modeling** is the core area where techniques like face generation are developed.  The goal of data augmentation for faces often leverages generative models (like GANs or diffusion models) to create new, synthetic images that resemble real human faces.\n\nLet me know if you’d like a more detailed explanation of why other options are less suitable!",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": "2-3 min",
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "How does the “Model Card” approach contribute to model transparency and user understanding?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "**Model Card**\n\nHere’s why:\n\n*   **Model Card** is specifically designed to address the transparency and user understanding aspects of AI models. It’s a documented record of a model’s characteristics, limitations, and potential risks.\n\nLet me know if you’d like me to elaborate on why this is the best answer!",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": "2-3 min",
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "What is the primary difference between a geometric shape and a geometric pattern?",
+      "topic": "General",
+      "subtopic": "**Geometric Analysis**\n\nHere's why:\n\n*   **Geometric Shape** focuses on the visual attributes and properties of a specific form.\n*   **Geometric Pattern** focuses on the recurrence or repetition of elements within a shape or design, highlighting a structure rather than just the visual appearance.\n\nTherefore, the question directly relates to the fundamental distinctions in how these shapes and designs are constructed and perceived.",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": "2-3 min",
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "What is the core difference between traditional and generative AI models?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "**Neural Networks**\n\nHere's why:\n\n*   **Neural Networks** are fundamentally the building blocks of both traditional and generative AI. Traditional AI relies heavily on established neural network architectures (like Convolutional Neural Networks or Recurrent Neural Networks), while generative AI leverages more complex and often differentiable neural networks designed for creating new data. The core difference lies in how they learn and generate output – traditional AI learns to recognize patterns and make predictions, while generative AI learns to *create* new data instances that resemble the training data.",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": "2-3 min",
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "How does the ELK Stack contribute to continuous monitoring improvements, specifically regarding user feedback and model retraining?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "**Model Training & Evaluation**\n\nHere's why:\n\n*   **ELK Stack & Model Retraining:** The ELK Stack (Elasticsearch, Logstash, Kibana) is heavily used for monitoring and analysis. User feedback and model retraining are core aspects of model maintenance and improvement.\n*   **Model Training:** The question directly addresses how the ELK stack facilitates these processes.",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": "2-3 min",
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    }
+  ],
+  "3_mark": [
+    {
+      "question": "Describe how Perceptual Path Length (PPL) measures smoothness in latent space interpolation, and how this relates to the concept of Realism Diversity Fr chet Inception Distance (FID).",
+      "topic": "General",
+      "subtopic": "**Neural Networks**\n\nHere's why:\n\n* **Perceptual Path Length (PPL)** is a core technique within neural networks used for evaluating the smoothness of latent space interpolation.\n* **Realism Diversity Fr chet Inception Distance (FID)** is a metric specifically designed to assess the perceptual quality and realism of generated images.\n\nThese two concepts are intrinsically linked through the neural network’s representation and how it’s used to evaluate the generated output.  Therefore, they fall under the umbrella of Neural Networks – specifically, the techniques used for representation learning and evaluation within that field.",
+      "question_type": "descriptive",
+      "difficulty_level": "medium",
+      "time": "4-5 min",
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "Describe Alan Kay’s philosophy and how it relates to the concept of shaping the future through innovation.",
+      "topic": "General",
+      "subtopic": "**Technological Innovation & Design Philosophy**\n\nThis subtopic directly addresses Alan Kay’s core philosophy – his emphasis on technological innovation as a means of actively shaping the future. It highlights the crucial link between his ideas and the broader concept of using technology to proactively influence societal development.",
+      "question_type": "descriptive",
+      "difficulty_level": "medium",
+      "time": "4-5 min",
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "Describe how the provided text suggests the process of model evaluation refinement should be approached, highlighting the key steps and considerations involved.",
+      "topic": "Artificial Intelligence",
+      "subtopic": "**Model Evaluation**\n\nHere’s why:\n\n* **Focus:** The question explicitly asks about model evaluation refinement – a core part of the process.\n* **Scope:** It’s focused on *how* to approach this, suggesting a specific area of concern.\n* **Key Steps & Considerations:** Evaluating models effectively is a fundamental step; the text likely discusses specific metrics, validation strategies, and error analysis to improve this.",
+      "question_type": "descriptive",
+      "difficulty_level": "medium",
+      "time": "4-5 min",
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "Describe the role of the R1 penalty in the training process of a discriminator, and explain how it contributes to more stable updates.",
+      "topic": "Artificial Intelligence",
+      "subtopic": "**Neural Networks**\n\nHere’s why:\n\nThe R1 penalty is a crucial element within the backpropagation algorithm used to train discriminator models in AI. It directly impacts the training process, specifically concerning stable updates. It’s a regularization technique designed to prevent overly complex or noisy gradients during training, which can lead to instability and oscillations.  The R1 penalty encourages the discriminator to produce outputs that are more consistent and less prone to wild fluctuations, ultimately improving the overall learning process and resulting in more stable updates.",
+      "question_type": "descriptive",
+      "difficulty_level": "medium",
+      "time": "4-5 min",
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "Describe how the text addresses data augmentation to improve the training dataset.",
+      "topic": "Artificial Intelligence",
+      "subtopic": "**Data Augmentation**\n\nHere’s why:\n\n*   **Focus:** The question specifically asks about *how* the text addresses a technique – data augmentation.\n*   **Core Topic:** Data augmentation is a core strategy for improving model performance, and it’s directly related to the text’s content.",
+      "question_type": "descriptive",
+      "difficulty_level": "medium",
+      "time": "4-5 min",
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    }
+  ],
+  "5_mark": [
+    {
+      "question": "Analyze the following passage and discuss the potential implications of the observed shift in economic indicators, focusing on the interplay between consumer confidence, investment sentiment, and government policy, considering potential cascading effects across different sectors and long-term structural changes.",
+      "topic": "General",
+      "subtopic": "**Macroeconomic Analysis**\n\nHere’s why:\n\n* **General:** The question deals with a broad, overarching analysis.\n* **Economic Indicators:** The core of the question revolves around examining how economic data *influences* broader economic trends.\n* **Consumer Confidence, Investment Sentiment, and Government Policy:** These are key macroeconomic variables that are directly linked to each other and significantly impact the economy.\n* **Cascading Effects & Long-Term Structural Changes:** This highlights the potential for ripple effects across industries and a fundamental shift in the economic landscape.\n\nTherefore, “Macroeconomic Analysis” is the most appropriate and encompassing subtopic.",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": "6-10 min",
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "Which of the following mathematical concepts, when combined with a specific historical context, most accurately elucidates the evolution of medieval astronomical models and their impact on early European navigation and exploration?",
+      "topic": "General",
+      "subtopic": "**History of Astronomy & Navigation**\n\nHere’s why:\n\n*   **Focus:** The question explicitly asks about the *evolution* of astronomical models *and their impact*, highlighting a historical context.\n*   **Subtopic:** History of Astronomy & Navigation is the most direct and encompassing subtopic that directly relates to the core of the question – tracing the development of these models and their subsequent influence on exploration.\n\nLet me know if you’d like me to elaborate on *why* this is the best choice!",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": "6-10 min",
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "Which of the following represents the MOST critical stage in the lifecycle of a Generative AI model, and why is it pivotal for ensuring robust and reliable application?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "**Neural Networks**\n\nHere’s why:\n\nGenerative AI models heavily rely on neural networks, particularly large language models (LLMs) and diffusion models.  The training and refinement of these networks – encompassing the initial setup, optimization, and iterative development – fundamentally define the model’s capabilities.  Specifically, the **training process itself** – where the network learns from data – is crucial.  A poorly trained or unstable neural network will produce unreliable or nonsensical outputs, rendering the model useless.  Therefore, the stage of Neural Networks is pivotal for ensuring robust and reliable application because it directly determines the quality and safety of the generated content.  Incorrect network architecture, inadequate data, or a flawed training methodology can lead to catastrophic failures.",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": "6-10 min",
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "Which of the following ethical considerations regarding the utilization of AI-generated content, particularly in the context of OpenAl’s DALL-E watermarking system, poses the most significant potential for undermining public trust and perpetuating misinformation, and what are the potential consequences of this undermining?",
+      "topic": "General",
+      "subtopic": "**AI Ethics & Trust**\n\nHere’s why:\n\n*   **Focus:** The question directly addresses the ethical challenges posed by AI-generated content, specifically concerning public trust and misinformation.\n*   **Scope:** It narrows the discussion to a critical area – the potential impact of AI systems (like DALL-E) on how we perceive and believe information.\n*   **Specific Concern:** It highlights the core issue of undermining trust, which is a major concern in the age of deepfakes and AI-generated narratives.\n\nLet me know if you'd like me to elaborate on this further!",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": "6-10 min",
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "What are the potential risks and trade-offs associated with employing a multi-cloud deployment strategy for your backend infrastructure, considering factors such as vendor lock-in, operational complexity, and data consistency across distinct cloud platforms, and how would you mitigate these risks to ensure a robust and scalable system?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "**Cloud Security & Governance**\n\nHere’s why:\n\n*   **Focus:** The question explicitly addresses risks and trade-offs related to a critical infrastructure component – backend infrastructure – and the deployment strategy.\n*   **Scope:** It delves into the complexities of managing multiple cloud providers, a significant challenge in modern IT.\n*   **Interconnectedness:** Cloud security and governance are deeply intertwined with the deployment choices made.  The question inherently necessitates considering these factors.\n\nLet's expand on why other options might be less suitable:\n\n*   **Machine Learning:** While AI is used in cloud infrastructure, this question isn't primarily focused on the *application* of AI itself.\n*   **Data Modeling:** This is a related area, but the question is about the *overall architecture* and its implications, not just the data.\n*   **Algorithm Design:** This focuses on the core technology, not the operational challenges of deployment.",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": "6-10 min",
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    }
+  ]
+}

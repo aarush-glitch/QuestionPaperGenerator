@@ -1,0 +1,8 @@
+Calling generate_questions with text_input=present (len=16332), topic_keywords=present
+Generator returned type dict
+Calling generate_questions with text_input=present (len=16332), topic_keywords=present
+Generator returned type dict
+Saved generated_questions.json (len groups=4)
+Saved generated_questions.json (len groups=4)
+Saved generated_questions.json (len groups=4)
+Saved generated_questions.json (len groups=4)

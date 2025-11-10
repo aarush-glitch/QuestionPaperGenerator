@@ -1,6 +1,6 @@
 import fitz  # PyMuPDF
 from PIL import Image
-from main import pytesseract 
+import pytesseract
 import io
 import cv2
 import numpy as np

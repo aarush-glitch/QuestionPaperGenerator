@@ -1,0 +1,59 @@
+--- Page 1 ---
+[DIAGRAM or IMAGE DETECTED] (6 images on this page)
+[MATH SYMBOLS DETECTED]
+MoodMatch Al Emotion- Based OTT Recommender Enhancing Fire TV Experience using Emotion Recognition and Intelligent Content Curation. by Khushi Singh
+
+--- Page 2 ---
+[DIAGRAM or IMAGE DETECTED] (4 images on this page)
+[MATH SYMBOLS DETECTED]
+Problem Innovation Scope The Problem Users spend too much time searching for content. This leads to decision fatigue and reduced engagement. Our Innovation Real-time emotion detection for mood-based recommendations. Wellness-focused UX promotes healthy consumption.
+
+--- Page 3 ---
+[DIAGRAM or IMAGE DETECTED] (5 images on this page)
+[MATH SYMBOLS DETECTED]
+Customer-First Thinking 2 Target Users ray) Working Backwards Binge watchers, families, mental wellness MoodMatch Al senses user mood, instantly enthusiasts, and users overwhelmed by choices. recommending emotionally aligned content.
+
+--- Page 4 ---
+[DIAGRAM or IMAGE DETECTED] (5 images on this page)
+[MATH SYMBOLS DETECTED]
+55 50 28 70 50 40 Lusen engegement user engetiement entent- Sarenuner e CatPowallyse Problem Validation 12 Time Spent Users spend over 6 minutes choosing content. 41 App Quits Users quit if content isnt found quickly. Mental wellness apps are rising, merging emotional needs with entertainment. This validates the need for MoodMatch Al.
+
+--- Page 5 ---
+[DIAGRAM or IMAGE DETECTED] (5 images on this page)
+[MATH SYMBOLS DETECTED]
+Success Metrics Impact a ne, Increased Group User Watch Time Engagement Satisfaction Higher daily watch Higher engagement Happier, more time and lower drop- _ in Group Watch satisfied users, off rates. sessions. enhancing group bonding.
+
+--- Page 6 ---
+[DIAGRAM or IMAGE DETECTED] (5 images on this page)
+[MATH SYMBOLS DETECTED]
+Unique Value Proposition Emotion-Aware Personalization Content tailored to your real-time emotional state. Emotional Wellness Focus Promoting healthy content consumption habits. Seamless Integration Works with Fire TV and Alexa for effortless use. Group Dynamics Intelligence Attention-aware features for shared viewing.
+
+--- Page 7 ---
+[DIAGRAM or IMAGE DETECTED] (4 images on this page)
+[MATH SYMBOLS DETECTED]
+Architecture Overview Input Layer 1 Webcam / Mobile Camera Processing Layer 2 Emotion Detection Classification Recommendation Layer 3 Content Matching Engine Integration Layer 4 Fire TV Plugin / Alexa Skill Output Layer s) Personalized Content Display
+
+--- Page 8 ---
+[DIAGRAM or IMAGE DETECTED] (5 images on this page)
+[MATH SYMBOLS DETECTED]
+Tech Stack Emotion Detection OpenCV, DeepFace, MediaPipe Content Matching Surprise, LightFM, Neural Embeddings Frontend React Native (Mobile Companion App) Backend Python Flask / Node,js Integration Alexa Skills Kit, Fire TV SDK
+
+--- Page 9 ---
+[DIAGRAM or IMAGE DETECTED] (4 images on this page)
+[MATH SYMBOLS DETECTED]
+Group Watch Binge Coach Group Watch Sync Al Binge Coach Detects audio/motion for engagement. Pauses/resumes Monitors binge patterns. Sends notifications or content dynamically for varied attention spans. recommends calming breaks and soothing content.
+
+--- Page 10 ---
+[DIAGRAM or IMAGE DETECTED] (5 images on this page)
+[MATH SYMBOLS DETECTED]
+Marketplace Scalability Fire TV Integration Seamlessly integrates with Prime Video, Netflix, and other platforms. Device Expansion Compatible with Alexa-enabled TVs and Echo Show devices. New Use Cases Applicable in elderly care, mental health clinics, and education. fullyon sails
+
+--- Page 11 ---
+[DIAGRAM or IMAGE DETECTED] (4 images on this page)
+[MATH SYMBOLS DETECTED]
+Addressing the Challenge . Al-Driven Empathy Ei Tackling emotional disconnection with intelligent Al. U () Mindful Engagement Encouraging emotionally resonant screen time. Evolving Systems Moving beyond traditional recommender systems for content. Reinventing OTT Combining intelligence, empathy, and wellness.
+
+--- Page 12 ---
+[DIAGRAM or IMAGE DETECTED] (4 images on this page)
+[No special patterns found]
+Conclusion Call to Action MoodMatch Vision 2 Emotion, Al, and OTT converge. We enhance your Fire TV experience. Redefine Screen Time Shift from passive viewing to personalized, soulful content engagement. Join Our Future Build a world where content truly understands and responds to you. Thank you for your time and interest
