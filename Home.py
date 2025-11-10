@@ -78,8 +78,8 @@ with st.container():
     st.markdown(
         """
         <div style='padding: 2.5rem 0 1.5rem 0; border-radius: 1.5rem; text-align: center; margin-bottom: 2rem; box-shadow: 0 4px 24px rgba(0,0,0,0.15); background: #23272f;'>
-            <img src='https://img.icons8.com/ios-filled/250/ffffff/idea.png' width='120' style='margin-bottom: 1rem;' />
-            <div class='big-title'>Question Paper Generator</div>
+            <!--<img src='https://img.icons8.com/ios-filled/250/ffffff/idea.png' width='120' style='margin-bottom: 1rem;' />-->
+            <div class='big-title'>JIIT <br>Question Paper Generator</div>
             <div class='subtitle'>Empowering Educators with Seamless AI-driven Content Creation</div>
         </div>
         """,
