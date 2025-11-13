@@ -108,6 +108,7 @@
 
 import json
 import random
+import os
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_ollama import OllamaLLM
 from langchain_core.prompts import PromptTemplate
@@ -154,6 +155,37 @@ Respond with a single short academic subtopic label (maximum 4 words). RETURN ON
 
 subtopic_chain = subtopic_prompt | llm | output_parser
 
+# Prompt to predict topic using LLM (similar to subtopic)
+topic_prompt = PromptTemplate.from_template(
+    """
+Given the following excerpt:
+{text}
+
+Possible topics (numbered):
+{candidates}
+
+Respond with the NUMBER (e.g. "3") of the single most appropriate topic from the list above. Return only the number and nothing else. If none match, return "0".
+"""
+)
+
+topic_chain = topic_prompt | llm | output_parser
+
+# Prompt to predict topic label directly (LLM returns a single short label)
+topic_label_prompt = PromptTemplate.from_template("""
+Given the following text excerpt:
+---
+{text}
+---
+
+Provide a wide TOPIC label (maximum 4 words) that describes the excerpt or the topic which covers it.
+- RETURN ONLY THE LABEL (no explanation, no extra text).
+- Keep the label short and academic (e.g. "Artificial Intelligence", "Software Engineering", "Data Structures", "Databases") See how these are wide and vague terms.
+
+""")
+
+topic_label_chain = topic_label_prompt | llm | output_parser
+
+
 # Configs
 MARKS_META = {
     # Use a single integer minute value per question for easy aggregation in dashboards
@@ -166,72 +198,67 @@ MARKS_META = {
 
 splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
 
-def detect_topic(text, topic_keywords):
-    # Improved topic detection: keyword scoring + LLM reranker fallback.
-    # Normalization and cleanup
-    cleaned = text.lower() if text else ""
+def normalize_topic(label: str) -> str:
+    """Normalize topic label returned by LLM: strip, collapse whitespace, title-case and limit to 4 words."""
     import re
-    cleaned = re.sub(r"\[[^\]]+\]", " ", cleaned)
+    if not label:
+        return "General"
+    s = label.strip().strip('"').strip("'")
+    s = re.sub(r"\s+", " ", s)
+    words = s.split()
+    s = " ".join(words[:4])
+    return s.title() if s else "General"
 
-    # Score topics by occurrences of their keywords (literal match)
-    scores = {}
-    for topic, keywords in (topic_keywords or {}).items():
-        score = 0
-        for kw in keywords:
-            if not kw:
-                continue
-            pattern = re.escape(str(kw).lower())
-            matches = re.findall(pattern, cleaned)
-            score += len(matches)
-        scores[topic] = score
 
-    # If we have candidate keywords, choose a clear winner first
-    if scores:
-        sorted_topics = sorted(scores.items(), key=lambda x: x[1], reverse=True)
-        best_topic, best_score = sorted_topics[0]
-        second_score = sorted_topics[1][1] if len(sorted_topics) > 1 else 0
+def detect_topic(text, topic_keywords=None):
+    """LLM-first topic detection that mirrors subtopic generation.
+    Falls back to keyword scoring if LLM returns nothing usable.
+    Returns a short normalized label (or 'General')."""
+    cleaned = text or ""
 
-        # If best score is reasonably stronger, return it
-        try:
+    # Try LLM-first: ask for a single short label (no index)
+    try:
+        raw = topic_label_chain.invoke({"text": cleaned}).strip()
+        # Normalize the raw label (reuse your normalize_topic)
+        sel = normalize_topic(raw)
+        # If the LLM returned something meaningful, accept it
+        if sel and sel.lower() != "0" and sel.lower() != "none":
+            # Optionally, if topic_keywords provided and sel exactly matches a candidate, prefer candidate's case
+            if topic_keywords:
+                for c in topic_keywords.keys():
+                    if sel.lower() == str(c).lower():
+                        return c
+            return sel
+    except Exception:
+        # LLM failure — fall through to fallback
+        pass
+
+    # Fallback: simple keyword scoring (literal matches) — keep your existing heuristic
+    try:
+        import re
+        cleaned_l = cleaned.lower()
+        scores = {}
+        for topic, keywords in (topic_keywords or {}).items():
+            score = 0
+            for kw in keywords:
+                if not kw:
+                    continue
+                pattern = re.escape(str(kw).lower())
+                matches = re.findall(pattern, cleaned_l)
+                score += len(matches)
+            scores[topic] = score
+
+        if scores:
+            sorted_topics = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+            best_topic, best_score = sorted_topics[0]
+            second_score = sorted_topics[1][1] if len(sorted_topics) > 1 else 0
             if best_score >= 2 or (second_score == 0 and best_score >= 1) or (best_score >= 2 * max(1, second_score)):
                 return best_topic
-        except Exception:
-            pass
-
-        # Otherwise, ask the LLM to pick among the top candidates for a semantic decision
-        candidates = [t for t, s in sorted_topics if s > 0][:6]
-        # if no positive-scoring candidate, still allow LLM to choose among all known topics
-        if not candidates:
-            candidates = list((topic_keywords or {}).keys())[:6]
-
-        # Prepare a topic-selection prompt chain (best-effort; may fail if LLM unavailable)
-        try:
-            cand_str = ", ".join(candidates) if candidates else "General"
-            topic_selector_prompt = PromptTemplate.from_template(
-                """
-You are a topic classifier.
-
-Given this excerpt:
-""" + "\n{text}\n" + """
-
-Possible topics: {candidates}
-
-Choose the single most appropriate topic label from the provided list that best fits the excerpt. RETURN ONLY THE TOPIC LABEL (exactly one). If none match, return 'General'.
-"""
-            )
-            topic_selector_chain = topic_selector_prompt | llm | output_parser
-            sel = topic_selector_chain.invoke({"text": text, "candidates": cand_str}).strip()
-            if sel:
-                return sel
-        except Exception:
-            # If LLM fails, fall back to the highest scoring topic (even if weak)
-            return best_topic
-
-    # heuristic fallback for literature-like text
-    if "novel" in cleaned or "author" in cleaned or "character" in cleaned or "pride" in cleaned:
-        return "Literature"
+    except Exception:
+        pass
 
     return "General"
+
 
 def generate_questions(text, topic_keywords, questions_per_category=5):
     chunks = splitter.split_text(text)
@@ -290,11 +317,28 @@ def save_questions(output, filename="new_output_questions.json"):
     print(f"✅ Saved structured questions to {filename}")
 
 if __name__ == "__main__":
-    with open("/Users/sanatwalia/Desktop/Zomato_Showcasing/coe-project/questions_generation/extracted_output.txt", "r", encoding="utf-8") as f:
-        text = f.read()
+    # Use paths relative to this file so the script works across machines
+    base_dir = os.path.dirname(__file__)
+    extracted_path = os.path.join(base_dir, "extracted_output.txt")
+    keyword_path = os.path.join(base_dir, "keyword.json")
 
-    with open("/Users/sanatwalia/Desktop/Zomato_Showcasing/coe-project/questions_generation/keyword.json", "r", encoding="utf-8") as kf:
-        topic_keywords = json.load(kf)
+    text = ""
+    if os.path.exists(extracted_path):
+        with open(extracted_path, "r", encoding="utf-8") as f:
+            text = f.read()
+    else:
+        print(f"⚠️ extracted_output.txt not found at {extracted_path}; running with empty text")
+
+    topic_keywords = {}
+    if os.path.exists(keyword_path):
+        try:
+            with open(keyword_path, "r", encoding="utf-8") as kf:
+                topic_keywords = json.load(kf)
+        except Exception as e:
+            print(f"⚠️ Failed to load keyword.json: {e}")
+            topic_keywords = {}
+    else:
+        print(f"⚠️ keyword.json not found at {keyword_path}; continuing with empty keywords")
 
     print("🚀 Generating questions with Ollama...")
     final_questions = generate_questions(text, topic_keywords)

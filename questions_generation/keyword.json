@@ -1,7 +1,6 @@
 {
     "Artificial Intelligence": ["ai", "neural", "model", "training", "fine-tune", "prompt", "generation"],
     "Physics": ["force", "motion", "energy", "gravity", "electricity", "current"],
-    "Biology": ["cell", "photosynthesis", "organism", "dna", "respiration"],
     "Mathematics": ["equation", "probability", "geometry", "algebra", "derivative"],
     "General": ["diagram", "steps", "explain", "definition", "describe"],
     "Chemistry": ["reaction", "compound", "element", "molecule", "bond"],
@@ -22,11 +21,17 @@
     "Law": ["legal", "case", "statute", "regulation", "jurisdiction"],
     "Business": ["strategy", "management", "finance", "marketing", "entrepreneurship"],
     "Sports": ["team", "competition", "athlete", "tournament", "score"],
-    "Astronomy": ["planet", "star", "galaxy", "universe", "cosmos"],
     "Linguistics": ["language", "syntax", "semantics", "phonetics", "morphology"],
     "Education": ["learning", "teaching", "curriculum", "assessment", "pedagogy"],
-    "Architecture": ["design", "structure", "building", "urban", "landscape"],
-    "Fashion": ["style", "trend", "garment", "accessory", "design"],
-    "Food": ["cuisine", "recipe", "ingredient", "nutrition", "cooking"]
+    "Advanced Data Structures": ["segment tree", "fenwick", "treap", "avl", "graph"],
+    "Algorithm Design & Analysis": ["divide and conquer", "greedy", "dp", "complexity", "approximation"],
+    "Competitive Programming Techniques": ["two pointers", "sliding window", "bitmask", "meet-in-the-middle", "binary search"],
+    "Object-Oriented Programming": ["encapsulation", "inheritance", "polymorphism", "abstraction", "class"],
+    "Design Patterns": ["singleton", "factory", "observer", "strategy", "adapter"],
+    "Software Design & Architecture": ["mvc", "microservices", "layering", "scalability", "coupling"],
+    "Software Testing & QA": ["unit test", "integration test", "mocking", "tdd", "coverage"],
+    "Secure Coding": ["input validation", "sanitization", "auth", "authorization", "session"],
+    "Ethical Hacking & Penetration Testing": ["reconnaissance", "sql injection", "xss", "exploit", "vulnerability scan"],
+    "Version Control & CI/CD": ["git", "branch", "merge", "pipeline", "automation"]
   }
   
