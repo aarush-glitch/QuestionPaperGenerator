@@ -188,7 +188,13 @@ def main():
         with cols[i]:
             if st.button(f"Try: {sample_query[:30]}...", key=f"sample_{i}"):
                 st.experimental_set_query_params(query=sample_query)
-                st.experimental_rerun()
+                try:
+                    if hasattr(st, "experimental_rerun"):
+                        st.experimental_rerun()
+                    else:
+                        st.session_state["_rerun_trigger"] = not st.session_state.get("_rerun_trigger", False)
+                except Exception:
+                    st.session_state["_rerun_trigger"] = not st.session_state.get("_rerun_trigger", False)
 
 if __name__ == "__main__":
     main()

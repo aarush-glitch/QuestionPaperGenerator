@@ -1,0 +1,13 @@
+{
+  "source": "C:\\Users\\aarus\\OneDrive\\Desktop\\Projects\\Sem7Major\\coe-project\\coe-project\\final_database_coe.csv",
+  "fingerprint": "e892ef64e44e2b397f71d788cd66ae31327a95daca4a689f32b3d0099b4eb341",
+  "model": "csv-etl-v1",
+  "count_questions": 189,
+  "groups": {
+    "1_mark": 37,
+    "5_mark": 46,
+    "2_mark": 52,
+    "3_mark": 54
+  },
+  "updated_at": "2025-11-13T16:29:17.146794Z"
+}

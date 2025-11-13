@@ -97,6 +97,90 @@ st.session_state.setdefault("auto_build_index", True)
 st.session_state.setdefault("selected_questions", [])
 st.session_state.setdefault("max_marks_limit", 20)
 
+
+def _safe_int(v):
+    """Convert value to int safely. Returns 0 on failure.
+    Accepts numeric types or strings like '5', '5.0', '5 mins'."""
+    try:
+        if v is None:
+            return 0
+        # If it's already an int, return it
+        if isinstance(v, int):
+            return v
+        # Try float first to accept '5.0'
+        return int(float(str(v).strip()))
+    except Exception:
+        # fallback: extract first number from string
+        try:
+            import re
+
+            s = str(v)
+            nums = re.findall(r"\d+\.?\d*", s)
+            if not nums:
+                return 0
+            return int(float(nums[0]))
+        except Exception:
+            return 0
+
+
+def _add_to_selection(item, q_marks):
+    """Callback to add an item to the selection (used with st.button on_click)."""
+    try:
+        q_marks_int = _safe_int(q_marks)
+        new_item = dict(item)
+        new_item["marks"] = q_marks_int
+        st.session_state.setdefault("selected_questions", [])
+        st.session_state.selected_questions.append(new_item)
+    except Exception:
+        # swallow to avoid crashing Streamlit callback
+        pass
+    finally:
+        # toggle a lightweight trigger so Streamlit reliably reruns across versions
+        st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
+
+
+def _remove_from_selection_by_index(idx):
+    """Callback to remove a selected item by index."""
+    try:
+        st.session_state.setdefault("selected_questions", [])
+        if 0 <= idx < len(st.session_state.selected_questions):
+            st.session_state.selected_questions.pop(idx)
+    except Exception:
+        pass
+    finally:
+        st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
+
+
+def _remove_first_matching(question, marks):
+    """Remove first selected question matching question text and marks."""
+    try:
+        q_marks = _safe_int(marks)
+        for idx_s, s in enumerate(st.session_state.get("selected_questions", [])):
+            if s.get("question") == question and _safe_int(s.get("marks")) == q_marks:
+                st.session_state.selected_questions.pop(idx_s)
+                break
+    except Exception:
+        pass
+    finally:
+        st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
+
+
+def _on_course_selected():
+    """Callback when a course is selected from the selectbox widget."""
+    try:
+        chosen = st.session_state.get("selected_course_widget")
+        # propagate widget selection into canonical 'selected_course' session key
+        st.session_state["selected_course"] = chosen
+        if chosen:
+            det = detect_course_assets(chosen)
+            st.session_state.course_asset_detect = det
+        else:
+            st.session_state.course_asset_detect = None
+    except Exception:
+        st.session_state.course_asset_detect = None
+    finally:
+        st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
+
 # load available courses from disk (or sensible defaults)
 if "available_courses" not in st.session_state:
     loaded = load_courses()
@@ -115,6 +199,79 @@ def save_refined_text(text: str):
         p.write_text(text, encoding="utf-8")
     except Exception:
         pass
+
+
+# Course asset loader: when a course is selected, attempt to load precomputed
+# cleaned questions and faiss index from `data/courses/<slug>/` and copy the
+# index into `new_faiss_index/` so the existing search UI can use it.
+def _slugify(name: str) -> str:
+    return ''.join(c if c.isalnum() else '_' for c in name.strip().lower()).strip('_')
+
+
+def detect_course_assets(course_name: str) -> dict:
+    """Detect presence of precomputed assets for a course. Returns a dict:
+    { 'has_cleaned': bool, 'has_index': bool, 'manifest': dict|None, 'base': Path }
+    Does NOT load or copy anything — just detects and reads manifest if present.
+    """
+    out = {'has_cleaned': False, 'has_index': False, 'manifest': None, 'base': None}
+    try:
+        if not course_name:
+            return out
+        base = Path('data') / 'courses' / _slugify(course_name)
+        out['base'] = base
+        cleaned = base / 'cleaned_questions.json'
+        manifest = base / 'manifest.json'
+        faiss_idx = base / 'faiss_index'
+
+        out['has_cleaned'] = cleaned.exists()
+        out['has_index'] = faiss_idx.exists()
+        if manifest.exists():
+            try:
+                out['manifest'] = json.loads(manifest.read_text(encoding='utf-8'))
+            except Exception:
+                out['manifest'] = None
+        return out
+    except Exception:
+        return out
+
+
+def apply_course_assets(course_name: str, load_cleaned: bool = False, load_index: bool = False):
+    """Apply (load) precomputed assets into the running app.
+    - load_cleaned: load cleaned_questions.json into `st.session_state.cleaned_questions`
+    - load_index: copy `faiss_index/` into `new_faiss_index/`
+    """
+    try:
+        base = Path('data') / 'courses' / _slugify(course_name)
+        cleaned = base / 'cleaned_questions.json'
+        faiss_idx = base / 'faiss_index'
+
+        if load_cleaned and cleaned.exists():
+            try:
+                st.session_state.cleaned_questions = json.loads(cleaned.read_text(encoding='utf-8'))
+                st.success(f"Loaded cleaned questions for '{course_name}'.")
+            except Exception as e:
+                st.error(f"Failed to load cleaned questions: {e}")
+
+        if load_index and faiss_idx.exists():
+            try:
+                import shutil
+                target = Path('new_faiss_index')
+                if target.exists():
+                    shutil.rmtree(target, ignore_errors=True)
+                shutil.copytree(faiss_idx, target)
+                st.success(f"Prebuilt FAISS index copied for '{course_name}'.")
+            except Exception as e:
+                st.error(f"Failed to copy FAISS index: {e}")
+
+        # ensure UI updates after applying assets
+        try:
+            st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
+        except Exception:
+            pass
+
+        return True
+    except Exception:
+        return False
 
 
 def step_card(title: str, idx: int | None = None):
@@ -155,6 +312,11 @@ def run_extraction(uploaded, manual_text):
         st.text_area("Refined text (editable)", value=st.session_state.refined_text, key="refined_preview", height=220)
     else:
         st.warning("No text was produced. Please paste text or try another file.")
+    # ensure UI updates after extraction
+    try:
+        st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
+    except Exception:
+        pass
 
 
 def smart_filter(docs, marks, difficulty, cognitive):
@@ -262,6 +424,7 @@ def build_index_from_cleaned(cleaned_questions, show_progress: bool = False):
                 progress.progress(80)
                 status.text("Saving index to disk...")
 
+
             db.save_local(str(idx_path))
 
             if show_progress and progress:
@@ -338,8 +501,10 @@ def nav():
     nxt = c2.button("Next", disabled=disable_next)
     if back:
         st.session_state.wizard_step = max(0, st.session_state.wizard_step - 1)
+        st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
     if nxt:
         st.session_state.wizard_step = min(5, st.session_state.wizard_step + 1)
+        st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
 
 
 nav()
@@ -357,10 +522,15 @@ if st.session_state.wizard_step == 0:
         # compute default index so the selectbox doesn't reset to the first option on reruns
         current = st.session_state.get("selected_course")
         try:
-            default_index = course_options.index(current) if current in course_options else 0
+            # if a course was just added and we want to select it, prefer that
+            select_after = st.session_state.get("_select_after_add")
+            if select_after and select_after in course_options:
+                default_index = course_options.index(select_after)
+            else:
+                default_index = course_options.index(current) if current in course_options else 0
         except Exception:
             default_index = 0
-        chosen = st.selectbox("Choose existing course or add new", options=course_options, index=default_index)
+        chosen = st.selectbox("Choose existing course or add new", options=course_options, index=default_index, key="selected_course_widget", on_change=_on_course_selected)
     with cols[1]:
         st.write("\n")
         st.write("\n")
@@ -378,12 +548,90 @@ if st.session_state.wizard_step == 0:
                         save_courses(st.session_state.available_courses)
                     except Exception:
                         pass
-                st.session_state.selected_course = new_name
+                # mark this course to be selected on the next render (safe; widget will pick it up)
+                st.session_state["_select_after_add"] = new_name
                 st.success(f"Selected course: {new_name}")
+                # ensure UI updates
+                st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
+
+        # If we requested a post-add selection, propagate it into canonical selected_course now
+        if st.session_state.get("_select_after_add"):
+            try:
+                sel_after = st.session_state.pop("_select_after_add")
+                st.session_state["selected_course"] = sel_after
+                st.session_state["course_asset_detect"] = detect_course_assets(sel_after)
+            except Exception:
+                st.session_state["course_asset_detect"] = None
+            finally:
+                st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
     else:
-        # selecting an existing course immediately sets it
-        if st.session_state.get("selected_course") != chosen:
-            st.session_state.selected_course = chosen
+        # selecting an existing course — asset detection is handled by the selectbox callback
+        # If detection found assets, show a small banner + controls
+        det = st.session_state.get('course_asset_detect')
+        if det and (det.get('has_cleaned') or det.get('has_index')):
+            st.markdown(f"**Prebuilt assets detected for '{chosen}'**")
+            mf = det.get('manifest')
+            if mf:
+                st.markdown(f"- Source: `{mf.get('source')}`  ")
+                st.markdown(f"- Questions: **{mf.get('count_questions', '?')}**")
+                grp = mf.get('groups') or {}
+                st.markdown(f"- Groups: {grp}")
+
+            action = st.radio("What would you like to do with prebuilt assets?", ["Preview only", "Load & Replace", "Load & Merge", "Load Index only"], index=0, key="prebuilt_action")
+
+            if action == "Preview only":
+                if det.get('has_cleaned'):
+                    try:
+                        cleaned_path = Path(det.get('base')) / 'cleaned_questions.json'
+                        preview = json.loads(cleaned_path.read_text(encoding='utf-8'))
+                        first_key = next(iter(preview.keys())) if preview else None
+                        if first_key:
+                            st.write(f"Preview of `{first_key}` (first 5 items):")
+                            st.json({first_key: preview[first_key][:5]})
+                        else:
+                            st.info("No cleaned questions to preview.")
+                    except Exception as e:
+                        st.error(f"Failed to preview cleaned questions: {e}")
+                else:
+                    st.info("No cleaned questions available to preview.")
+
+            if st.button("Apply prebuilt assets", key="apply_prebuilt"):
+                if action == "Load & Replace":
+                    # load cleaned and index, replacing any existing cleaned_questions
+                    success = apply_course_assets(chosen, load_cleaned=True, load_index=True)
+                    if success:
+                        st.success("Prebuilt assets loaded (replace).")
+                elif action == "Load & Merge":
+                    # merge prebuilt cleaned into existing cleaned_questions (or set if none)
+                    base = Path(det.get('base'))
+                    cleaned_path = base / 'cleaned_questions.json'
+                    if cleaned_path.exists():
+                        try:
+                            pre = json.loads(cleaned_path.read_text(encoding='utf-8'))
+                            if not st.session_state.get('cleaned_questions'):
+                                st.session_state.cleaned_questions = pre
+                            else:
+                                # merge by group (append)
+                                for g, items in pre.items():
+                                    st.session_state.cleaned_questions.setdefault(g, [])
+                                    st.session_state.cleaned_questions[g].extend(items)
+                            # optionally copy index too
+                            if det.get('has_index'):
+                                apply_course_assets(chosen, load_cleaned=False, load_index=True)
+                            st.success("Prebuilt assets merged into current cleaned questions.")
+                            st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
+                        except Exception as e:
+                            st.error(f"Failed to merge prebuilt questions: {e}")
+                    else:
+                        st.info("No cleaned questions to merge.")
+                elif action == "Load Index only":
+                    if det.get('has_index'):
+                        apply_course_assets(chosen, load_cleaned=False, load_index=True)
+                        st.success("Prebuilt index copied into working index.")
+                    else:
+                        st.info("No prebuilt index available for this course.")
+                else:
+                    st.info("Preview-only action does not apply assets.")
 
     if not st.session_state.get("selected_course"):
         st.warning("Please choose or add a course before proceeding.")
@@ -396,10 +644,12 @@ if st.session_state.wizard_step == 0:
                 st.error("Select a course first.")
             else:
                 st.session_state.wizard_step = 1
+                st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
     with colp2:
         if st.button("Skip upload — Use existing questions", key="goto_existing"):
             # jump to Search (step index 4 after shift)
             st.session_state.wizard_step = 4
+            st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
 
 
 # Step 1: Upload / Extract
@@ -590,6 +840,8 @@ elif st.session_state.wizard_step == 2:
                     if generated is not None:
                         st.session_state.generated_questions = generated
                         st.success("Questions generated and loaded.")
+                        # ensure UI updates after generator output
+                        st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
                         st.write("Preview (first items):")
                         for k, v in list(generated.items())[:3]:
                             st.markdown(f"**{k}** — {len(v)} item(s)")
@@ -643,8 +895,9 @@ elif st.session_state.wizard_step == 3:
         upload_q = st.file_uploader("Upload questions JSON", type=["json"], key="wizard_upload_questions")
         if upload_q is not None:
             try:
-                st.session_state.generated_questions = json.loads(upload_q.read().decode("utf-8"))
-                st.success("Uploaded questions JSON loaded.")
+                    st.session_state.generated_questions = json.loads(upload_q.read().decode("utf-8"))
+                    st.success("Uploaded questions JSON loaded.")
+                    st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
             except Exception as e:
                 st.error("Invalid JSON: " + str(e))
 
@@ -661,6 +914,7 @@ elif st.session_state.wizard_step == 3:
                         q["subtopic"] = extract_subtopic(original)
                 st.session_state.cleaned_questions = data
                 st.success("Subtopics cleaned.")
+                st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
 
         if st.session_state.cleaned_questions:
             st.write("Preview of cleaned data (first group):")
@@ -754,60 +1008,69 @@ elif st.session_state.wizard_step == 4:
                              f"**Difficulty**: {item['difficulty']}  \n"
                              f"**Cognitive**: {item['cognitive_level']}")
                     # add selection control
-                    try:
-                        q_marks = int(item.get("marks") or 0)
-                    except Exception:
-                        q_marks = 0
-
+                    q_marks = _safe_int(item.get("marks"))
                     add_key = f"add_{i}"
                     remove_key = f"rem_{i}"
-                    if any((s.get("question") == item.get("question") and s.get("marks") == item.get("marks")) for s in st.session_state.selected_questions):
-                        if st.button("Remove from selection", key=remove_key):
-                            # remove first matching
-                            for idx_s, s in enumerate(st.session_state.selected_questions):
-                                if s.get("question") == item.get("question") and s.get("marks") == item.get("marks"):
-                                    st.session_state.selected_questions.pop(idx_s)
-                                    st.success("Removed from selection")
-                                    break
+                    # compute current total and remaining marks (used to disable Add button)
+                    current_total = sum(_safe_int(s.get("marks")) for s in st.session_state.selected_questions)
+                    limit = int(st.session_state.get("max_marks_limit", 20) or 0)
+                    remaining = limit - current_total
+
+                    # compare using normalized marks to avoid type mismatches
+                    if any((s.get("question") == item.get("question") and _safe_int(s.get("marks")) == q_marks) for s in st.session_state.selected_questions):
+                        # use callback to remove first matching item to ensure Streamlit reruns
+                        if st.button("Remove from selection", key=remove_key, on_click=_remove_first_matching, args=(item.get("question"), q_marks)):
+                            st.success("Removed from selection")
                     else:
-                        if st.button("Add to selection", key=add_key):
-                            # check constraint
-                            try:
-                                current_total = sum(int(s.get("marks") or 0) for s in st.session_state.selected_questions)
-                            except Exception:
-                                current_total = 0
-                            limit = int(st.session_state.get("max_marks_limit", 20) or 0)
-                            if current_total + q_marks <= limit:
-                                st.session_state.selected_questions.append(item)
-                                st.success("Added to selection")
-                            else:
-                                remaining = limit - current_total
-                                if remaining <= 0:
-                                    st.warning(f"You have reached the maximum total marks ({limit}). Remove some selected questions to add more.")
-                                else:
-                                    st.warning(f"Cannot add: only {remaining} mark(s) remaining out of {limit}.")
+                        # show remaining marks to the user
+                        # st.write(f"Remaining marks: {remaining} / {limit}")
+
+                        # disable Add when not enough remaining marks
+                        disabled_add = (q_marks > remaining)
+                        if st.button("Add to selection", key=add_key, disabled=disabled_add, on_click=_add_to_selection, args=(item, q_marks)):
+                            st.success("Added to selection")
+                        else:
+                            if disabled_add:
+                                st.info(f"Not enough remaining marks to add this question ({q_marks} required). Remove some selected items first.")
 
     with sel_col:
         st.markdown("### Selected Questions")
-        # control to set max marks limit
-        st.number_input("Max total marks (limit)", min_value=1, max_value=200, value=st.session_state.get("max_marks_limit", 20), step=1, key="max_marks_limit")
+        # control to set max marks limit — fixed options persisted in session
+        options = [20, 35, 100]
+        # determine default index from current session value if present
+        try:
+            current_val = int(st.session_state.get("max_marks_limit", 20) or 20)
+        except Exception:
+            current_val = 20
+        try:
+            default_index = options.index(current_val) if current_val in options else 0
+        except Exception:
+            default_index = 0
+        sel = st.selectbox("Max total marks (limit)", options, index=default_index, key="max_marks_limit")
 
         sel = st.session_state.get("selected_questions") or []
+        total_selected = sum(_safe_int(s.get("marks")) for s in sel)
+        limit = int(st.session_state.get("max_marks_limit", 20) or 0)
+        remaining_global = max(0, limit - total_selected)
+        # Bolder visual: show as metrics for quick scanning
+        mcol1, mcol2 = st.columns(2)
         try:
-            total_selected = sum(int(s.get("marks") or 0) for s in sel)
+            mcol1.metric("Total Selected", f"{total_selected} / {limit}")
+            mcol2.metric("Remaining", f"{remaining_global} / {limit}")
         except Exception:
-            total_selected = 0
-        st.write(f"Total selected marks: {total_selected} / {st.session_state.get('max_marks_limit', 20)}")
+            # fallback to plain text if metric is unavailable
+            st.write(f"Total selected marks: {total_selected} / {limit}")
+            st.write(f"Remaining marks: {remaining_global} / {limit}")
 
-        # list selected questions with remove option
+        # list selected questions with remove option (use callbacks so Streamlit updates immediately)
         for j, s in enumerate(sel, 1):
             st.write(f"{j}. ({s.get('marks')} m) {s.get('question')[:120]}...")
-            if st.button(f"Remove #{j}", key=f"sel_rem_{j}"):
-                st.session_state.selected_questions.pop(j-1)
-                st.experimental_rerun()
+            if st.button(f"Remove #{j}", key=f"sel_rem_{j}", on_click=_remove_from_selection_by_index, args=(j-1,)):
+                st.success("Removed from selection")
 
         if sel:
-            if st.button("Finalize & Generate PDF"):
+            finalize_disabled = len(sel) == 0
+            if st.button("Finalize & Generate PDF", disabled=finalize_disabled):
                 # generate PDF and offer download
                 success, payload = create_pdf_from_selection(sel, title="Question Paper")
                 if not success and isinstance(payload, bytes):
