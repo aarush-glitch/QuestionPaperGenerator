@@ -96,6 +96,7 @@ st.session_state.setdefault("wizard_step", 0)
 st.session_state.setdefault("auto_build_index", True)
 st.session_state.setdefault("selected_questions", [])
 st.session_state.setdefault("max_marks_limit", 20)
+st.session_state.setdefault("dashboard_mode", False)
 
 
 def _safe_int(v):
@@ -463,19 +464,76 @@ def create_pdf_from_selection(selection, title: str = "Question Paper"):
             # fallback: return text bytes so user can download as .txt
             return False, text.encode("utf-8")
 
-        # create PDF
-        doc = fitz.open()
-        # page size A4
-        page = doc.new_page(width=595, height=842)
-        # simple layout: insert text at margin
-        text_rect = fitz.Rect(40, 40, 555, 800)
-        # choose a default font/size
-        page.insert_textbox(text_rect, text, fontsize=11, fontname="helv")
+        # create PDF and write text line-by-line (with wrapping) to support multi-page
+        import textwrap
 
-        # write to bytes
-        pdf_bytes = doc.write()
-        doc.close()
-        return True, pdf_bytes
+        doc = fitz.open()
+        PAGE_WIDTH = 595
+        PAGE_HEIGHT = 842
+        LEFT_MARGIN = 40
+        TOP_MARGIN = 40
+        RIGHT_MARGIN = 40
+        BOTTOM_MARGIN = 40
+        LINE_HEIGHT = 14
+
+        page = doc.new_page(width=PAGE_WIDTH, height=PAGE_HEIGHT)
+        y = TOP_MARGIN
+        max_y = PAGE_HEIGHT - BOTTOM_MARGIN
+
+        # rough wrap width in characters (approx); textwrap works on characters, not points
+        wrap_width = 100
+
+        for raw_line in text.splitlines():
+            wrapped = textwrap.wrap(raw_line, width=wrap_width) or [""]
+            for wline in wrapped:
+                # if the current page is full, add a new page
+                if y + LINE_HEIGHT > max_y:
+                    page = doc.new_page(width=PAGE_WIDTH, height=PAGE_HEIGHT)
+                    y = TOP_MARGIN
+
+                try:
+                    page.insert_text((LEFT_MARGIN, y), wline, fontsize=11)
+                except Exception:
+                    # fallback to a safer insertion if insert_text fails
+                    try:
+                        text_rect = fitz.Rect(LEFT_MARGIN, y, PAGE_WIDTH - RIGHT_MARGIN, y + LINE_HEIGHT)
+                        page.insert_textbox(text_rect, wline, fontsize=11)
+                    except Exception:
+                        # if even that fails, skip this line
+                        pass
+
+                y += LINE_HEIGHT
+
+        # attempt to get bytes directly from the in-memory document
+        try:
+            pdf_bytes = doc.write()
+            if pdf_bytes:
+                doc.close()
+                return True, pdf_bytes
+        except Exception:
+            # fall through to disk-based fallback
+            pass
+
+        # disk-based fallback: save to a temp file and read bytes
+        try:
+            tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
+            tmp_path = tmp.name
+            tmp.close()
+            doc.save(tmp_path)
+            doc.close()
+            with open(tmp_path, "rb") as f:
+                pdf_bytes = f.read()
+            try:
+                os.unlink(tmp_path)
+            except Exception:
+                pass
+            return True, pdf_bytes
+        except Exception as e:
+            try:
+                doc.close()
+            except Exception:
+                pass
+            return False, str(e)
     except Exception as e:
         return False, str(e)
 
@@ -502,17 +560,6 @@ def nav():
     if back:
         st.session_state.wizard_step = max(0, st.session_state.wizard_step - 1)
         st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
-    if nxt:
-        st.session_state.wizard_step = min(5, st.session_state.wizard_step + 1)
-        st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
-
-
-nav()
-
-st.write(f"Step {st.session_state.wizard_step + 1} of 6")
-
-
-# Step 0: Choose Course
 if st.session_state.wizard_step == 0:
     step_card("Select Course", 0)
     st.markdown("#### Select course for this question paper")
@@ -1071,33 +1118,108 @@ elif st.session_state.wizard_step == 4:
         if sel:
             finalize_disabled = len(sel) == 0
             if st.button("Finalize & Generate PDF", disabled=finalize_disabled):
-                # generate PDF and offer download
-                success, payload = create_pdf_from_selection(sel, title="Question Paper")
-                if not success and isinstance(payload, bytes):
-                    # fallback text bytes
-                    st.download_button("Download question paper (txt)", data=payload, file_name="question_paper.txt")
-                elif success:
-                    st.download_button("Download question paper (pdf)", data=payload, file_name="question_paper.pdf")
-                else:
-                    st.error(f"Failed to generate paper: {payload}")
+                # open the review dashboard instead of immediate PDF generation
+                st.session_state["dashboard_mode"] = True
+                st.session_state["wizard_step"] = 5
+                st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
 
 
-# Step 5: Export
+# Step 5: Export / Dashboard
 elif st.session_state.wizard_step == 5:
-    step_card("Export", 5)
-    exp_col1, exp_col2 = st.columns([1, 1])
-    with exp_col1:
-        if st.session_state.refined_text:
-            st.download_button("Download refined text", data=st.session_state.refined_text.encode("utf-8"), file_name="refined_output.txt")
-        else:
-            st.caption("No refined text available")
-    with exp_col2:
-        if st.session_state.cleaned_questions:
-            st.download_button("Download cleaned questions", data=json.dumps(st.session_state.cleaned_questions, indent=2, ensure_ascii=False).encode("utf-8"), file_name="questions.cleaned.json")
-        elif st.session_state.generated_questions:
-            st.download_button("Download generated questions", data=json.dumps(st.session_state.generated_questions, indent=2, ensure_ascii=False).encode("utf-8"), file_name="questions.generated.json")
-        else:
-            st.caption("No question data to export")
+    step_card("Export / Review Dashboard", 5)
+
+    # If dashboard_mode is set, render an interactive review dashboard
+    if st.session_state.get("dashboard_mode"):
+        sel = st.session_state.get("selected_questions") or []
+
+        # Top: Paper summary split into two columns
+        summary_left, summary_right = st.columns([1, 1])
+
+        total_marks = sum(_safe_int(q.get('marks')) for q in sel)
+        diffs = [ (q.get('difficulty') or q.get('difficulty_level') or 'unknown').lower() for q in sel ]
+        diff_counts = {}
+        for d in diffs:
+            diff_counts[d] = diff_counts.get(d, 0) + 1
+
+        topics = [ (q.get('topic') or 'General') for q in sel ]
+        topic_counts = {}
+        for t in topics:
+            topic_counts[t] = topic_counts.get(t, 0) + 1
+
+        with summary_left:
+            st.header("Paper Summary")
+            st.metric("Total Marks", f"{total_marks}")
+            st.metric("Questions Selected", f"{len(sel)}")
+
+            st.subheader("Difficulty Breakdown")
+            try:
+                import plotly.express as px
+                if diff_counts:
+                    fig = px.pie(values=list(diff_counts.values()), names=list(diff_counts.keys()), title="By Difficulty")
+                    st.plotly_chart(fig, use_container_width=True)
+                else:
+                    st.info("No difficulty info available.")
+            except Exception:
+                st.write(diff_counts or "No difficulty info available.")
+
+        with summary_right:
+            st.header("Topics Covered")
+            if topic_counts:
+                for t, c in topic_counts.items():
+                    st.write(f"- {t}: {c} question(s)")
+            else:
+                st.info("No topic metadata available.")
+
+            st.subheader("Actions")
+            pdf_col1, pdf_col2 = st.columns([1, 1])
+            with pdf_col1:
+                if sel:
+                    success, payload = create_pdf_from_selection(sel, title="Question Paper")
+                    if success:
+                        st.download_button("Download PDF", data=payload, file_name="question_paper.pdf")
+                    else:
+                        if isinstance(payload, bytes):
+                            st.download_button("Download (txt)", data=payload, file_name="question_paper.txt")
+                        else:
+                            st.error(f"Failed to create PDF: {payload}")
+                else:
+                    st.caption("No questions selected to generate PDF.")
+
+            with pdf_col2:
+                if st.button("Back to Selection"):
+                    st.session_state["dashboard_mode"] = False
+                    st.session_state["wizard_step"] = 4
+                    st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
+
+        # Below summaries: full-width selected questions list for review and removal
+        st.markdown("---")
+        st.header("Selected Questions")
+        st.markdown("Use the Remove buttons to edit selection. Changes update instantly.")
+        if not sel:
+            st.info("No questions selected.")
+        for idx, q in enumerate(sel):
+            with st.expander(f"Q{idx+1}: ({q.get('marks')} m) {q.get('topic') or ''} - {q.get('difficulty') or ''}"):
+                st.write(q.get('question'))
+                st.write(f"**Topic**: {q.get('topic')}  •  **Subtopic**: {q.get('subtopic')}")
+                st.write(f"**Marks**: {q.get('marks')}  •  **Difficulty**: {q.get('difficulty')}  •  **Time**: {q.get('time')}")
+                if st.button("Remove from selection", key=f"dash_rem_{idx}", on_click=_remove_from_selection_by_index, args=(idx,)):
+                    st.success("Removed")
+
+    else:
+        # default Export UI (legacy)
+        exp_col1, exp_col2 = st.columns([1, 1])
+        with exp_col1:
+            if st.session_state.refined_text:
+                st.download_button("Download refined text", data=st.session_state.refined_text.encode("utf-8"), file_name="refined_output.txt")
+            else:
+                st.caption("No refined text available")
+        with exp_col2:
+            if st.session_state.cleaned_questions:
+                st.download_button("Download cleaned questions", data=json.dumps(st.session_state.cleaned_questions, indent=2, ensure_ascii=False).encode("utf-8"), file_name="questions.cleaned.json")
+            elif st.session_state.generated_questions:
+                st.download_button("Download generated questions", data=json.dumps(st.session_state.generated_questions, indent=2, ensure_ascii=False).encode("utf-8"), file_name="questions.generated.json")
+            else:
+                st.caption("No question data to export")
 
 
 st.markdown("---")
