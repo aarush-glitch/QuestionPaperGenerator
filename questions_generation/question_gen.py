@@ -132,8 +132,14 @@ Generate ONE question suitable for {marks}-mark category.
 - Cognitive level: {cognitive_level}
 
 Only return the question, no explanations.
-Important: The question must be answerable from the excerpt. Only use facts present in the excerpt; do NOT invent or generalize beyond the provided text.
+Important: The question must be answerable from the point of view of a university student. Only use facts present in the excerpt. If you are asking user to answer from some specific line of the exerpt do mention the context of the line so that the question has a standalone context if the user is not given the exerpt during questioning.
 """)
+
+# Clarify difficulty expectations to the LLM so it produces distinct easy/medium/hard questions:
+# - easy: short recall or definition question; answer requires a single fact or phrase from the excerpt.
+# - medium: requires understanding or short explanation; may combine 1–2 facts or ask for a brief reason.
+# - hard: analytical/application question; requires reasoning, comparing, or multi-step inference from the excerpt.
+# Include a one-line example in the prompt to illustrate each difficulty if needed.
 
 question_chain = question_prompt | llm | output_parser
 
@@ -150,35 +156,75 @@ subtopic_chain = subtopic_prompt | llm | output_parser
 
 # Configs
 MARKS_META = {
-    1: {"question_type": "mcq", "difficulty_level": "easy", "time": "1 min", "cognitive_level": "remembering"},
-    2: {"question_type": "short", "difficulty_level": "medium", "time": "2-3 min", "cognitive_level": "understanding"},
-    3: {"question_type": "descriptive", "difficulty_level": "medium", "time": "4-5 min", "cognitive_level": "applying"},
-    5: {"question_type": "long", "difficulty_level": "hard", "time": "6-10 min", "cognitive_level": "evaluating"}
+    # Use a single integer minute value per question for easy aggregation in dashboards
+    1: {"question_type": "mcq", "difficulty_level": "easy", "time": 1, "cognitive_level": "remembering"},
+    2: {"question_type": "short", "difficulty_level": "medium", "time": 3, "cognitive_level": "understanding"},
+    # make 3-mark questions 'hard' to provide variety in difficulty across buckets
+    3: {"question_type": "descriptive", "difficulty_level": "hard", "time": 5, "cognitive_level": "applying"},
+    5: {"question_type": "long", "difficulty_level": "hard", "time": 8, "cognitive_level": "evaluating"}
 }
 
 splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
 
 def detect_topic(text, topic_keywords):
-    # Normalize and remove common OCR/slide markers to avoid false matches
-    cleaned = text.lower()
-    # remove bracketed markers like [DIAGRAM or IMAGE DETECTED]
+    # Improved topic detection: keyword scoring + LLM reranker fallback.
+    # Normalization and cleanup
+    cleaned = text.lower() if text else ""
     import re
     cleaned = re.sub(r"\[[^\]]+\]", " ", cleaned)
 
-    # Score topics by occurrences of their keywords and pick the best
+    # Score topics by occurrences of their keywords (literal match)
     scores = {}
-    for topic, keywords in topic_keywords.items():
+    for topic, keywords in (topic_keywords or {}).items():
         score = 0
         for kw in keywords:
-            pattern = re.escape(kw.lower())
+            if not kw:
+                continue
+            pattern = re.escape(str(kw).lower())
             matches = re.findall(pattern, cleaned)
             score += len(matches)
         scores[topic] = score
 
-    # choose topic with highest score; require at least one match otherwise use heuristics
+    # If we have candidate keywords, choose a clear winner first
     if scores:
-        best_topic, best_score = max(scores.items(), key=lambda x: x[1])
-        if best_score > 0:
+        sorted_topics = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+        best_topic, best_score = sorted_topics[0]
+        second_score = sorted_topics[1][1] if len(sorted_topics) > 1 else 0
+
+        # If best score is reasonably stronger, return it
+        try:
+            if best_score >= 2 or (second_score == 0 and best_score >= 1) or (best_score >= 2 * max(1, second_score)):
+                return best_topic
+        except Exception:
+            pass
+
+        # Otherwise, ask the LLM to pick among the top candidates for a semantic decision
+        candidates = [t for t, s in sorted_topics if s > 0][:6]
+        # if no positive-scoring candidate, still allow LLM to choose among all known topics
+        if not candidates:
+            candidates = list((topic_keywords or {}).keys())[:6]
+
+        # Prepare a topic-selection prompt chain (best-effort; may fail if LLM unavailable)
+        try:
+            cand_str = ", ".join(candidates) if candidates else "General"
+            topic_selector_prompt = PromptTemplate.from_template(
+                """
+You are a topic classifier.
+
+Given this excerpt:
+""" + "\n{text}\n" + """
+
+Possible topics: {candidates}
+
+Choose the single most appropriate topic label from the provided list that best fits the excerpt. RETURN ONLY THE TOPIC LABEL (exactly one). If none match, return 'General'.
+"""
+            )
+            topic_selector_chain = topic_selector_prompt | llm | output_parser
+            sel = topic_selector_chain.invoke({"text": text, "candidates": cand_str}).strip()
+            if sel:
+                return sel
+        except Exception:
+            # If LLM fails, fall back to the highest scoring topic (even if weak)
             return best_topic
 
     # heuristic fallback for literature-like text

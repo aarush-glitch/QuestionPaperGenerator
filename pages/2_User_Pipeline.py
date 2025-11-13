@@ -6,7 +6,6 @@ from pathlib import Path
 import streamlit as st
 from copy import deepcopy
 
-
 # Courses persistence helpers
 def _courses_path():
     p = Path("meta")
@@ -102,7 +101,7 @@ st.session_state.setdefault("max_marks_limit", 20)
 if "available_courses" not in st.session_state:
     loaded = load_courses()
     if not loaded:
-        loaded = ["Data Structures", "OOPs", "Software Engineering", "Computer Networks"]
+        loaded = ["Data Structures", "OOPs", "Software Engineering", "Computer Networks", "Ethical Hacking"]
     st.session_state["available_courses"] = loaded
 
 st.session_state.setdefault("selected_course", "")
@@ -176,9 +175,6 @@ def smart_filter(docs, marks, difficulty, cognitive):
         return relaxed2
     # fallback any marks match
     relaxed3 = [d for d in docs if str(d.metadata.get("marks")) == str(marks)]
-    # Do not fall back to the full unfiltered set. If there are no matches after
-    # relaxation, return an empty list so the UI can inform the user explicitly
-    # and avoid surprising results.
     return relaxed3 or []
 
 
@@ -187,6 +183,25 @@ def build_index_from_cleaned(cleaned_questions, show_progress: bool = False):
     Non-destructive: will remove existing index folder and recreate it.
     """
     try:
+        # helper to coerce various time formats (strings like "2-3 min", "1 min", numeric) to a single integer minutes value
+        def parse_time_minutes(val):
+            try:
+                if val is None:
+                    return None
+                if isinstance(val, int):
+                    return val
+                s = str(val).strip().lower()
+                import re
+                nums = re.findall(r"\d+\.?\d*", s)
+                if not nums:
+                    return None
+                if '-' in s and len(nums) >= 2:
+                    a = float(nums[0]); b = float(nums[1])
+                    return int(round((a + b) / 2))
+                # otherwise use the first number
+                return int(round(float(nums[0])))
+            except Exception:
+                return None
         if FAISS is None or OllamaEmbeddings is None:
             return False, "FAISS or OllamaEmbeddings not available"
 
@@ -201,6 +216,9 @@ def build_index_from_cleaned(cleaned_questions, show_progress: bool = False):
                 marks = q.get("marks") or q.get("mark") or 0
                 difficulty = q.get("difficulty") or q.get("difficulty_level") or ""
                 cognitive = q.get("cognitive_level") or q.get("cognitive") or ""
+                # preserve expected time-to-solve if provided by generator; coerce to integer minutes
+                raw_time = q.get("time") or q.get("time_estimate") or ""
+                time_est = parse_time_minutes(raw_time)
                 topic = q.get("topic") or "General"
                 subtopic = q.get("subtopic") or topic
 
@@ -210,10 +228,11 @@ def build_index_from_cleaned(cleaned_questions, show_progress: bool = False):
                     "marks": marks,
                     "difficulty": difficulty,
                     "cognitive_level": cognitive,
+                    "time": time_est,
                 }
 
                 # include context in embedding text to improve search relevance
-                text_for_embed = f"{q.get('question','')}\n\nTopic: {topic}\nSubtopic: {subtopic}\nMarks: {marks}"
+                text_for_embed = f"{q.get('question','')}\n\nTopic: {topic}\nSubtopic: {subtopic}\nMarks: {marks}\nTime: {time_est if time_est is not None else ''}"
                 docs.append(Document(page_content=text_for_embed, metadata=meta))
 
         idx_path = Path("new_faiss_index")
@@ -267,7 +286,9 @@ def create_pdf_from_selection(selection, title: str = "Question Paper"):
         for i, q in enumerate(selection, 1):
             marks = int(q.get("marks") or 0)
             total_marks += marks
-            content_lines.append(f"Q{i}. ({marks} marks) {q.get('question', '')}")
+            time_str = q.get("time")
+            time_part = f" [Time: {time_str} min]" if time_str not in (None, "") else ""
+            content_lines.append(f"Q{i}. ({marks} marks){time_part} {q.get('question', '')}")
             content_lines.append("")
 
         content_lines.append("")
@@ -436,7 +457,25 @@ elif st.session_state.wizard_step == 2:
                                 else:
                                     res = qgen.generate_questions()
                             except Exception as ex:
-                                st.error(f"Generator invocation error: {ex}")
+                                # Detect common connection-refused errors (e.g., Ollama daemon not running)
+                                msg = str(ex)
+                                try:
+                                    out_dir = Path("questions_generation")
+                                    out_dir.mkdir(parents=True, exist_ok=True)
+                                    dbg = out_dir / "generator_debug.log"
+                                    with open(dbg, "a", encoding="utf-8") as df:
+                                        df.write(f"Generator exception: {repr(ex)}\n")
+                                except Exception:
+                                    pass
+
+                                if isinstance(ex, ConnectionRefusedError) or "10061" in msg or "Connection refused" in msg:
+                                    st.error(
+                                        "Generator connection error: connection refused.\n"
+                                        "This usually means the local LLM service (e.g. Ollama) is not running or not reachable at localhost:11434.\n"
+                                        "Check that the Ollama app or daemon is running, or run `ollama list` / `curl http://127.0.0.1:11434/v1/models` to diagnose.`"
+                                    )
+                                else:
+                                    st.error(f"Generator invocation error: {ex}")
                                 res = None
                         elif hasattr(qgen, "main"):
                             try:
@@ -484,14 +523,38 @@ elif st.session_state.wizard_step == 2:
                             # simple sentence-based fallback: create anchored questions
                             sentences = [s.strip() for s in text_src.split('.') if s.strip()]
                             def make_q(s, marks, topic="General"):
+                                # map marks to a single integer minute estimate (1,3,5,8)
+                                time_map = {1: 1, 2: 3, 3: 5, 5: 8}
+                                diff_map = {1: "easy", 2: "medium", 3: "hard", 5: "hard"}
+                                cog_map = {1: "remembering", 2: "understanding", 3: "applying", 5: "evaluating"}
+                                # attempt to classify topic using generator's detect_topic (if available)
+                                try:
+                                    if qgen is not None and hasattr(qgen, "detect_topic"):
+                                        # topic_keywords from the surrounding scope (if present) will be used
+                                        try:
+                                            tk = topic_keywords if 'topic_keywords' in locals() else {}
+                                            topic = qgen.detect_topic(s, tk)
+                                        except Exception:
+                                            topic = topic
+                                except Exception:
+                                    topic = topic
+
+                                # subtopic can be cleaned if extractor is available
+                                subtopic = topic
+                                try:
+                                    if extract_subtopic is not None:
+                                        subtopic = extract_subtopic(subtopic)
+                                except Exception:
+                                    subtopic = subtopic
+
                                 return {
                                     "question": f"According to the text: {s[:200]}?",
                                     "topic": topic,
-                                    "subtopic": topic,
-                                    "question_type": "short" if marks<=2 else "descriptive",
-                                    "difficulty_level": "easy" if marks==1 else ("medium" if marks<=3 else "hard"),
-                                    "time": "1 min" if marks==1 else ("3 min" if marks==2 else ("5 min" if marks==3 else "8 min")),
-                                    "cognitive_level": "remembering" if marks==1 else ("understanding" if marks==2 else ("applying" if marks==3 else "evaluating")),
+                                    "subtopic": subtopic,
+                                    "question_type": "short" if marks <= 2 else "descriptive",
+                                    "difficulty_level": diff_map.get(marks, "medium"),
+                                    "time": int(time_map.get(marks, 3)),
+                                    "cognitive_level": cog_map.get(marks, "understanding"),
                                     "marks": marks,
                                     "image": None
                                 }
@@ -663,6 +726,8 @@ elif st.session_state.wizard_step == 4:
                                 "question": d.page_content,
                                 "topic": d.metadata.get("topic"),
                                 "subtopic": d.metadata.get("subtopic"),
+                                # ensure time is an integer minute value in the UI
+                                "time": d.metadata.get("time"),
                                 "marks": d.metadata.get("marks"),
                                 "difficulty": d.metadata.get("difficulty"),
                                 "cognitive_level": d.metadata.get("cognitive_level"),
@@ -679,11 +744,15 @@ elif st.session_state.wizard_step == 4:
         if st.session_state.get("search_results"):
             for i, item in enumerate(st.session_state.search_results, 1):
                 with st.expander(f"Q{i}: {item['question'][:80]}…"):
+                    # display time with unit (minutes)
+                    display_time = item.get('time')
+                    display_time_str = f"{display_time} min" if display_time not in (None, "") else "N/A"
                     st.write(f"**Topic**: {item['topic']}  \n"
-                            f"**Subtopic**: {item['subtopic']}  \n"
-                            f"**Marks**: {item['marks']}  \n"
-                            f"**Difficulty**: {item['difficulty']}  \n"
-                            f"**Cognitive**: {item['cognitive_level']}")
+                             f"**Subtopic**: {item['subtopic']}  \n"
+                             f"**Marks**: {item['marks']}  \n"
+                             f"**Time**: {display_time_str}  \n"
+                             f"**Difficulty**: {item['difficulty']}  \n"
+                             f"**Cognitive**: {item['cognitive_level']}")
                     # add selection control
                     try:
                         q_marks = int(item.get("marks") or 0)
