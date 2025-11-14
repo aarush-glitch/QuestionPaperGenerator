@@ -78,7 +78,7 @@ def show_header():
 
 show_header()
 
-# Increase main container width and add side padding for better use of wide layout
+# Match main container width/padding with other pages
 try:
     st.markdown(
         """
@@ -91,7 +91,7 @@ try:
         .stApp .block-container,
         .css-1d391kg,
         .css-18e3th9 {
-            max-width: 1100px !important;
+            max-width: 1000px !important;
             padding-left: 1.5rem !important;
             padding-right: 1.5rem !important;
             margin-left: auto !important;
@@ -123,6 +123,7 @@ st.session_state.setdefault("auto_build_index", True)
 st.session_state.setdefault("selected_questions", [])
 st.session_state.setdefault("max_marks_limit", 20)
 st.session_state.setdefault("dashboard_mode", False)
+st.session_state.setdefault("auto_use_prebuilt_index", True)
 
 
 def _safe_int(v):
@@ -590,14 +591,9 @@ def create_pdf_from_selection(selection, title: str = "Question Paper"):
 
 st.markdown("---")
 
-with st.expander("Quick Guide", expanded=True):
-    st.write(
-        "This wizard guides you through the essential steps. Use Next/Back to navigate. Advanced diagnostics are available at the bottom."
-    )
-
 
 def nav():
-    c1, c2, _ = st.columns([1, 1, 8])
+    c1, c2, c3 = st.columns([1, 11, 1])
     back = c1.button("Back")
     # disable Next on the first step until a course is selected
     disable_next = False
@@ -606,10 +602,28 @@ def nav():
             disable_next = True
     except Exception:
         disable_next = False
-    nxt = c2.button("Next", disabled=disable_next)
+    # Quick Guide placed in the center column between Back and Next
+    try:
+        with c2:
+            with st.expander("Quick Guide", expanded=False):
+                st.write(
+                    "This wizard guides you through the essential steps. Use Next/Back to navigate. Advanced diagnostics are available at the bottom."
+                )
+    except Exception:
+        pass
+
+    # Next button on the right
+    nxt = c3.button("Next", disabled=disable_next)
+
     if back:
         st.session_state.wizard_step = max(0, st.session_state.wizard_step - 1)
         st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
+    if nxt:
+        st.session_state.wizard_step = min(5, st.session_state.wizard_step + 1)
+        st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
+
+# render navbar (buttons + quick guide)
+nav()
 if st.session_state.wizard_step == 0:
     step_card("Select Course", 0)
     st.markdown("#### Select course for this question paper")
@@ -666,31 +680,18 @@ if st.session_state.wizard_step == 0:
         # If detection found assets, show a small banner + controls
         det = st.session_state.get('course_asset_detect')
         if det and (det.get('has_cleaned') or det.get('has_index')):
-            st.markdown(f"**Prebuilt assets detected for '{chosen}'**")
-            mf = det.get('manifest')
-            if mf:
-                st.markdown(f"- Source: `{mf.get('source')}`  ")
-                st.markdown(f"- Questions: **{mf.get('count_questions', '?')}**")
-                grp = mf.get('groups') or {}
-                st.markdown(f"- Groups: {grp}")
+            # st.markdown(f"**Prebuilt assets detected for '{chosen}'**")
+            # # preview suppressed by user preference
 
-            action = st.radio("What would you like to do with prebuilt assets?", ["Preview only", "Load & Replace", "Load & Merge", "Load Index only"], index=0, key="prebuilt_action")
+            # # auto-apply prebuilt index setting is defaulted in session (hidden control)
+            # mf = det.get('manifest')
+            # if mf:
+            #     st.markdown(f"- Source: `{mf.get('source')}`  ")
+            #     st.markdown(f"- Questions: **{mf.get('count_questions', '?')}**")
+            #     grp = mf.get('groups') or {}
+            #     st.markdown(f"- Groups: {grp}")
 
-            if action == "Preview only":
-                if det.get('has_cleaned'):
-                    try:
-                        cleaned_path = Path(det.get('base')) / 'cleaned_questions.json'
-                        preview = json.loads(cleaned_path.read_text(encoding='utf-8'))
-                        first_key = next(iter(preview.keys())) if preview else None
-                        if first_key:
-                            st.write(f"Preview of `{first_key}` (first 5 items):")
-                            st.json({first_key: preview[first_key][:5]})
-                        else:
-                            st.info("No cleaned questions to preview.")
-                    except Exception as e:
-                        st.error(f"Failed to preview cleaned questions: {e}")
-                else:
-                    st.info("No cleaned questions available to preview.")
+            action = st.radio("What would you like to do with prebuilt assets?", ["Load & Replace", "Load & Merge", "Load Index only"], index=0, key="prebuilt_action")
 
             if st.button("Apply prebuilt assets", key="apply_prebuilt"):
                 if action == "Load & Replace":
@@ -744,6 +745,20 @@ if st.session_state.wizard_step == 0:
                 st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
     with colp2:
         if st.button("Skip upload — Use existing questions", key="goto_existing"):
+            # if prebuilt assets detected and user opted in, apply them automatically
+            det = st.session_state.get('course_asset_detect')
+            try:
+                if det:
+                    base = det.get('base')
+                    has_cleaned = det.get('has_cleaned')
+                    has_index = det.get('has_index')
+                    if st.session_state.get('auto_use_prebuilt_index') and has_index:
+                        # apply both cleaned (if available) and index
+                        apply_course_assets(chosen, load_cleaned=bool(has_cleaned), load_index=True)
+                        st.success('Applied prebuilt assets.')
+            except Exception:
+                pass
+
             # jump to Search (step index 4 after shift)
             st.session_state.wizard_step = 4
             st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
@@ -1215,49 +1230,11 @@ elif st.session_state.wizard_step == 5:
             st.metric("Total Marks", f"{total_marks}")
             st.metric("Questions Selected", f"{len(sel)}")
 
-            # Estimated completion time (sum of question 'time' fields, expected in minutes)
-            try:
-                total_time_mins = sum(_safe_int(q.get('time')) for q in sel)
-                hrs = total_time_mins // 60
-                mins = total_time_mins % 60
-                if hrs:
-                    time_str = f"{hrs}h {mins}m"
-                else:
-                    time_str = f"{mins} min"
-
-                # Determine allowed time based on max marks limit mapping
-                limit = int(st.session_state.get("max_marks_limit", 20) or 20)
-                # explicit mapping: 20 -> 1h, 35 -> 2h, 100 -> 3h; otherwise choose nearest bracket
-                if limit <= 20:
-                    allowed_hours = 1
-                elif limit <= 35:
-                    allowed_hours = 2
-                else:
-                    allowed_hours = 3
-
-                allowed_mins = allowed_hours * 60
-
-                # Display estimated time and a warning if it exceeds allowed time
-                st.metric("Estimated Time", time_str)
-                if total_time_mins > allowed_mins:
-                    st.error(f"Estimated time ({time_str}) exceeds the recommended limit of {allowed_hours}h for a {limit}-mark paper.")
-                else:
-                    st.success(f"Estimated time ({time_str}) is within the recommended limit of {allowed_hours}h for a {limit}-mark paper.")
-            except Exception:
-                # if anything goes wrong, show a neutral note
-                st.info("Estimated time unavailable")
-
             st.subheader("Difficulty Breakdown")
             try:
-                import plotly.graph_objects as go
+                import plotly.express as px
                 if diff_counts:
-                    labels = list(diff_counts.keys())
-                    values = list(diff_counts.values())
-                    # explicit hex color mapping (easy=green, medium=yellow, hard=red)
-                    hex_map = {"easy": "#2ecc71", "medium": "#f1c40f", "hard": "#e74c3c"}
-                    colors = [hex_map.get(lbl.lower(), "#95a5a6") for lbl in labels]
-                    fig = go.Figure(data=[go.Pie(labels=labels, values=values, marker=dict(colors=colors))])
-                    fig.update_layout(title_text="By Difficulty")
+                    fig = px.pie(values=list(diff_counts.values()), names=list(diff_counts.keys()), title="By Difficulty")
                     st.plotly_chart(fig, use_container_width=True)
                 else:
                     st.info("No difficulty info available.")
@@ -1271,50 +1248,6 @@ elif st.session_state.wizard_step == 5:
                     st.write(f"- {t}: {c} question(s)")
             else:
                 st.info("No topic metadata available.")
-
-            # Bloom's Taxonomy / Cognitive level distribution (moved to right column)
-            try:
-                st.subheader("Bloom's Taxonomy")
-                levels = ["remembering", "understanding", "applying", "analyzing", "evaluating", "creating"]
-                cog_counts = {lvl: 0 for lvl in levels}
-                for q in sel:
-                    cl = (q.get("cognitive_level") or q.get("cognitive") or "").strip().lower()
-                    if not cl:
-                        continue
-                    if cl.startswith("remember"):
-                        key = "remembering"
-                    elif cl.startswith("understand"):
-                        key = "understanding"
-                    elif cl.startswith("apply"):
-                        key = "applying"
-                    elif cl.startswith("analy"):
-                        key = "analyzing"
-                    elif cl.startswith("evalu"):
-                        key = "evaluating"
-                    elif cl.startswith("creat"):
-                        key = "creating"
-                    else:
-                        key = cl
-                    cog_counts.setdefault(key, 0)
-                    cog_counts[key] += 1
-
-                import plotly.graph_objects as go
-                labels = list(cog_counts.keys())
-                values = [cog_counts.get(l, 0) for l in labels]
-                color_map = {
-                    "remembering": "#2ecc71",
-                    "understanding": "#f1c40f",
-                    "applying": "#e67e22",
-                    "analyzing": "#e74c3c",
-                    "evaluating": "#c0392b",
-                    "creating": "#9b59b6",
-                }
-                colors = [color_map.get(l, "#95a5a6") for l in labels]
-                bar = go.Figure(data=[go.Bar(x=labels, y=values, marker_color=colors)])
-                bar.update_layout(title_text="Cognitive Level Distribution (Bloom's Taxonomy)", xaxis_title="Cognitive Level", yaxis_title="Count")
-                st.plotly_chart(bar, use_container_width=True)
-            except Exception:
-                st.write("Bloom's taxonomy unavailable")
 
             st.subheader("Actions")
             pdf_col1, pdf_col2 = st.columns([1, 1])

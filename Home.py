@@ -25,7 +25,7 @@ try:
         .stApp .block-container,
         .css-1d391kg,
         .css-18e3th9 {
-            max-width: 1100px !important;
+            max-width: 1000px !important;
             padding-left: 1.5rem !important;
             padding-right: 1.5rem !important;
             margin-left: auto !important;
