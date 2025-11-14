@@ -12,6 +12,32 @@ def load_lottieurl(url):
 
 st.set_page_config(page_title="Question Paper Generator - Home", layout="wide", initial_sidebar_state="expanded")
 
+# Match main container width/padding with pipeline page
+try:
+    st.markdown(
+        """
+        <style>
+        /* Broad selectors to cover multiple Streamlit versions and themes */
+        section[data-testid="stAppViewContainer"] .main .block-container,
+        section[data-testid="stAppViewContainer"] .block-container,
+        .reportview-container .main .block-container,
+        div.block-container,
+        .stApp .block-container,
+        .css-1d391kg,
+        .css-18e3th9 {
+            max-width: 1100px !important;
+            padding-left: 1.5rem !important;
+            padding-right: 1.5rem !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+except Exception:
+    pass
+
 # --- STYLES ---
 st.markdown("""
 <style>

@@ -6,7 +6,7 @@
       "subtopic": "Problem Solving",
       "question_type": "mcq",
       "difficulty_level": "easy",
-      "time": 1,
+      "time": 3,
       "cognitive_level": "remembering",
       "marks": 1,
       "image": null
@@ -17,7 +17,7 @@
       "subtopic": "Algorithm Optimization",
       "question_type": "mcq",
       "difficulty_level": "easy",
-      "time": 1,
+      "time": 3,
       "cognitive_level": "remembering",
       "marks": 1,
       "image": null
@@ -28,7 +28,7 @@
       "subtopic": "Algorithmic Complexity",
       "question_type": "mcq",
       "difficulty_level": "easy",
-      "time": 1,
+      "time": 2,
       "cognitive_level": "remembering",
       "marks": 1,
       "image": null
@@ -50,7 +50,7 @@
       "subtopic": "Mathematical Sequences",
       "question_type": "mcq",
       "difficulty_level": "easy",
-      "time": 1,
+      "time": 3,
       "cognitive_level": "remembering",
       "marks": 1,
       "image": null
@@ -61,7 +61,7 @@
       "subtopic": "Pattern Matching Optimization",
       "question_type": "mcq",
       "difficulty_level": "easy",
-      "time": 1,
+      "time": 3,
       "cognitive_level": "remembering",
       "marks": 1,
       "image": null
@@ -83,7 +83,7 @@
       "subtopic": "Time Complexity Analysis",
       "question_type": "mcq",
       "difficulty_level": "easy",
-      "time": 1,
+      "time": 3,
       "cognitive_level": "remembering",
       "marks": 1,
       "image": null
@@ -94,7 +94,7 @@
       "subtopic": "Optimization, Resource Allocation",
       "question_type": "mcq",
       "difficulty_level": "easy",
-      "time": 1,
+      "time": 2,
       "cognitive_level": "remembering",
       "marks": 1,
       "image": null
@@ -105,7 +105,7 @@
       "subtopic": "Function Definition",
       "question_type": "mcq",
       "difficulty_level": "easy",
-      "time": 1,
+      "time": 2,
       "cognitive_level": "remembering",
       "marks": 1,
       "image": null
@@ -140,7 +140,7 @@
       "subtopic": "Resource Allocation",
       "question_type": "short",
       "difficulty_level": "medium",
-      "time": 3,
+      "time": 5,
       "cognitive_level": "understanding",
       "marks": 2,
       "image": null
@@ -151,7 +151,7 @@
       "subtopic": "Algorithm Analysis",
       "question_type": "short",
       "difficulty_level": "medium",
-      "time": 3,
+      "time": 5,
       "cognitive_level": "understanding",
       "marks": 2,
       "image": null
@@ -173,7 +173,7 @@
       "subtopic": "Cache Optimization",
       "question_type": "short",
       "difficulty_level": "medium",
-      "time": 3,
+      "time": 5,
       "cognitive_level": "understanding",
       "marks": 2,
       "image": null
@@ -184,7 +184,7 @@
       "subtopic": "Character Frequency Analysis",
       "question_type": "short",
       "difficulty_level": "medium",
-      "time": 3,
+      "time": 5,
       "cognitive_level": "understanding",
       "marks": 2,
       "image": null
@@ -195,7 +195,7 @@
       "subtopic": "Tree Structure Optimization",
       "question_type": "short",
       "difficulty_level": "medium",
-      "time": 3,
+      "time": 6,
       "cognitive_level": "understanding",
       "marks": 2,
       "image": null
@@ -206,7 +206,7 @@
       "subtopic": "Algorithm Design",
       "question_type": "short",
       "difficulty_level": "medium",
-      "time": 3,
+      "time": 7,
       "cognitive_level": "understanding",
       "marks": 2,
       "image": null
@@ -217,7 +217,7 @@
       "subtopic": "Algorithm Optimization",
       "question_type": "short",
       "difficulty_level": "medium",
-      "time": 3,
+      "time": 5,
       "cognitive_level": "understanding",
       "marks": 2,
       "image": null
@@ -342,7 +342,7 @@
       "subtopic": "Algorithm Comparison",
       "question_type": "long",
       "difficulty_level": "hard",
-      "time": 8,
+      "time": 12,
       "cognitive_level": "evaluating",
       "marks": 5,
       "image": null
@@ -353,7 +353,7 @@
       "subtopic": "Geometric Relationships",
       "question_type": "long",
       "difficulty_level": "hard",
-      "time": 8,
+      "time": 10,
       "cognitive_level": "evaluating",
       "marks": 5,
       "image": null
@@ -375,7 +375,7 @@
       "subtopic": "Efficient Selection",
       "question_type": "long",
       "difficulty_level": "hard",
-      "time": 8,
+      "time": 15,
       "cognitive_level": "evaluating",
       "marks": 5,
       "image": null
@@ -386,7 +386,7 @@
       "subtopic": "Scheduling Optimization",
       "question_type": "long",
       "difficulty_level": "hard",
-      "time": 8,
+      "time": 15,
       "cognitive_level": "evaluating",
       "marks": 5,
       "image": null
@@ -430,7 +430,7 @@
       "subtopic": "Algorithm Comparison",
       "question_type": "long",
       "difficulty_level": "hard",
-      "time": 8,
+      "time": 15,
       "cognitive_level": "evaluating",
       "marks": 5,
       "image": null
