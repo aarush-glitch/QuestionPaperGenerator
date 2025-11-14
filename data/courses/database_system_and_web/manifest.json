@@ -1,0 +1,11 @@
+{
+  "model": "precompute-v1",
+  "count_questions": 20,
+  "groups": {
+    "1_mark": 5,
+    "2_mark": 5,
+    "3_mark": 5,
+    "5_mark": 5
+  },
+  "updated_at": "2025-11-14T12:30:15.082746Z"
+}

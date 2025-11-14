@@ -1,0 +1,706 @@
+
+COURSE: Algorithms and Problem Solving
+
+50 Unique Exam Questions
+## B. Tech. Computer Science Engineering
+### Jaypee Institute of Information Technology, Noida
+
+***
+
+## CO1: Asymptotic Analysis & Complexity (Questions 1-10)
+
+### Q1. [CO1 - Marks 3]
+For the following recursive function, write the recurrence relation and solve it using the Master Theorem:
+
+```
+Fibonacci(n)
+{
+  if (n <= 1) return n;
+  return Fibonacci(n-1) + Fibonacci(n-2);
+}
+```
+
+Analyze the time complexity and compare with iterative approach.
+
+***
+
+### Q2. [CO1 - Marks 3]
+Analyze the time complexity of the following code using Big-O notation. Justify your answer:
+
+```
+for (i = 1; i <= n; i = i * 2)
+{
+  for (j = 1; j <= n; j++)
+    print(i, j);
+}
+```
+
+***
+
+### Q3. [CO1 - Marks 4]
+Given the recurrence relation: T(n) = 3T(n/2) + n²
+
+Solve using the Master Theorem. Verify by finding the complexity using substitution method.
+
+***
+
+### Q4. [CO1 - Marks 3]
+For a divide-and-conquer algorithm with recurrence T(n) = 2T(n/3) + n, determine:
+(a) The time complexity
+(b) The depth of recursion tree
+(c) Work done at each level
+
+***
+
+### Q5. [CO1 - Marks 4]
+Analyze the following code and determine its complexity:
+
+```
+function mysterySub(n)
+{
+  if (n == 1) return 1;
+  sum = 0;
+  for (i = 1; i <= n; i++)
+    sum += mysterySub(n/2);
+  return sum;
+}
+```
+
+***
+
+### Q6. [CO1 - Marks 3]
+For the recurrence T(n) = T(n-1) + T(n-2) + n, solve using the recursion tree method and determine if it's in Θ(2ⁿ) or better.
+
+***
+
+### Q7. [CO1 - Marks 3]
+Given code with nested loops, calculate time complexity:
+
+```
+for (i = 1; i <= n; i++)
+  for (j = i; j <= n; j++)
+    for (k = 1; k <= j; k = k * 2)
+      count++;
+```
+
+***
+
+### Q8. [CO1 - Marks 4]
+Solve the recurrence T(n) = 4T(n/2) + n log n using Master Theorem. Also provide the big-Theta notation.
+
+***
+
+### Q9. [CO1 - Marks 3]
+Analyze space complexity of the following recursive function:
+
+```
+function factorial(n)
+{
+  if (n <= 1) return 1;
+  return n * factorial(n-1);
+}
+```
+
+Compare with iterative space complexity.
+
+***
+
+### Q10. [CO1 - Marks 4]
+For recurrence T(n) = T(n/4) + T(3n/4) + n, determine using recursion tree whether it's Θ(n log n).
+
+***
+
+## CO2: Sorting and Searching Techniques (Questions 11-20)
+
+### Q11. [CO2 - Marks 4]
+An array of 50 unique elements needs to be sorted using Mergesort.
+(a) What is the time complexity in best, average, and worst cases?
+(b) Calculate total number of comparisons for 50 elements.
+(c) Explain why space complexity is O(n).
+
+***
+
+### Q12. [CO2 - Marks 3]
+Given array {45, 23, 51, 17, 32, 21, 88, 9}:
+(a) Sort using bubble sort showing each pass.
+(b) Count total number of swaps.
+(c) Identify if array is already partially sorted.
+
+***
+
+### Q13. [CO2 - Marks 4]
+An array of 100 unique elements is to be sorted using Heapsort.
+(a) Show heap construction steps for first 10 elements: {64, 34, 25, 12, 22, 11, 90, 5, 8, 15}.
+(b) Calculate number of comparisons in worst case for complete array.
+(c) Explain heapify operation with example.
+
+***
+
+### Q14. [CO2 - Marks 3]
+Given sorted array {7, 12, 18, 25, 31, 38, 45, 52, 60}:
+(a) Perform binary search to find element 38.
+(b) Show the middle element selections at each step.
+(c) Count total comparisons.
+(d) What if element is 40 (not present)?
+
+***
+
+### Q15. [CO2 - Marks 4]
+Compare three sorting algorithms and fill the table:
+
+| Algorithm | Best Case | Worst Case | Space | Stable? |
+|-----------|-----------|-----------|-------|---------|
+| Insertion Sort | ? | ? | ? | ? |
+| Quick Sort | ? | ? | ? | ? |
+| Counting Sort | ? | ? | ? | ? |
+
+Also justify when to use each algorithm in real scenarios.
+
+***
+
+### Q16. [CO2 - Marks 3]
+Array {15, 2, 8, 25, 10, 12, 5, 18}:
+(a) Convert to min-heap showing all steps.
+(b) Extract minimum element twice.
+(c) Show heap structure after each extraction.
+
+***
+
+### Q17. [CO2 - Marks 4]
+Given array {92, 24, 68, 35, 11, 77, 45, 29}:
+(a) Perform quicksort with first element as pivot.
+(b) Show partition process clearly for each recursive call.
+(c) Count total comparisons.
+(d) Is this best, average, or worst case? Justify.
+
+***
+
+### Q18. [CO2 - Marks 3]
+In an unsorted array of n distinct elements, find minimum comparisons needed to:
+(a) Find both maximum and minimum elements.
+(b) Find the median element.
+(c) Find the k-th largest element using QuickSelect.
+
+***
+
+### Q19. [CO2 - Marks 4]
+Array {10, 20, 30, 40, 50, 60, 70, 80}:
+(a) What is the probability that random pivot selection gives worst-case split in quicksort (rounded to 2 decimals)?
+(b) Calculate expected time complexity with random pivot selection.
+(c) Compare with median-of-three pivot strategy.
+
+***
+
+### Q20. [CO2 - Marks 3]
+Array {3, 7, 1, 9, 5, 12, 18, 2, 11}:
+(a) Separate positive and negative integers if modified to include negatives: {3, -7, 1, -9, 5, -12, 18, -2, 11}.
+(b) Minimum exchanges required in worst case?
+(c) What data structure helps optimize this?
+
+***
+
+## CO3: Algorithm Design Principles (Questions 21-35)
+
+### Q21. [CO3 - Marks 4]
+Given 6 points in 2D plane: (1,2), (5,8), (3,3), (9,7), (2,5), (7,1):
+
+Find the **closest pair of points** using the divide-and-conquer closest pair algorithm. Show each step clearly including:
+- Division step
+- Recursive calls
+- Strip processing
+- Final answer with distance
+
+***
+
+### Q22. [CO3 - Marks 3]
+Pattern matching using **KMP algorithm**:
+
+Text T = "ABABCABABCABAB"
+Pattern P = "ABABCABAB"
+
+(a) Construct the failure function (prefix table) for pattern P.
+(b) Find all occurrences of P in T.
+(c) Count total comparisons vs naive approach.
+
+***
+
+### Q23. [CO3 - Marks 5]
+Activity Selection Problem:
+
+Given 5 activities with start and finish times:
+| Activity | Start | Finish |
+|----------|-------|--------|
+| A1 | 1 | 4 |
+| A2 | 3 | 5 |
+| A3 | 0 | 6 |
+| A4 | 5 | 7 |
+| A5 | 8 | 9 |
+
+(a) Apply greedy algorithm to select maximum activities.
+(b) Prove why greedy choice leads to optimal solution.
+(c) What if we select by shortest duration first? Does it work?
+
+***
+
+### Q24. [CO3 - Marks 4]
+String matching using **Rabin-Karp algorithm**:
+
+Text T = "AABCCDDADEAEFAABCD"
+Pattern P = "AAE"
+
+(a) Calculate hash values using base 10 (treat A=1, B=2, etc.).
+(b) Show rolling hash computation.
+(c) Find all matches.
+(d) Discuss spurious hit handling.
+
+***
+
+### Q25. [CO3 - Marks 5]
+Coin Change Problem:
+
+Given coin denominations {1, 5, 10, 25} and amount = 63:
+
+(a) Use dynamic programming to find minimum number of coins.
+(b) Show complete DP table construction.
+(c) Trace back to show which coins are used.
+(d) Compare result with greedy approach - does greedy work here?
+
+***
+
+### Q26. [CO3 - Marks 3]
+Matrix Chain Multiplication:
+
+Given matrices with dimensions: A(10×30), B(30×5), C(5×60):
+
+(a) Find optimal parenthesization using dynamic programming.
+(b) Calculate minimum number of scalar multiplications needed.
+(c) Show the DP table (m-table and s-table).
+
+***
+
+### Q27. [CO3 - Marks 4]
+Pattern matching using **Boyer-Moore algorithm**:
+
+Text T = "ABCCCCDDABC"
+Pattern P = "CCCD"
+
+(a) Construct bad character shift table.
+(b) Show pattern matching process step-by-step.
+(c) Count character comparisons.
+(d) Compare with naive algorithm efficiency.
+
+***
+
+### Q28. [CO3 - Marks 5]
+Edit Distance (Levenshtein Distance):
+
+String S1 = "KITTEN"
+String S2 = "SITTING"
+
+(a) Create complete DP table.
+(b) Calculate minimum edit distance.
+(c) Show the transformation sequence (insertions, deletions, substitutions).
+(d) What's the time and space complexity?
+
+***
+
+### Q29. [CO3 - Marks 3]
+Longest Common Subsequence (LCS):
+
+S1 = "AGGTAB"
+S2 = "GXTXAYB"
+
+(a) Create DP table showing values at each cell.
+(b) Find length of LCS.
+(c) Trace back to show the actual LCS string.
+
+***
+
+### Q30. [CO3 - Marks 4]
+0/1 Knapsack Problem:
+
+Capacity W = 15
+
+| Item | Weight | Value |
+|------|--------|-------|
+| A | 2 | 10 |
+| B | 3 | 15 |
+| C | 5 | 20 |
+| D | 7 | 25 |
+| E | 4 | 18 |
+
+(a) Find maximum value using dynamic programming.
+(b) Show complete DP table.
+(c) Identify which items are selected.
+
+***
+
+### Q31. [CO3 - Marks 3]
+Fractional Knapsack Problem:
+
+Using same items and capacity from Q30:
+
+(a) Apply greedy algorithm (value-to-weight ratio).
+(b) Calculate maximum value obtainable.
+(c) Compare result with 0/1 knapsack.
+(d) Why does greedy work here but not in 0/1?
+
+***
+
+### Q32. [CO3 - Marks 4]
+Huffman Coding:
+
+String: "ABRACADABRA"
+
+(a) Calculate frequency of each character.
+(b) Build Huffman tree step-by-step.
+(c) Generate binary codes for each character.
+(d) Calculate compression ratio (original vs encoded bits).
+
+***
+
+### Q33. [CO3 - Marks 5]
+N-Queens Problem:
+
+Solve for n = 4 using backtracking:
+
+(a) Show state-space tree with all configurations checked.
+(b) Identify pruning points where backtracking occurs.
+(c) List all valid solutions.
+(d) Draw chess board showing one valid placement.
+
+***
+
+### Q34. [CO3 - Marks 4]
+Travelling Salesman Problem (TSP):
+
+4 cities with distance matrix:
+
+```
+    A   B   C   D
+A [ 0  10  15  20]
+B [10   0  35  25]
+C [15  35   0  30]
+D [20  25  30   0]
+```
+
+(a) Find minimum cost tour using dynamic programming approach.
+(b) Show DP table construction.
+(c) List the optimal tour path.
+
+***
+
+### Q35. [CO3 - Marks 3]
+Job Sequencing with Deadlines:
+
+| Job | Deadline | Profit |
+|-----|----------|--------|
+| J1 | 2 | 40 |
+| J2 | 1 | 30 |
+| J3 | 3 | 35 |
+| J4 | 2 | 50 |
+| J5 | 3 | 25 |
+
+(a) Apply greedy algorithm to maximize profit.
+(b) Show job sequence selected.
+(c) Calculate total profit and time slots used.
+
+***
+
+## CO4: Data Structure & Algorithm Design (Questions 36-50)
+
+### Q36. [CO4 - Marks 5]
+Restaurant Delivery System Design:
+
+You manage a restaurant delivery system with:
+- 20 orders: each with address coordinates (x,y), weight, time window [start, end]
+- 3 delivery trucks: capacities 100kg, 150kg, 120kg
+- Each truck starts from restaurant at (0,0)
+- Goal: Minimize total distance + meet all deadlines
+
+Write an efficient algorithm that:
+(a) Assigns orders to trucks considering capacity.
+(b) Determines optimal route for each truck.
+(c) Ensures deadline satisfaction.
+(d) Specify data structures used.
+(e) Analyze time complexity.
+
+***
+
+### Q37. [CO4 - Marks 6]
+All-Pairs Shortest Path:
+
+Directed graph with weight matrix:
+
+```
+W = [
+ [0,  3,  8,  ∞, -4],
+ [∞,  0,  ∞,  1,  7],
+ [∞,  4,  0,  ∞,  ∞],
+ [2,  ∞, -5,  0,  ∞],
+ [∞,  ∞,  ∞,  6,  0]
+]
+```
+
+(a) Identify the most efficient algorithm for this problem.
+(b) Apply the algorithm to find shortest paths between all pairs.
+(c) Show distance matrix after each iteration.
+(d) Handle negative edge weights properly.
+(e) Detect if negative cycle exists.
+
+***
+
+### Q38. [CO4 - Marks 4]
+Space-Optimized Dynamic Programming:
+
+For Longest Common Subsequence:
+S1 = "ABCDEF" (length m = 6)
+S2 = "ADBEF" (length n = 5)
+
+(a) Implement using standard 2D array (m×n).
+(b) Optimize to use only 1D array (min(m,n)).
+(c) Compare space complexity: O(m×n) vs O(min(m,n)).
+(d) When is space optimization critical?
+
+***
+
+### Q39. [CO4 - Marks 5]
+Flight Booking System Design:
+
+System for n = 8 cities with flights:
+
+| Flight | From | To | Cost | Time |
+|--------|------|-----|------|------|
+| F1 | A | B | 1000 | 2h |
+| F2 | B | C | 1500 | 3h |
+| F3 | A | C | 3000 | 4h |
+| F4 | C | D | 800 | 1h |
+| F5 | B | D | 2200 | 3.5h |
+
+Design algorithm to:
+(a) Find cheapest path from A to D with max 2 stops.
+(b) Handle multiple simultaneous booking queries.
+(c) Propose appropriate data structures (adjacency list/matrix).
+(d) Analyze time complexity for k cities and m flights.
+
+***
+
+### Q40. [CO4 - Marks 7]
+Social Network Friend Recommendation:
+
+Given user graph with 10 users and their connections:
+
+```
+User 0: [1, 2, 3]
+User 1: [0, 3, 4]
+User 2: [0, 5]
+User 3: [0, 1, 6]
+User 4: [1, 7, 8]
+User 5: [2, 6]
+User 6: [3, 5, 9]
+User 7: [4, 8]
+User 8: [4, 7, 9]
+User 9: [6, 8]
+```
+
+(a) For User 0, find k=3 nearest neighbors (friends of friends).
+(b) Recommend new connections based on mutual friends.
+(c) Implement using BFS traversal.
+(d) What's time complexity for n=1 million users?
+(e) Suggest optimization strategies for large-scale networks.
+
+***
+
+### Q41. [CO4 - Marks 5]
+Dijkstra's Algorithm Implementation:
+
+Graph with 6 vertices:
+
+Edges: (0,1,4), (0,2,2), (1,2,1), (1,3,5), (2,3,8), (2,4,10), (3,4,2), (4,5,3), (3,5,6)
+
+(a) Find shortest paths from vertex 0 to all other vertices.
+(b) Show step-by-step execution with priority queue.
+(c) Display distance array and predecessor array at each step.
+(d) Construct shortest path tree.
+(e) Why doesn't Dijkstra work with negative weights?
+
+***
+
+### Q42. [CO4 - Marks 4]
+Student Ranking System Design:
+
+Data: n = 100 students with marks in 5 subjects.
+
+Example data (first 5 students):
+| Student | Math | Physics | Chem | CS | English | Total |
+|---------|------|---------|------|-----|---------|-------|
+| S1 | 85 | 90 | 78 | 92 | 88 | 433 |
+| S2 | 92 | 88 | 85 | 90 | 87 | 442 |
+| S3 | 78 | 85 | 88 | 85 | 90 | 426 |
+
+Design algorithm to:
+(a) Find top k=10 percentile students efficiently.
+(b) Which data structure to use? (heap, BST, array)
+(c) Handle ties in total marks appropriately.
+(d) Time and space complexity analysis.
+
+***
+
+### Q43. [CO4 - Marks 6]
+Floyd-Warshall Algorithm:
+
+Weight matrix:
+
+```
+W = [
+ [0,  1,  4,  ∞],
+ [∞,  0,  2,  5],
+ [∞,  ∞,  0,  1],
+ [3,  ∞,  ∞,  0]
+]
+```
+
+(a) Apply Floyd-Warshall to find all-pairs shortest paths.
+(b) Show distance matrix D⁽⁰⁾, D⁽¹⁾, D⁽²⁾, D⁽³⁾.
+(c) Show predecessor matrix П.
+(d) Find and trace shortest path from vertex 1 to vertex 3.
+(e) What's the time complexity? Can we optimize?
+
+***
+
+### Q44. [CO4 - Marks 5]
+LRU Cache Implementation:
+
+Design LRU (Least Recently Used) cache with capacity = 4.
+
+Access sequence: 
+
+(a) Show cache state after each access operation.
+(b) Count cache hits and cache misses.
+(c) Propose data structure for O(1) get and put operations.
+(d) Implement using doubly linked list + hash map.
+(e) Explain why this combination achieves O(1).
+
+***
+
+### Q45. [CO4 - Marks 4]
+Graph Traversal Comparison:
+
+Graph with 6 vertices:
+
+```
+Adjacency list:
+0: [1, 2]
+1: [0, 3, 4]
+2: [0, 4, 5]
+3: [1, 5]
+4: [1, 2, 5]
+5: [2, 3, 4]
+```
+
+(a) Perform BFS starting from vertex 0.
+(b) Perform DFS starting from vertex 0.
+(c) Show order of vertices visited in each traversal.
+(d) Compare time and space complexity.
+(e) Which is better for finding shortest path in unweighted graph?
+
+***
+
+### Q46. [CO4 - Marks 5]
+Deadlock-Free Resource Allocation:
+
+System with:
+- 5 processes: P1, P2, P3, P4, P5
+- Resource requirements:  units
+- Total available resources: 20 units
+- Dependencies: P1→P3, P2→P4, P3→P5
+
+Design algorithm to:
+(a) Allocate resources avoiding deadlock.
+(b) Use Banker's algorithm approach.
+(c) Check if system is in safe state.
+(d) Show safe sequence if exists.
+
+***
+
+### Q47. [CO4 - Marks 6]
+Project Scheduling with Critical Path:
+
+Projects with durations and dependencies:
+
+| Project | Duration | Dependencies |
+|---------|----------|--------------|
+| A | 2 hrs | - |
+| B | 3 hrs | A |
+| C | 1 hr | A |
+| D | 4 hrs | B, C |
+| E | 2 hrs | C |
+| F | 3 hrs | D, E |
+
+(a) Perform topological sort.
+(b) Find all possible topological orderings.
+(c) Calculate earliest start time for each project.
+(d) Identify critical path.
+(e) Calculate total project completion time.
+
+***
+
+### Q48. [CO4 - Marks 7]
+E-commerce Shopping Cart Optimization:
+
+Design system for online shopping with:
+- n = 20 products with: price, weight, delivery time, rating
+- Customer constraints: budget B = ₹5000, weight limit W = 10kg
+- Customer wants max value (price × rating) within constraints
+
+Propose dynamic programming solution:
+
+(a) Formulate problem mathematically.
+(b) Define DP state: dp[i][w][b] = ?
+(c) Write recurrence relation.
+(d) Discuss space optimization techniques.
+(e) Implementation approach with pseudocode.
+(f) Time and space complexity analysis.
+
+***
+
+### Q49. [CO4 - Marks 4]
+Binary Search Tree Operations:
+
+Insert sequence: 50, 30, 70, 20, 40, 60, 80, 10, 25, 35
+
+(a) Construct BST showing tree after each insertion.
+(b) Perform inorder, preorder, postorder traversals.
+(c) Find 2nd maximum element without full traversal.
+(d) Delete node 30 and show resulting tree.
+(e) Check if tree is balanced. If not, suggest balancing approach.
+
+***
+
+### Q50. [CO4 - Marks 5]
+A* Algorithm for Pathfinding:
+
+5×5 grid with obstacles:
+
+```
+Grid (0=free, X=obstacle):
+[0, 0, 0, 0, 0]
+[0, X, X, 0, 0]
+[0, 0, X, 0, 0]
+[0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0]
+
+Start: (0,0)
+Goal: (4,4)
+```
+
+Using Manhattan distance heuristic: h(n) = |x₁-x₂| + |y₁-y₂|
+
+(a) Calculate f(n) = g(n) + h(n) for each explored node.
+(b) Show open list and closed list at each step.
+(c) Trace optimal path from start to goal.
+(d) Compare nodes explored vs Dijkstra's algorithm.
+(e) Why is A* more efficient than Dijkstra?
+
+***
+

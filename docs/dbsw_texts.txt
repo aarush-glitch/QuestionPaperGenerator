@@ -1,0 +1,481 @@
+COURSE: DATABASE SYSTEMS AND WEB.
+
+
+)
+
+
+---
+
+SECTION A — ER DIAGRAM, RELATIONAL MODELING (10 QUESTIONS)
+
+1. (CO2, 5 Marks)
+
+Design an EER diagram for a “Freelancer Marketplace” with the following requirements:
+• Freelancers have multiple skills, each skill has proficiency levels.
+• Clients post projects with budget range, deadline, and payment terms.
+• A freelancer submits multiple bids per project.
+• A project can be awarded to exactly one freelancer.
+Draw all entities, attributes, relationships, cardinalities, participation constraints, and specialization if required.
+
+
+---
+
+2. (CO2, 6 Marks)
+
+Convert the above EER diagram into fully normalized relational schema.
+Show:
+a) All relations
+b) Primary & foreign keys
+c) Mapping rules used for each construct
+d) Weak entity mappings if any
+
+
+---
+
+3. (CO2, 5 Marks)
+
+Create an EER model for a “Fitness App” with:
+• Users, trainers, diet plans, progress charts
+• Weekly assessments with scores
+• Subscription levels with constraints
+Include ISA hierarchy for trainer types.
+
+
+---
+
+4. (CO2, 5 Marks)
+
+Convert the Fitness App EER into BCNF-compliant relational schema with explanation of each transformation.
+
+
+---
+
+5. (CO2, 6 Marks)
+
+Draw an ER diagram for an Event Management System:
+• Events
+• Venues
+• Organizers
+• Sponsors
+• Ticketing system with multiple ticket categories
+Define all constraints clearly (key, participation, cardinality).
+
+
+---
+
+6. (CO2, 5 Marks)
+
+Map the Event Management ERD into relations.
+Show mapping for:
+a) Multi-valued attributes
+b) Composite attributes
+c) Weak entities
+d) N-ary relationships
+
+
+---
+
+7. (CO2, 5 Marks)
+
+Given the ER design of a Hospital with Doctors, Departments, Wards, Patients, Nurses, Surgeries:
+Normalize all relations to 3NF and show the process.
+
+
+---
+
+8. (CO2, 6 Marks)
+
+Design an ER model for YouTube-like Video Platform:
+• Users
+• Channels
+• Subscriptions
+• Videos
+• Likes / Comments / Watch history
+Convert same into relational schema.
+
+
+---
+
+9. (CO2, 5 Marks)
+
+Create EER diagram showing generalization/specialization for a Ride Sharing System (like Uber).
+
+
+---
+
+10. (CO2, 6 Marks)
+
+Convert Ride Sharing EER → Relations (BCNF).
+Handle driver/rider hierarchy, trip ratings, surge pricing.
+
+
+---
+
+
+---
+
+SECTION B — SQL QUERIES (10 QUESTIONS)
+
+11. (CO3, 6 Marks)
+
+Given tables:
+Employee(eid, ename, dept, salary)
+Department(did, dname, location)
+Project(pid, pname, budget, did)
+Works(eid, pid, hours)
+Write SQL for:
+a) Departments that have NO employees
+b) Employees working on every project of their department
+c) Projects whose budget is below the average budget of all projects
+d) Maximum total hours worked by any employee across all projects
+
+
+---
+
+12. (CO3, 5 Marks)
+
+Write SQL queries using nested subqueries & joins for a Library database to find:
+a) Books borrowed more than 3 times in last 30 days
+b) Users with no overdue books
+c) Publishers with total sales > 1,00,000
+d) Top 5 authors with highest average book ratings
+
+
+---
+
+13. (CO3, 6 Marks)
+
+Given Sales(OrderID, CustomerID, Amount, Date), Customer(Cid, Cname, City), Product(Pid, Pname), OrderItem(OrderID, Pid, Qty):
+Write SQL to compute:
+a) Monthly revenue report
+b) Customers who purchased every product in category 'Electronics'
+c) Products that never got ordered
+d) Customers with at least 3 consecutive monthly purchases
+
+
+---
+
+14. (CO3, 5 Marks)
+
+Write SQL trigger that:
+• Prevents deletion of a customer if they have pending orders
+• Logs every deletion attempt into "DeletionLog(tableName, timestamp, user)"
+
+
+---
+
+15. (CO3, 6 Marks)
+
+Create a stored procedure that generates salary slip (basic, allowance, deduction, net) for each employee, and inserts it into SalarySlip table.
+
+
+---
+
+16. (CO3, 5 Marks)
+
+Given Movie, Actor, Role, Award tables, write SQL to show:
+• Movie with maximum awards
+• Actors who acted in movies of ALL genres
+• Actors with zero awards but acted in >5 movies
+
+
+---
+
+17. (CO3, 5 Marks)
+
+Write SQL to detect cyclic prerequisites in Course(Cid, Title), Prerequisite(Cid, PreCid).
+
+
+---
+
+18. (CO3, 5 Marks)
+
+Write SQL code to find the longest booking streak of a hotel customer.
+
+
+---
+
+19. (CO3, 6 Marks)
+
+Write SQL using GROUPING SETS, ROLLUP, and CUBE for an E-commerce Sales Report.
+
+
+---
+
+20. (CO3, 5 Marks)
+
+Create a BEFORE INSERT trigger to auto-assign next customer ID using custom logic (prefix + padded number).
+
+
+---
+
+
+---
+
+SECTION C — FD / NORMALIZATION / MINIMAL COVER (10 QUESTIONS)
+
+21. (CO2, 6 Marks)
+
+R(A,B,C,D,E,F).
+FDs:
+A→BC
+C→D
+BD→EF
+Find:
+a) Minimal cover
+b) Candidate keys
+c) Lossless decomposition into BCNF
+
+
+---
+
+22. (CO2, 6 Marks)
+
+R(P,Q,R,S,T)
+FDs: PQ→R, R→ST, S→P
+a) Highest normal form
+b) Decompose into 3NF
+c) Verify dependency preservation
+
+
+---
+
+23. (CO2, 5 Marks)
+
+Given two FD sets:
+F1: A→BC, C→AD
+F2: A→B, A→C, C→D
+Check equivalence with closure comparison.
+
+
+---
+
+24. (CO2, 5 Marks)
+
+Given relation violating BCNF, show step-by-step decomposition sequence.
+
+
+---
+
+25. (CO2, 6 Marks)
+
+Construct a table satisfying:
+• A→B
+• C→D
+• No additional non-trivial FD holds
+Show 5 sample tuples.
+
+
+---
+
+26. (CO2, 5 Marks)
+
+Given R(W,X,Y,Z) and FDs:
+W→XY
+X→Z
+a) Candidate keys
+b) Normalize to BCNF
+c) Validate losslessness
+
+
+---
+
+27. (CO2, 5 Marks)
+
+Given R(A,B,C,D,E) with FDs:
+A→B
+BC→DE
+D→A
+Find minimal cover and candidate keys.
+
+
+---
+
+28. (CO2, 6 Marks)
+
+Prove whether the decomposition of R(A,B,C,D) into (A,B,C) and (B,D) is lossless under given FD set.
+
+
+---
+
+29. (CO2, 5 Marks)
+
+Given FD set, compute attribute closures and determine all superkeys.
+
+
+---
+
+30. (CO2, 6 Marks)
+
+Find BCNF decomposition preserving dependencies for a relation modeling University Courses with composite dependencies.
+
+
+---
+
+
+---
+
+SECTION D — SCHEDULING, CONCURRENCY, RECOVERY (10 QUESTIONS)
+
+31. (CO4, 6 Marks)
+
+Given schedule S1 with 12 operations:
+• Build conflict graph
+• Check conflict-serializability
+• Check view-serializability
+• Identify final view-equivalent serial schedule
+
+
+---
+
+32. (CO4, 5 Marks)
+
+Given lock table and a sequence of lock requests (S/X), apply 2PL and show which transactions wait, and whether deadlock occurs.
+
+
+---
+
+33. (CO4, 5 Marks)
+
+Apply wait-die and wound-wait for the given timestamped transactions.
+Show final states and aborted transactions.
+
+
+---
+
+34. (CO4, 6 Marks)
+
+Given large schedule containing cascading abort scenario, show:
+• Which transactions need rollback
+• How strict 2PL prevents it
+• Final serializable order
+
+
+---
+
+35. (CO4, 5 Marks)
+
+Construct Wait-For Graph for given lock requests and perform deadlock detection with cycle finding.
+
+
+---
+
+36. (CO4, 6 Marks)
+
+Given immediate update logs, reconstruct final values after crash recovery using REDO/UNDO.
+
+
+---
+
+37. (CO4, 5 Marks)
+
+Given checkpoints and transaction logs, show which transactions are redo-only, undo-only, redo-undo.
+
+
+---
+
+38. (CO4, 5 Marks)
+
+Given multi-level index locking, determine which locks need to be acquired for search/update operations.
+
+
+---
+
+39. (CO4, 6 Marks)
+
+Given schedule with phantom reads, demonstrate isolation levels that prevent them and explain why.
+
+
+---
+
+40. (CO4, 5 Marks)
+
+Analyze recoverability, cascadelessness, strictness for three interleaved transactions.
+
+
+---
+
+
+---
+
+SECTION E — WEB PROGRAMMING / PHP (10 QUESTIONS)
+
+41. (CO6, 6 Marks)
+
+Write complete PHP code + HTML form for user registration with:
+• Server-side validation
+• Password hashing
+• Inserting into database
+• Error logging table
+
+
+---
+
+42. (CO6, 5 Marks)
+
+Build mini PHP app that allows user to upload documents and stores file metadata in MySQL.
+
+
+---
+
+43. (CO6, 5 Marks)
+
+Create Login + Session handling flow.
+Show:
+• Login page
+• Session creation
+• Logout mechanism
+• Access control for protected pages
+
+
+---
+
+44. (CO6, 6 Marks)
+
+Write PHP code for Product Search with AJAX-based live search suggestions.
+
+
+---
+
+45. (CO6, 5 Marks)
+
+Design a 3-tier architecture for an Online Banking app.
+
+
+---
+
+46. (CO6, 5 Marks)
+
+Build a PHP page that displays all orders with pagination (server-side).
+
+
+---
+
+47. (CO6, 6 Marks)
+
+Write PHP + MySQL code to insert a blog post and upload images to server folder and DB.
+
+
+---
+
+48. (CO6, 5 Marks)
+
+Write code to generate dynamic invoice as HTML+PDF using PHP.
+
+
+---
+
+49. (CO6, 5 Marks)
+
+Explain cookie management with code for a shopping cart storing items in cookies.
+
+
+---
+
+50. (CO6, 6 Marks)
+
+Create a complete PHP CRUD app for a “Course Management System” using prepared statements.
+
+
+---
+

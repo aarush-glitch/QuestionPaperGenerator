@@ -1,0 +1,210 @@
+{
+  "1_mark": [
+    {
+      "question": "COURSE: DATABASE SYSTEMS AND WEB",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "short",
+      "difficulty": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1
+    },
+    {
+      "question": "• A freelancer submits multiple bids per project",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "short",
+      "difficulty": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1
+    },
+    {
+      "question": "(CO2, 6 Marks)\n\nConvert the above EER diagram into fully normalized relational schema",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "short",
+      "difficulty": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1
+    },
+    {
+      "question": "(CO2, 5 Marks)\n\nConvert the Fitness App EER into BCNF-compliant relational schema with explanation of each transformation",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "short",
+      "difficulty": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1
+    },
+    {
+      "question": "(CO2, 5 Marks)\n\nMap the Event Management ERD into relations",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "short",
+      "difficulty": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1
+    }
+  ],
+  "2_mark": [
+    {
+      "question": ")\n\n\n---\n\nSECTION A — ER DIAGRAM, RELATIONAL MODELING (10 QUESTIONS)\n\n1",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "short",
+      "difficulty": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2
+    },
+    {
+      "question": "• A project can be awarded to exactly one freelancer",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "short",
+      "difficulty": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2
+    },
+    {
+      "question": "Show:\na) All relations\nb) Primary & foreign keys\nc) Mapping rules used for each construct\nd) Weak entity mappings if any\n\n\n---\n\n3",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "short",
+      "difficulty": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2
+    },
+    {
+      "question": "---\n\n5",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "short",
+      "difficulty": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2
+    },
+    {
+      "question": "Show mapping for:\na) Multi-valued attributes\nb) Composite attributes\nc) Weak entities\nd) N-ary relationships\n\n\n---\n\n7",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "short",
+      "difficulty": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2
+    }
+  ],
+  "3_mark": [
+    {
+      "question": "(CO2, 5 Marks)\n\nDesign an EER diagram for a “Freelancer Marketplace” with the following requirements:\n• Freelancers have multiple skills, each skill has proficiency levels",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "descriptive",
+      "difficulty": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3
+    },
+    {
+      "question": "Draw all entities, attributes, relationships, cardinalities, participation constraints, and specialization if required",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "descriptive",
+      "difficulty": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3
+    },
+    {
+      "question": "(CO2, 5 Marks)\n\nCreate an EER model for a “Fitness App” with:\n• Users, trainers, diet plans, progress charts\n• Weekly assessments with scores\n• Subscription levels with constraints\nInclude ISA hierarchy for trainer types",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "descriptive",
+      "difficulty": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3
+    },
+    {
+      "question": "(CO2, 6 Marks)\n\nDraw an ER diagram for an Event Management System:\n• Events\n• Venues\n• Organizers\n• Sponsors\n• Ticketing system with multiple ticket categories\nDefine all constraints clearly (key, participation, cardinality)",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "descriptive",
+      "difficulty": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3
+    },
+    {
+      "question": "(CO2, 5 Marks)\n\nGiven the ER design of a Hospital with Doctors, Departments, Wards, Patients, Nurses, Surgeries:\nNormalize all relations to 3NF and show the process",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "descriptive",
+      "difficulty": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3
+    }
+  ],
+  "5_mark": [
+    {
+      "question": "• Clients post projects with budget range, deadline, and payment terms",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "descriptive",
+      "difficulty": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5
+    },
+    {
+      "question": "---\n\n2",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "descriptive",
+      "difficulty": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5
+    },
+    {
+      "question": "---\n\n4",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "descriptive",
+      "difficulty": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5
+    },
+    {
+      "question": "---\n\n6",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "descriptive",
+      "difficulty": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5
+    },
+    {
+      "question": "---\n\n8",
+      "topic": "Database System and Web",
+      "subtopic": "Database System and Web",
+      "question_type": "descriptive",
+      "difficulty": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5
+    }
+  ]
+}

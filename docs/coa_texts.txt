@@ -1,0 +1,712 @@
+COURSE: COMPUTER ORGANIZATION AND ARCHITECTURE
+
+POSSESION OF MOBILES IN EXAM IS UFM PRACTICE.
+
+Enrollment No. ________
+
+Jaypee Institute of Information Technology, Noida
+T1 Examination, 2022, V Semester
+Course Title: Computer Organization Architecture
+Course Code: 15B11C1313
+
+Maximum Time: 1 hr
+Maximum Marks: 20
+
+CO1: Summarize and compare the different computer systems based on RISC and CISC architecture.
+CO2: Categorize different types of computers based on instruction set architecture.
+CO3: Apply the knowledge of performance metrics to find the performance of systems.
+CO4: Design RISC and CISC based computer using hardwired/microprogrammed controllers.
+CO5: Create and analyse an assembly language program of RISC and CISC based systems.
+CO6: Apply the knowledge of pipeline, I/O and cache to understand these systems. Further analyse the
+performance of such systems.
+
+Note: Attempt all the questions.
+
+
+Q1. [CO-1, 2M]
+Match the following entries on the left side to correct entry on the right side:
+
+1. A sequence of instructions  →  a. Data path
+2. Computer’s primitive instructions → b. Micro-program
+3. Systematic and organized design of computer systems → c. Gates
+4. Micro-architecture level → d. Structured computer organization
+5. Problem-oriented language level → e. Program
+6. Digital logic level → f. Machine Language
+7. Registers are connected to the ALU → g. Compiler
+8. Control operation of data path → h. Hardware level
+
+
+Q2. [CO-3, 3M]
+A table is given below showing type of instructions, number of instructions, and CPI for a
+program having 50 instructions. The average CPI for the program is 2.4.
+Find the value of X and Y and the percentage of CPU time taken by the instruction C.
+
+Operation   | No. of Instructions | CPI
+A           | 20                  | 1
+B           | 15                  | X
+C           | 5                   | Y
+
+
+Q3. [CO-3, 3M]
+Suppose a program contains S portion of code which requires sequential execution and F
+portion of the code can run in parallel fashion. With a new hardware design, the S portion is
+speedup by factor N1 and F portion is slow down by N2 factor. Find the overall Speedup.
+
+
+Q4. (a) [CO-2, 3M]
+Third generation computers with Byte addressable memory has 32-bit address bus.
+What is the address space and range of memory address of these computers?
+
+(b) What would be the size of program counter (PC) of these computers?
+
+(c) If we would like to decrease the address space 4 times, what will be the new
+address space and size of address bus?
+
+(d) What will be the modified PC size?
+
+
+Q5. (a) [CO2, 3M]
+Consider word addressable processor (word size is 2 bytes) with 16 registers and number of
+instructions are 16 in number.
+Each instruction has three distinct fields: opcode, one register acting as both source and destination,
+and 8-bit direct address.
+Instruction example:  ADD R14, [F0] → R14 ← R14 + Memory[F0]
+
+Suppose there are 128 such instructions in the program.
+Calculate how much address space in bytes the program requires.
+Suppose the program is stored from location 00H.  
+What is the address of last instruction?
+
+(b) [CO5, 3M]
+For the basic computer shown in figure (hardwired control), suppose we add two additional
+instructions INC and DEC with control signals “I” and “D” to ALU with opcode 8 and 9 respectively.
+Definition of INC: ACC ← ACC + 1  
+Definition of DEC: ACC ← ACC − 1
+
+Answer the following:
+
+i) Draw the hardwired instruction decoder for INC and DEC instructions.
+
+ii) Write the register transfer/microinstruction and active control signal for INC and DEC.
+
+iii) Draw the hardwired control matrix using Boolean expression for INC and DEC instructions
+     to generate signals “I” and “D”.
+
+iv) Write sequence of micro-instructions stored in micro-routines for Fetch, INC, and DEC
+     instructions (in Hex).  
+     INC and DEC are stored in control ROM at location 12H and 14H.
+
+Order of control signals in control word:
+IPL, LPL, EPOLM, R, WL, LD, ED, LI, EL, LA, EA, A, S, EU, LB, I, D
+
+Microinstruction format:
+Control Word (18-bit) | CD (1-bit) | S (1-bit) | MAP (1-bit) | HLT (1-bit) | CRA (5-bit)
+
+# Computer Organization and Architecture - 50 Unique Exam Questions
+## B. Tech. Computer Science Engineering
+### Jaypee Institute of Information Technology, Noida
+
+***
+
+## Question Set: Computer Organization and Architecture
+**Maximum Marks: 100 | Time: 5 Hours**
+
+***
+
+## CO1: RISC and CISC Architecture (Questions 1-8)
+
+### Q1. [CO1 - 2M]
+Match the following entries:
+
+1. Fixed-length instructions → a. CISC
+2. Complex addressing modes → b. Register window
+3. Multiple clock cycles per instruction → c. Hardwired control
+4. Large number of general-purpose registers → d. RISC
+5. Variable-length instructions → e. Von Neumann
+6. Instruction pipelining efficient → f. Microprogrammed control
+7. Single data and instruction memory → g. Harvard architecture
+8. Separate instruction and data memory → h. CISC characteristic
+
+***
+
+### Q2. [CO1 - 2M]
+Compare RISC and CISC architectures by filling the table:
+
+| Feature | RISC | CISC |
+|---------|------|------|
+| Instruction size | ? | ? |
+| Cycles per instruction | ? | ? |
+| Addressing modes | ? | ? |
+| Control unit design | ? | ? |
+| Code size | ? | ? |
+
+***
+
+### Q3. [CO1 - 3M]
+A RISC processor has the following specifications:
+- 32 general-purpose registers
+- Fixed instruction length of 32 bits
+- Three instruction formats: R-type, I-type, J-type
+- Opcode field: 6 bits
+
+For R-type instructions (register-register operations):
+Design the instruction format showing: opcode, source registers (2), destination register, function code (6 bits).
+Calculate how many bits are available for the function code field.
+
+***
+
+### Q4. [CO1 - 2M]
+List four key characteristics that make RISC architecture suitable for pipelining.
+Explain why CISC architectures have difficulty with deep pipelines.
+
+***
+
+### Q5. [CO1 - 3M]
+A computer uses CISC architecture with the following instruction:
+`MULT [R5], [R6], [R7]` → Memory[R7] ← Memory[R5] × Memory[R6]
+
+This single CISC instruction requires 8 clock cycles.
+
+Convert this to equivalent RISC instructions (load-store architecture) and calculate:
+(a) Number of RISC instructions needed
+(b) Total clock cycles if each RISC instruction takes 1 cycle
+(c) Which approach is faster?
+
+***
+
+### Q6. [CO1 - 2M]
+Explain the concept of register windows in RISC architecture.
+A RISC processor has 8 register windows with 16 registers each, where adjacent windows overlap by 8 registers.
+Calculate the total number of physical registers needed.
+
+***
+
+### Q7. [CO1 - 3M]
+Compare the following aspects for RISC and CISC:
+(a) Instruction decoding complexity
+(b) Compiler complexity
+(c) Memory-to-memory operations
+(d) Power consumption
+Justify each comparison with reasoning.
+
+***
+
+### Q8. [CO1 - 2M]
+A processor supports both RISC and CISC modes.
+In RISC mode: Average CPI = 1.5, Code size = 1000 instructions
+In CISC mode: Average CPI = 4.0, Code size = 300 instructions
+Clock frequency = 2 GHz (same for both)
+
+Calculate execution time for both modes. Which is faster?
+
+***
+
+## CO2: Instruction Set Architecture (Questions 9-16)
+
+### Q9. [CO2 - 2M]
+A 32-bit computer system has byte-addressable memory with 24-bit address bus.
+(a) What is the address space in bytes?
+(b) What is the range of memory addresses (in hex)?
+(c) What is the size of Program Counter (PC)?
+(d) How many memory locations can be addressed?
+
+***
+
+### Q10. [CO2 - 3M]
+Consider a word-addressable processor where word size is 4 bytes.
+- Number of registers: 32
+- Number of instructions: 64
+- Instruction format: opcode | source reg | dest reg | 12-bit immediate
+
+(a) Design the instruction format with bit allocation.
+(b) What is the maximum immediate value (signed)?
+(c) If instruction memory starts at 1000H, what is the address of 100th instruction?
+
+***
+
+### Q11. [CO2 - 2M]
+Match the addressing modes with examples:
+
+1. Immediate → a. ADD R1, [R2]
+2. Direct → b. ADD R1, #50
+3. Indirect → c. ADD R1, 2000H
+4. Register → d. ADD R1, R2
+5. Indexed → e. ADD R1, [R2 + R3]
+6. Relative → f. JMP PC + 10
+7. Auto-increment → g. MOV R1, [R2]+
+8. Register indirect → h. ADD R1, [[R2]]
+
+***
+
+### Q12. [CO2 - 3M]
+A computer has 16-bit instructions with the following format:
+
+Opcode (4 bits) | Mode (2 bits) | Register (4 bits) | Address/Immediate (6 bits)
+
+Mode field encoding:
+00 = Immediate, 01 = Direct, 10 = Indirect, 11 = Indexed
+
+Calculate effective address for instruction: `1010 10 0101 001100`
+Given: R5 = 0200H, Memory[0CH] = 0150H, Memory[0150H] = 00AAH
+
+***
+
+### Q13. [CO2 - 2M]
+A processor has 20-bit address bus and supports both byte and word (2 bytes) addressing.
+(a) In byte addressing mode, what is the address space?
+(b) If switched to word addressing, what is the new address space?
+(c) How does the Program Counter size change?
+(d) What addressing mode is preferable for 16-bit data operations?
+
+***
+
+### Q14. [CO2 - 3M]
+Design an instruction set for a simple processor with:
+- 8 registers (R0-R7)
+- 16 instructions including: ADD, SUB, MUL, DIV, LOAD, STORE, JUMP, BEQ
+- 16-bit instruction length
+- Support for immediate and register addressing
+
+Propose instruction format(s) and justify your design.
+
+***
+
+### Q15. [CO2 - 2M]
+A program has 500 instructions stored in memory.
+Instruction distribution:
+- 200 instructions: 16-bit each
+- 200 instructions: 32-bit each  
+- 100 instructions: 48-bit each
+
+Calculate:
+(a) Total memory required (in bytes)
+(b) If memory is word-addressable (word = 2 bytes), how many memory words?
+
+***
+
+### Q16. [CO2 - 3M]
+Consider an instruction with three operands: `OP src1, src2, dest`
+
+Compare memory accesses required for different addressing mode combinations:
+(a) All register addressing
+(b) src1 = register, src2 = direct, dest = register
+(c) All direct addressing
+(d) src1 = indirect, src2 = immediate, dest = indirect
+
+Assume: 1 access for instruction fetch, plus operand accesses.
+
+***
+
+## CO3: Performance Metrics (Questions 17-24)
+
+### Q17. [CO3 - 3M]
+A program has the following instruction mix:
+
+| Type | Count | CPI |
+|------|-------|-----|
+| ALU | 30 | 1 |
+| Load | 25 | X |
+| Store | 15 | 3 |
+| Branch | 10 | 2 |
+
+Total instructions = 80, Average CPI = 2.25
+
+Calculate:
+(a) Value of X
+(b) Execution time if clock frequency = 2 GHz
+(c) MIPS rating
+
+***
+
+### Q18. [CO3 - 3M]
+A program requires sequential portion S = 30% and parallel portion P = 70%.
+After optimization:
+- Sequential portion speedup = 1.5×
+- Parallel portion slowdown = 0.8× (runs slower!)
+
+Using Amdahl's Law, calculate:
+(a) Overall speedup
+(b) Is this optimization beneficial?
+(c) What if parallel portion had 2× speedup instead?
+
+***
+
+### Q19. [CO3 - 2M]
+Two processors P1 and P2 execute the same program:
+
+P1: Clock rate = 3 GHz, CPI = 2.0
+P2: Clock rate = 2 GHz, CPI = 1.2
+
+Calculate:
+(a) Which processor is faster?
+(b) Speedup of faster processor over slower one
+(c) MIPS rating for both processors
+
+***
+
+### Q20. [CO3 - 3M]
+A benchmark program executes:
+
+| Instruction Class | Frequency | CPI on Machine A | CPI on Machine B |
+|-------------------|-----------|------------------|------------------|
+| Integer | 50% | 1 | 2 |
+| FP | 30% | 3 | 2 |
+| Memory | 20% | 4 | 3 |
+
+Both machines: Clock frequency = 2.5 GHz
+Total instructions = 1 million
+
+Calculate:
+(a) Average CPI for both machines
+(b) Execution time for both machines
+(c) Which machine is faster and by how much?
+
+***
+
+### Q21. [CO3 - 2M]
+Define and differentiate:
+(a) CPU time vs Response time
+(b) Throughput vs Latency
+(c) MIPS vs MFLOPS
+(d) Speedup vs Efficiency
+
+Provide example scenarios for each.
+
+***
+
+### Q22. [CO3 - 3M]
+A multicore processor has 8 cores. A program has:
+- 40% sequential code
+- 60% perfectly parallelizable code
+
+Using Amdahl's Law, calculate:
+(a) Maximum speedup with 8 cores
+(b) Maximum speedup with infinite cores
+(c) Efficiency with 8 cores (Speedup/Number of cores)
+(d) Is adding more cores beneficial beyond 8?
+
+***
+
+### Q23. [CO3 - 3M]
+Two implementations of the same ISA:
+
+Machine M1: Clock cycle time = 0.5 ns, CPI = 2.0
+Machine M2: Clock cycle time = 0.8 ns, CPI = 1.5
+
+For a program with 10 million instructions:
+(a) Calculate execution time for both machines
+(b) Calculate clock frequency for both machines
+(c) Which machine is faster and by what percentage?
+(d) Calculate MIPS for both machines
+
+***
+
+### Q24. [CO3 - 2M]
+A processor achieves 2400 MIPS with average CPI of 1.5.
+Calculate:
+(a) Clock frequency in GHz
+(b) If CPI is reduced to 1.2 (keeping frequency same), new MIPS rating
+(c) If frequency is increased to 4 GHz (keeping original CPI), new MIPS rating
+
+***
+
+## CO4: Control Unit Design (Questions 25-32)
+
+### Q25. [CO4 - 3M]
+Compare hardwired control vs microprogrammed control:
+
+| Aspect | Hardwired | Microprogrammed |
+|--------|-----------|-----------------|
+| Speed | ? | ? |
+| Flexibility | ? | ? |
+| Complexity | ? | ? |
+| Cost | ? | ? |
+| Modification | ? | ? |
+
+Provide examples of processors using each approach.
+
+***
+
+### Q26. [CO4 - 3M]
+A microprogrammed control unit has:
+- 128 microinstructions
+- Each microinstruction: 32 control signals + 8-bit next address
+
+Calculate:
+(a) Size of control ROM in bits
+(b) Size of control ROM in bytes
+(c) If horizontal microprogramming is used, how many bits per microinstruction?
+(d) If vertical microprogramming with 8 signals encoded in 3 bits, what is savings?
+
+***
+
+### Q27. [CO4 - 3M]
+Design a hardwired control decoder for two new instructions:
+
+`SHL R1` (Shift Left): R1 ← R1 << 1
+`SHR R1` (Shift Right): R1 ← R1 >> 1
+
+Opcodes: SHL = 1010, SHR = 1011
+
+(a) Draw the instruction decoder logic
+(b) Write register transfer operations
+(c) List active control signals for each instruction
+(d) Design control matrix using Boolean expressions
+
+***
+
+### Q28. [CO4 - 2M]
+A control unit generates 24 control signals.
+(a) In horizontal microprogramming, how many bits needed?
+(b) In vertical microprogramming (grouping 6 signals each), how many bits?
+(c) Calculate space savings percentage
+(d) What is the tradeoff?
+
+***
+
+### Q29. [CO4 - 3M]
+For a basic computer, add instruction `SWAP` that exchanges contents of AC and R1:
+
+SWAP: AC ↔ R1 (Opcode = AH)
+
+Write:
+(a) Complete register transfer sequence
+(b) Timing diagram showing T0, T1, T2, T3 cycles
+(c) Active control signals at each timing state
+(d) Microinstruction sequence in hex
+
+Control signal order: LD_AC, LD_R1, EN_AC, EN_R1, CLK
+
+***
+
+### Q30. [CO4 - 3M]
+A microprogrammed control unit uses 20-bit microinstructions:
+
+[Control Signals: 12 bits][Condition: 2 bits][Address Control: 2 bits][Next Address: 4 bits]
+
+Address Control encoding:
+00 = Next sequential, 01 = Jump, 10 = Conditional, 11 = Map
+
+Design microprogram for instruction fetch cycle and one arithmetic instruction (ADD).
+Show microinstructions in binary and hex format.
+
+***
+
+### Q31. [CO4 - 2M]
+Explain with examples:
+(a) Horizontal vs Vertical microprogramming
+(b) Advantages and disadvantages of each
+(c) When to choose which approach?
+(d) Can hybrid approach be used?
+
+***
+
+### Q32. [CO4 - 3M]
+A control memory has:
+- 256 microinstructions
+- Each microinstruction = 48 bits
+- Access time = 10 ns
+
+Calculate:
+(a) Total control ROM size in KB
+(b) Time to execute a macroinstruction requiring 6 microinstructions
+(c) If clock cycle = 100 ns, how many microinstructions per clock?
+(d) Suggest optimization to reduce control memory size
+
+***
+
+## CO5: Assembly Language Programming (Questions 33-40)
+
+### Q33. [CO5 - 3M]
+Write an assembly program for a RISC processor (MIPS-style) to:
+Calculate: Y = 5X + 3
+
+Given: X is stored at memory location 2000H
+Store result Y at location 2004H
+
+Use: Load-Store architecture, registers R1-R5
+Show complete program with comments.
+
+***
+
+### Q34. [CO5 - 3M]
+Write assembly code for 8086 (CISC) to find the largest element in an array of 10 numbers.
+
+Array starts at memory location: 3000H
+Store result at: 4000H
+
+Show complete program with proper initialization and loop structure.
+
+***
+
+### Q35. [CO5 - 2M]
+Convert the following high-level code to assembly (generic RISC):
+
+```
+if (A > B)
+    C = A - B;
+else
+    C = B - A;
+```
+
+Variables: A, B, C stored in registers R1, R2, R3
+Use appropriate branch instructions.
+
+***
+
+### Q36. [CO5 - 3M]
+Write assembly program to multiply two 8-bit numbers using repeated addition:
+
+Input: NUM1 at 5000H, NUM2 at 5001H
+Output: Product (16-bit) at 5002H-5003H
+
+Use appropriate registers and show algorithm clearly.
+
+***
+
+### Q37. [CO5 - 3M]
+Write a subroutine in assembly to:
+Calculate factorial of a number (N ≤ 8)
+
+Input: N in register R1
+Output: N! in register R2
+
+Show: Main program, subroutine, parameter passing, return mechanism.
+
+***
+
+### Q38. [CO5 - 2M]
+Analyze the following assembly code and determine its function:
+
+```
+    MOV R1, #10
+    MOV R2, #0
+LOOP: ADD R2, R2, R1
+    SUB R1, R1, #1
+    CMP R1, #0
+    BNE LOOP
+    HLT
+```
+
+What is the final value in R2? What does this program calculate?
+
+***
+
+### Q39. [CO5 - 3M]
+Write assembly code for string comparison:
+
+Compare two strings (null-terminated) at memory locations:
+String1: 6000H
+String2: 7000H
+
+Output: Store 1 at 8000H if equal, 0 if not equal
+Show complete program with loop structure.
+
+***
+
+### Q40. [CO5 - 3M]
+Implement bubble sort for 5 numbers in assembly (RISC architecture):
+
+Array at memory location: 9000H
+Array: {45, 23, 78, 12, 56}
+
+Sort in ascending order and store back at same location.
+Show nested loop structure clearly.
+
+***
+
+## CO6: Pipeline, I/O, and Cache (Questions 41-50)
+
+### Q41. [CO6 - 3M]
+A 5-stage pipeline (IF, ID, EX, MEM, WB) executes 100 instructions.
+
+(a) Calculate ideal speedup compared to non-pipelined execution
+(b) If each stage takes 2 ns, what is the throughput (instructions/sec)?
+(c) Calculate latency for one instruction
+(d) Draw pipeline timing diagram for first 5 instructions
+
+***
+
+### Q42. [CO6 - 3M]
+Identify hazards in the following code sequence:
+
+```
+I1: ADD R1, R2, R3
+I2: SUB R4, R1, R5
+I3: MUL R6, R1, R7
+I4: LOAD R8, 0(R4)
+I5: ADD R9, R8, R1
+```
+
+(a) Identify all data hazards (RAW, WAR, WAW)
+(b) Identify structural hazards (if any)
+(c) Suggest solutions (forwarding, stalling, reordering)
+(d) Show pipeline diagram with hazards marked
+
+***
+
+### Q43. [CO6 - 2M]
+Classify pipeline hazards:
+
+1. Two instructions need ALU simultaneously → a. Data hazard (RAW)
+2. Instruction reads before previous writes → b. Data hazard (WAR)
+3. Instruction writes before previous writes → c. Control hazard
+4. Branch instruction changes PC → d. Data hazard (WAW)
+5. Instruction needs result from previous → e. Structural hazard
+6. Single memory port conflict → f. Resource hazard
+
+***
+
+### Q44. [CO6 - 3M]
+A cache system has:
+- Cache size: 64 KB
+- Block size: 64 bytes
+- Direct-mapped
+
+Calculate:
+(a) Number of cache blocks
+(b) For 32-bit address, bits for: tag, index, block offset
+(c) Draw address format with bit allocation
+(d) Hit time = 1 cycle, Miss penalty = 100 cycles, Hit rate = 95%
+    Calculate average memory access time
+
+***
+
+### Q45. [CO6 - 3M]
+Given memory access pattern: 0, 4, 8, 12, 0, 4, 16, 20, 0, 4
+
+Cache: 4 blocks, block size = 4 bytes, direct-mapped
+
+(a) Show cache state after each access
+(b) Calculate hit rate
+(c) Calculate miss rate
+(d) What if cache was 2-way set associative? Would hit rate improve?
+
+***
+
+### Q46. [CO6 - 2M]
+Compare cache replacement policies:
+
+| Policy | Advantage | Disadvantage | Implementation |
+|--------|-----------|--------------|----------------|
+| LRU | ? | ? | ? |
+| FIFO | ? | ? | ? |
+| Random | ? | ? | ? |
+| LFU | ? | ? | ? |
+
+Give example scenarios where each performs best.
+
+***
+
+### Q47. [CO6 - 3M]
+A DMA controller transfers data:
+- Block size: 4 KB
+- Memory bus width: 32 bits
+- Bus speed: 100 MHz
+- CPU cycle stealing: every 4 cycles
+
+Calculate:
+(a) Time for DMA transfer without CPU interference
+(b) Time with CPU cycle stealing overhead
+(c) CPU utilization during DMA transfer
+(d) Compare with programmed I/O (assuming 10 instruct

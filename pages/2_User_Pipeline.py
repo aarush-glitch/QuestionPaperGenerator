@@ -130,6 +130,14 @@ def _add_to_selection(item, q_marks):
         q_marks_int = _safe_int(q_marks)
         new_item = dict(item)
         new_item["marks"] = q_marks_int
+        # normalize difficulty keys so both forms are present for UI compatibility
+        try:
+            if not new_item.get("difficulty") and new_item.get("difficulty_level"):
+                new_item["difficulty"] = new_item.get("difficulty_level")
+            if not new_item.get("difficulty_level") and new_item.get("difficulty"):
+                new_item["difficulty_level"] = new_item.get("difficulty")
+        except Exception:
+            pass
         st.session_state.setdefault("selected_questions", [])
         st.session_state.selected_questions.append(new_item)
     except Exception:
@@ -186,7 +194,12 @@ def _on_course_selected():
 if "available_courses" not in st.session_state:
     loaded = load_courses()
     if not loaded:
-        loaded = ["Data Structures", "OOPs", "Software Engineering", "Computer Networks", "Ethical Hacking"]
+        loaded = [
+            "Data Structures",
+            "Algorithms and Problem Solving",
+            "Computer Organisation Architecture",
+            "Database System and Web",
+        ]
     st.session_state["available_courses"] = loaded
 
 st.session_state.setdefault("selected_course", "")
@@ -248,7 +261,18 @@ def apply_course_assets(course_name: str, load_cleaned: bool = False, load_index
 
         if load_cleaned and cleaned.exists():
             try:
-                st.session_state.cleaned_questions = json.loads(cleaned.read_text(encoding='utf-8'))
+                loaded_cleaned = json.loads(cleaned.read_text(encoding='utf-8'))
+                # normalize difficulty keys for compatibility with UI
+                try:
+                    for g, items in (loaded_cleaned or {}).items():
+                        for q in items:
+                            if not q.get("difficulty") and q.get("difficulty_level"):
+                                q["difficulty"] = q.get("difficulty_level")
+                            if not q.get("difficulty_level") and q.get("difficulty"):
+                                q["difficulty_level"] = q.get("difficulty")
+                except Exception:
+                    pass
+                st.session_state.cleaned_questions = loaded_cleaned
                 st.success(f"Loaded cleaned questions for '{course_name}'.")
             except Exception as e:
                 st.error(f"Failed to load cleaned questions: {e}")
@@ -1022,19 +1046,33 @@ elif st.session_state.wizard_step == 4:
 
                         filtered = smart_filter(docs, marks, difficulty, cognitive)
 
-                        st.session_state.search_results = [
-                            {
+                        # create results with normalized difficulty; if not present, infer from marks
+                        def infer_difficulty_from_marks(m):
+                            try:
+                                m = int(m)
+                            except Exception:
+                                return ""
+                            mapping = {1: "easy", 2: "medium", 3: "hard", 5: "hard"}
+                            return mapping.get(m, "")
+
+                        results = []
+                        for d in filtered:
+                            diff = d.metadata.get("difficulty") or d.metadata.get("difficulty_level") or ""
+                            marks_meta = d.metadata.get("marks")
+                            if not diff:
+                                diff = infer_difficulty_from_marks(marks_meta)
+                            results.append({
                                 "question": d.page_content,
                                 "topic": d.metadata.get("topic"),
                                 "subtopic": d.metadata.get("subtopic"),
                                 # ensure time is an integer minute value in the UI
                                 "time": d.metadata.get("time"),
-                                "marks": d.metadata.get("marks"),
-                                "difficulty": d.metadata.get("difficulty"),
+                                "marks": marks_meta,
+                                "difficulty": diff,
                                 "cognitive_level": d.metadata.get("cognitive_level"),
-                            }
-                            for d in filtered
-                        ]
+                            })
+
+                        st.session_state.search_results = results
 
                         st.success(f"Found {len(filtered)} result(s).")
                     except Exception as e:
@@ -1155,7 +1193,14 @@ elif st.session_state.wizard_step == 5:
             try:
                 import plotly.express as px
                 if diff_counts:
-                    fig = px.pie(values=list(diff_counts.values()), names=list(diff_counts.keys()), title="By Difficulty")
+                    # map difficulty labels to specific colors
+                    color_map = {"easy": "green", "medium": "yellow", "hard": "red"}
+                    fig = px.pie(
+                        values=list(diff_counts.values()),
+                        names=list(diff_counts.keys()),
+                        title="By Difficulty",
+                        color_discrete_map=color_map,
+                    )
                     st.plotly_chart(fig, use_container_width=True)
                 else:
                     st.info("No difficulty info available.")

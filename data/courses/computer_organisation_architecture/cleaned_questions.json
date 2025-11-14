@@ -1,0 +1,450 @@
+{
+  "1_mark": [
+    {
+      "question": "Which of the following is NOT explicitly mentioned in the provided text regarding the processor’s design?",
+      "topic": "Artificial Instruction Processing",
+      "subtopic": "Processor Architecture Design",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "What is the block size of the cache system?",
+      "topic": "Data Structures & Algorithms",
+      "subtopic": "Cache Management",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "Which architecture prioritizes ease of programming and memory efficiency, while CISC offers greater flexibility in instruction design?",
+      "topic": "Computer System Architecture",
+      "subtopic": "Instruction Set Architecture",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "Which of the following is a characteristic of CISC architecture?",
+      "topic": "Risc Architecture",
+      "subtopic": "Computer Architecture",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "What is the memory footprint required for the program with 500 instructions, considering the distribution of 16-bit, 32-bit, and 48-bit instructions?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "Compiler Optimization",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "Which machine has a lower clock cycle time and CPI for the same number of instructions?",
+      "topic": "Efficiency And Performance Analysis",
+      "subtopic": "Instruction Execution Analysis",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "What is the average CPI in RISC mode?",
+      "topic": "Artificial Intelligence, Processor Design",
+      "subtopic": "System-on-Chip Design",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "What is the overlap between adjacent register windows in a RISC processor?",
+      "topic": "Artificial Intelligence, Software Engineering",
+      "subtopic": "Register Window Analysis",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "What is the primary purpose of the `SWAP` instruction?",
+      "topic": "Artificial Intelligence Control",
+      "subtopic": "Instruction Execution Control",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "What does the code add to R2 in each iteration of the loop?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "Loop Optimization",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    }
+  ],
+  "2_mark": [
+    {
+      "question": "What is the value of X stored in memory location 2000H?",
+      "topic": "Artificial Intelligence Optimization",
+      "subtopic": "Memory Management",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "What is the purpose of the 12 bits address control in the microprogrammed control unit?",
+      "topic": "Artificial Intelligence Control",
+      "subtopic": "Microprogram Control Logic",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "What is the mode of the instruction `1010 10 0101 001100`?",
+      "topic": "Data Structure Analysis Of",
+      "subtopic": "Pattern Recognition",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "What is the purpose of using a branch instruction in the provided code?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "Code Analysis",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "What is the value of X, the number of instructions, and Y, the percentage of CPU time taken by instruction C, in the given program?",
+      "topic": "Data Structure Analysis",
+      "subtopic": "Program Analysis - Instruction Tracking",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "What is the purpose of the subroutine in assembly code designed to calculate the factorial of a number?",
+      "topic": "Artificial Intelligence",
+      "subtopic": "Algorithm Design",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "(a) How many bits are needed to represent 24 control signals in horizontal microprogramming?",
+      "topic": "Control Unit Design And",
+      "subtopic": "Microprogramming Design",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "What is the primary focus of the Computer Organization Architecture course at Jaypee Institute of Information Technology, Noida?",
+      "topic": "Computer Architecture & Mobile",
+      "subtopic": "System Design Focus",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "What is the address of the last instruction after adding the INC and DEC instructions?",
+      "topic": "Software Design & Memory",
+      "subtopic": "Program Analysis",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "Match the following entries on the left side to the correct entry on the right side:\n\n1.  A.  The theory of relativity\n2.  B.  The concept of entropy\n3.  C.  The law of conservation of mass\n4.  D.  The concept of time\n\n---",
+      "topic": "Data Management And Analysis",
+      "subtopic": "Physics & Data",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    }
+  ],
+  "3_mark": [
+    {
+      "question": "(a) What is the address space in bytes?",
+      "topic": "Artificial Intelligence Systems",
+      "subtopic": "System Architecture",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "(a) How many bits does the size of the control ROM represent in terms of the number of bits?",
+      "topic": "Artificial Intelligence Design",
+      "subtopic": "Memory Management",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "Describe the fundamental differences between RISC and CISC architectures, highlighting how each incorporates pipeline, I/O, and cache to influence system performance as presented in the provided text.",
+      "topic": "Software Architecture & Optimization",
+      "subtopic": "System Design Optimization",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "(a) Calculate the maximum speedup with 8 cores, given the clock cycle time and CPI of each machine.",
+      "topic": "Dataflow Analysis",
+      "subtopic": "Performance Optimization",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "Describe the impact of CPU cycle stealing on the time required for a DMA transfer, considering the specified block size, memory bus width, bus speed, and CPU cycle stealing frequency.",
+      "topic": "Data Flow Optimization",
+      "subtopic": "Resource Management",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "Describe how RISC architecture’s design facilitates the implementation of pipelining, justifying the advantages over CISC architectures.",
+      "topic": "Artificial Intelligence",
+      "subtopic": "Hardware Design Optimization",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "What is the primary data flow mechanism utilized in the described load-store architecture?",
+      "topic": "Data Structure & Programming",
+      "subtopic": "Dataflow Management",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "What is the effect of switching to word addressing on the address space available to the processor, considering the 20-bit address bus and byte/word addressing capabilities?",
+      "topic": "Data Structures & Processing",
+      "subtopic": "Memory Addressing",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "What is the primary difference in memory access requirements between all register addressing and direct addressing, as described in the text?",
+      "topic": "Data Structures & Memory",
+      "subtopic": "Memory Access Patterns",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "Write a sequence of micro-instructions for Fetch, INC, and DEC instructions, specifying the Hex values for each instruction in the order of their storage location (12H and 14H).",
+      "topic": "Artificial Intelligence Microprogramming",
+      "subtopic": "Instruction Sequencing",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    }
+  ],
+  "5_mark": [
+    {
+      "question": "(c)  Considering the observed frequency distribution of CPI across both machines and the total number of instructions, which machine (A or B) demonstrates a significantly higher average CPI, and by how much?",
+      "topic": "Data Flow Analysis",
+      "subtopic": "Statistical Comparison",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "(a) Discuss the implications of a significant difference in clock rate and CPI for processor performance, considering their influence on execution time and resource utilization.",
+      "topic": "Software Optimization",
+      "subtopic": "Performance Analysis",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "(c) Evaluate the impact of the instruction mix on overall execution time, considering the calculated average CPI, and determine how this relates to the clock frequency.",
+      "topic": "Dataflow Analysis",
+      "subtopic": "Performance Analysis",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "Which of the following represents the equivalent RISC instruction sequence for the given CISC instruction, considering a load-store architecture with a clock cycle time of 8?\n\na) `Load 8, Store 8`\nb) `Load 8, Load 8, Store 8`\nc) `Load 8, Load 8, Store 8, Store 8`\nd) `Load 8, Load 8, Store 8, Load 8`",
+      "topic": "Artificial Intelligence, Instruction Sequencing",
+      "subtopic": "Instruction Sequencing Optimization",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "What fundamental architectural difference between RISC and CISC architectures primarily relates to the complexity of instruction processing and the resulting impact on system efficiency, as described in the provided text?",
+      "topic": "Software Architecture Optimization",
+      "subtopic": "Instruction Complexity",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "What is the maximum cache size per block, and what is the block size in bytes?",
+      "topic": "Data Structures & Algorithms",
+      "subtopic": "Cache Size & Block Size",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "Which of the following best describes the fundamental level of organization within a computer system, as described in the provided text, and how does this level influence the design and operation of the system's data path?",
+      "topic": "Data Structures & Programming",
+      "subtopic": "Data Organization",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "Question: Analyze the potential consequences of each identified pipeline hazard – Data Hazard (RAW), Data Hazard (WAR), Control Hazard, Branch Instruction Hazard, and Structural Hazard – and assess how each might impact the overall efficiency and stability of the processor system, considering the specific limitations of a two-instruction pipeline architecture.",
+      "topic": "Data Hazard Analysis",
+      "subtopic": "Pipeline Hazard Analysis",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "Analyze the following code snippet, identifying the purpose of each variable and its data type.  Explain how the variables contribute to the overall functionality of the program.\n```\nfunction calculate_area(width, height) {\n  return width * height;\n}\n\nint main() {\n  int width = 10;\n  int height = 5;\n  return calculate_area(width, height);\n}\n```",
+      "topic": "Data Structures & Algorithms",
+      "subtopic": "Code Analysis & Type",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "i) Draw the hardwired instruction decoder for INC and DEC instructions.\n\nii) Write the register transfer/microinstruction and active control signal for INC and DEC.\n\niii) Draw the hardwired control matrix using Boolean expression for INC and DEC instructions to generate signals “I” and “D”.",
+      "topic": "Artificial Intelligence Control",
+      "subtopic": "Control Logic Design",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    }
+  ]
+}

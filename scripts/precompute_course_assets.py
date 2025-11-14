@@ -20,6 +20,16 @@ ROOT = Path(__file__).resolve().parent.parent
 SCRIPTS = ROOT / 'scripts'
 OUT_BASE = ROOT / 'data' / 'courses'
 
+# Ensure the repository root is on sys.path so package imports like
+# `questions_generation` work when the script is run directly.
+import sys
+try:
+    repo_root_str = str(ROOT)
+    if repo_root_str not in sys.path:
+        sys.path.insert(0, repo_root_str)
+except Exception:
+    pass
+
 
 def slugify(name: str):
     return ''.join(c if c.isalnum() else '_' for c in name.strip().lower()).strip('_')
@@ -35,68 +45,35 @@ def load_topic_keywords():
     return {}
 
 
-def run_generator_for_course(course_name: str, seed_text: str | None = None):
-    # attempt to import generator
+def run_generator_for_course(course_name: str, seed_text: str | None = None, questions_per_category: int = 10):
+    """Call the project's question generator (LLM-based) to produce structured
+    questions. This function delegates entirely to
+    `questions_generation.question_gen.generate_questions` and does NOT apply
+    heuristic fallbacks — the generator must provide topic/subtopic/etc via LLM.
+
+    `questions_per_category` controls how many questions per marks bucket are
+    requested (default 10 -> 40 total across 1/2/3/5 mark buckets).
+    """
     try:
         import questions_generation.question_gen as qgen
-    except Exception:
-        qgen = None
+    except Exception as e:
+        print(f"Question generator module not available: {e}")
+        return {}
 
     topic_keywords = load_topic_keywords()
     text = seed_text or ''
-    generated = None
-    if qgen is not None and hasattr(qgen, 'generate_questions'):
-        try:
-            sig = None
-            import inspect
-            sig = inspect.signature(qgen.generate_questions)
-            params = list(sig.parameters.keys())
-            if len(params) >= 2:
-                generated = qgen.generate_questions(text, topic_keywords)
-            elif len(params) >= 1:
-                generated = qgen.generate_questions(text)
-            else:
-                generated = qgen.generate_questions()
-        except Exception as e:
-            print(f"Generator raised: {e}; falling back to deterministic generator.")
-            generated = None
 
-    # fallback deterministic generator: split seed text into sentences or create placeholders
-    if generated is None:
-        if not text:
-            # create dummy placeholders
-            sentences = [f"Placeholder question about {course_name} - topic {i+1}." for i in range(12)]
-        else:
-            sentences = [s.strip() for s in text.split('.') if s.strip()][:20]
+    if not hasattr(qgen, 'generate_questions'):
+        print("Generator module does not expose `generate_questions`. Aborting generation.")
+        return {}
 
-        def make_q(s, marks, topic='General'):
-            time_map = {1:1,2:3,3:5,5:8}
-            diff_map = {1:'easy',2:'medium',3:'hard',5:'hard'}
-            cog_map = {1:'remembering',2:'understanding',3:'applying',5:'evaluating'}
-            return {
-                'question': s,
-                'topic': topic,
-                'subtopic': topic,
-                'question_type': 'short' if marks<=2 else 'descriptive',
-                'difficulty': diff_map.get(marks,'medium'),
-                'time': time_map.get(marks,3),
-                'cognitive_level': cog_map.get(marks,'understanding'),
-                'marks': marks,
-            }
-
-        buckets = {1: [], 2: [], 3: [], 5: []}
-        for i, s in enumerate(sentences):
-            m = [1,2,3,5][i % 4]
-            buckets[m].append(make_q(s, m, topic=course_name))
-
-        generated = {
-            '1_mark': buckets[1],
-            '2_mark': buckets[2],
-            '3_mark': buckets[3],
-            '5_mark': buckets[5],
-        }
-
-    return generated
+    try:
+        # Call the generator exactly like the `question_gen.py` entrypoint expects.
+        generated = qgen.generate_questions(text, topic_keywords, questions_per_category)
+        return generated if isinstance(generated, dict) else {}
+    except Exception as e:
+        print(f"Generator raised an exception: {e}")
+        return {}
 
 
 def save_and_build(generated: dict, out_dir: Path):
@@ -104,7 +81,20 @@ def save_and_build(generated: dict, out_dir: Path):
     (out_dir / 'generated_questions.json').write_text(json.dumps(generated, indent=2, ensure_ascii=False), encoding='utf-8')
 
     # simple cleaning: copy generated into cleaned_questions (and ensure keys match)
-    cleaned = generated
+    # Normalize: ensure both 'difficulty' and 'difficulty_level' are present for compatibility.
+    cleaned = {}
+    for group_key, items in (generated or {}).items():
+        cleaned[group_key] = []
+        for q in (items or []):
+            try:
+                # prefer existing 'difficulty' then 'difficulty_level'
+                diff = q.get('difficulty') or q.get('difficulty_level') or None
+                if diff is not None:
+                    q['difficulty'] = diff
+                    q['difficulty_level'] = diff
+                cleaned[group_key].append(q)
+            except Exception:
+                cleaned[group_key].append(q)
     (out_dir / 'cleaned_questions.json').write_text(json.dumps(cleaned, indent=2, ensure_ascii=False), encoding='utf-8')
 
     manifest = {

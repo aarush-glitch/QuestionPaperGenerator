@@ -1,0 +1,450 @@
+{
+  "1_mark": [
+    {
+      "question": "What is the objective of the Coin Change Problem?",
+      "topic": "Coin Change And Optimization",
+      "subtopic": "Problem Solving",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "What is the primary purpose of Heapsort in this context?",
+      "topic": "Heap Sort Optimization",
+      "subtopic": "Algorithm Optimization",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "Which algorithm is most efficient for finding the longest common subsequence?",
+      "topic": "Space-Optimized Dynamic Programming",
+      "subtopic": "Algorithmic Complexity",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "What is the recurrence relation used in the problem?",
+      "topic": "**Algorithm Analysis & Complexity**",
+      "subtopic": "Temporal Analysis",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "Question: Which of the following is the fundamental definition of the Fibonacci sequence?",
+      "topic": "Recursion & Master Theorem",
+      "subtopic": "Mathematical Sequences",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "What is the primary purpose of the Rabin-Karp algorithm in text matching?",
+      "topic": "String Matching Algorithm",
+      "subtopic": "Pattern Matching Optimization",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "What is the dimension of matrix A?",
+      "topic": "Matrix Optimization",
+      "subtopic": "Linear Algebra Geometry",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "What is the primary difference in space complexity between the recursive and iterative implementations of the factorial function?",
+      "topic": "Data Structures & Algorithms",
+      "subtopic": "Time Complexity Analysis",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "Which of the following is a key characteristic of the fractional knapsack problem?",
+      "topic": "Artificial Intelligence, Knapsack Problem",
+      "subtopic": "Optimization, Resource Allocation",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    },
+    {
+      "question": "What is the mathematical function being defined in the text?",
+      "topic": "**Dynamic Programming** --- Q2.",
+      "subtopic": "Function Definition",
+      "question_type": "mcq",
+      "difficulty_level": "easy",
+      "time": 1,
+      "cognitive_level": "remembering",
+      "marks": 1,
+      "image": null
+    }
+  ],
+  "2_mark": [
+    {
+      "question": "(a) What is the value of dp[i][j] for all i and j?",
+      "topic": "Data Structures & Algorithms",
+      "subtopic": "Dynamic Programming",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "What is the maximum number of flights that can be scheduled between the eight cities?",
+      "topic": "Flight Booking System Design",
+      "subtopic": "Route Optimization",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "What is the total number of units available for allocation in the system?",
+      "topic": "Project Scheduling Optimization",
+      "subtopic": "Resource Allocation",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "(a) What is the probability that random pivot selection gives worst-case split in quicksort (rounded to 2 decimals)?",
+      "topic": "Quicksort Optimization",
+      "subtopic": "Algorithm Analysis",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "What is the primary objective of the greedy algorithm in the Fractional Knapsack problem?",
+      "topic": "Data Structures & Algorithms",
+      "subtopic": "Optimization through selection",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "What is the primary goal of the LRU cache design described in the text?",
+      "topic": "Graph Traversal Comparison",
+      "subtopic": "Cache Optimization",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "(a) What is the frequency of each character in the string “ABRACADABRA”?",
+      "topic": "Data Compression & Algorithms",
+      "subtopic": "Character Frequency Analysis",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "What are the primary steps involved in converting an array to a min-heap, and under what circumstances would you choose to use a min-heap?",
+      "topic": "Data Structure Analysis",
+      "subtopic": "Tree Structure Optimization",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "What is the primary purpose of the provided grid in the context of the algorithm?",
+      "topic": "Data Structures And Algorithms",
+      "subtopic": "Algorithm Design",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    },
+    {
+      "question": "What is the goal of the N-Queens problem, specifically in the context of backtracking?",
+      "topic": "Q33 – Chess Problem",
+      "subtopic": "Algorithm Optimization",
+      "question_type": "short",
+      "difficulty_level": "medium",
+      "time": 3,
+      "cognitive_level": "understanding",
+      "marks": 2,
+      "image": null
+    }
+  ],
+  "3_mark": [
+    {
+      "question": "What data structure would be most suitable for efficiently finding the top k=10 percentile students, considering the need to handle ties in total marks?",
+      "topic": "Data Structure Optimization",
+      "subtopic": "Ranking & Optimization",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "Q5. [CO1 - Marks 4]\nAnalyze the following code and determine its complexity:\n\n```\nfunction mysterySub(n)\n{\n  if (n == 1) return 1;\n  sum = 0;\n  for (i = 1; i <= n; i++)\n    sum += mysterySub(n/2);\n  return sum;\n}\n```\n\n***\n\nQ6. [CO1 - Marks 3]\nFor the recurrence T(n) = T(n-1) + T(n-2) + n, solve using the recursion tree method and determine if it's in Θ(2ⁿ) or better.\n\n***\n\nQ7. [CO1 - Marks 3]\nGiven code with nested loops, calculate time complexity:",
+      "topic": "Artificial Intelligence, Code Analysis,",
+      "subtopic": "Time Complexity Analysis",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "What is the primary objective of the restaurant delivery system design, as described in the text?",
+      "topic": "Restaurant Delivery Optimization",
+      "subtopic": "Delivery Process Management",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "(a) Show pattern matching process step-by-step.\n(b) Count character comparisons.\n(c) Compare with naive algorithm efficiency.",
+      "topic": "Data Structures & Algorithms",
+      "subtopic": "Algorithm Analysis",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "(a) What is the core characteristic of the user graph presented in the text, and how does it influence the choice of a k=3 nearest neighbors?",
+      "topic": "Network Analysis & Optimization",
+      "subtopic": "Graph Theory Analysis",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "Describe the Manhattan distance heuristic used in the provided grid-based pathfinding algorithm, focusing on its calculation and the resulting distance between the start and goal points.",
+      "topic": "Pathfinding And Manhattan Distance",
+      "subtopic": "Algorithmic Distance Calculation",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "Q9. **Question:**\n\nDescribe how the recursive time complexity of the given code can be reduced using the Master Theorem. Focus on the key parameters involved and how the theorem simplifies the calculation.",
+      "topic": "Data Structures & Algorithms",
+      "subtopic": "Complexity Analysis",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "What is the primary difference in the number of activities listed between the text and the pattern?",
+      "topic": "Activity Selection Problem",
+      "subtopic": "Difference Analysis",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "Describe the key differences between Insertion Sort, Quick Sort, and Counting Sort, outlining their best-case, worst-case, space, and stability characteristics, and provide a justification for when each algorithm would be most appropriate in a real-world application.",
+      "topic": "Algorithm Comparison",
+      "subtopic": "Algorithm Analysis",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    },
+    {
+      "question": "What is the primary purpose of the bubble sort algorithm described in the text, and how does it contribute to the overall goal of optimizing the array’s order?",
+      "topic": "Array Sorting And Analysis",
+      "subtopic": "Algorithm Optimization",
+      "question_type": "descriptive",
+      "difficulty_level": "hard",
+      "time": 5,
+      "cognitive_level": "applying",
+      "marks": 3,
+      "image": null
+    }
+  ],
+  "5_mark": [
+    {
+      "question": "**Q15. Long Question:**\n\nAnalyze the efficiency of three common sorting algorithms (Merge Sort, Bubble Sort, and Quick Sort) in terms of time and space complexity, specifically considering their performance characteristics when dealing with datasets of varying sizes. Provide a detailed comparison highlighting their strengths and weaknesses across different input scenarios, justifying your answer with a concise summary of the algorithm’s time and space complexity (as defined in the text).",
+      "topic": "Sorting Algorithms Comparison",
+      "subtopic": "Algorithm Comparison",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "What is the relationship between the coordinates of the points (1,2), (5,8), (3,3), (9,7), (2,5), and (7,1?",
+      "topic": "Data Structure Optimization",
+      "subtopic": "Geometric Relationships",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "**Question:**\n\nGiven the provided directed graph `W` representing a transportation network with capacity constraints, design an algorithm that efficiently assigns truck orders to trucks, determines optimal routes for each truck, and guarantees deadline satisfaction, considering the capacity limitations of each truck.  Specify the data structures you would employ for this task, and analyze the time complexity of your proposed algorithm.  Provide a brief justification for your chosen data structures and complexity analysis.",
+      "topic": "Route Optimization & Algorithms",
+      "subtopic": "Scheduling Optimization",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "Q18.  Given an unsorted array of n distinct elements, determine the number of comparisons required to efficiently locate both the maximum and minimum elements using QuickSelect. Explain how this efficiency relates to the algorithm's time complexity.",
+      "topic": "Quickselect Optimization",
+      "subtopic": "Efficient Selection",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "(c) Identify and explain the optimal tour path – that is, the sequence of jobs that maximizes overall profit, considering the given deadlines and profits. Provide a justification for the chosen sequence.",
+      "topic": "Job Sequencing Optimization",
+      "subtopic": "Scheduling Optimization",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "**(c) Explain, step-by-step, how Dijkstra’s algorithm, using a priority queue, will efficiently determine the shortest paths from vertex 0 to all other vertices in the given graph, considering the edges and their associated weights.**",
+      "topic": "Graph Algorithm Analysis",
+      "subtopic": "Pathfinding Algorithm Analysis",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "Which of the following is a fundamental characteristic of deadlock-free resource allocation?",
+      "topic": "Resource Allocation",
+      "subtopic": "Concurrency Management",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "**Question:**\n\nGiven a graph represented by a set of nodes and edges, calculate the Manhattan distance from a starting node to a goal node using the provided heuristic function.  Specifically, for each node explored, determine the sum of the absolute differences in its x-coordinate and y-coordinate with respect to the current node, and then add this value to the calculated distance. Furthermore, show the state of the open and closed lists during each step of the search process.  Finally, trace the optimal path from the start node to the goal node, identifying each node along the way and the corresponding distance. Finally, compare the performance of this Manhattan distance heuristic with Dijkstra’s algorithm, explaining why A* generally offers improved efficiency in terms of time and resource consumption.  Consider that the Manhattan distance function is defined as h(n) = |x₁-x₂| + |y₁-y₂| for each node n.",
+      "topic": "Optimal Path Search",
+      "subtopic": "Pathfinding Optimization",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "Q12.  Discuss how the choice of merge sort versus insertion sort affects the performance of sorting a list of 50 unique elements when the input is already partially sorted, considering the time complexity and space complexity implications of each algorithm.",
+      "topic": "Sorting And Comparisons",
+      "subtopic": "Algorithm Comparison",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    },
+    {
+      "question": "Question:\n\nConsidering the provided flight booking system data, identify and analyze the potential operational challenges arising from scheduling flights between consecutive cities, specifically focusing on the impact of varying travel times on overall efficiency and the implications for minimizing potential delays. Discuss how these challenges might affect the system’s ability to fulfill customer requests and justify the cost of the service.",
+      "topic": "Flight Booking System Design",
+      "subtopic": "Scheduling Challenges",
+      "question_type": "long",
+      "difficulty_level": "hard",
+      "time": 8,
+      "cognitive_level": "evaluating",
+      "marks": 5,
+      "image": null
+    }
+  ]
+}
