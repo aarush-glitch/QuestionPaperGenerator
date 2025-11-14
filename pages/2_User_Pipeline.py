@@ -61,7 +61,7 @@ except Exception:
     fitz = None
 
 
-st.set_page_config(page_title="CoE Prject", layout="centered")
+st.set_page_config(page_title="CoE Project", layout="wide")
 
 
 def show_header():
@@ -77,6 +77,32 @@ def show_header():
 
 
 show_header()
+
+# Increase main container width and add side padding for better use of wide layout
+try:
+    st.markdown(
+        """
+        <style>
+        /* Broad selectors to cover multiple Streamlit versions and themes */
+        section[data-testid="stAppViewContainer"] .main .block-container,
+        section[data-testid="stAppViewContainer"] .block-container,
+        .reportview-container .main .block-container,
+        div.block-container,
+        .stApp .block-container,
+        .css-1d391kg,
+        .css-18e3th9 {
+            max-width: 1100px !important;
+            padding-left: 1.5rem !important;
+            padding-right: 1.5rem !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+except Exception:
+    pass
 
 # show selected course in a small header/banner
 def show_selected_course_banner():
