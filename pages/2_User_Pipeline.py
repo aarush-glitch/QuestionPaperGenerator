@@ -1229,12 +1229,48 @@ elif st.session_state.wizard_step == 5:
             st.header("Paper Summary")
             st.metric("Total Marks", f"{total_marks}")
             st.metric("Questions Selected", f"{len(sel)}")
+            # Estimated completion time (sum of question 'time' fields, expected in minutes)
+            try:
+                total_time_mins = sum(_safe_int(q.get('time')) for q in sel)
+                hrs = total_time_mins // 60
+                mins = total_time_mins % 60
+                if hrs:
+                    time_str = f"{hrs}h {mins}m"
+                else:
+                    time_str = f"{mins} min"
+
+                # Determine allowed time based on max marks limit mapping
+                limit = int(st.session_state.get("max_marks_limit", 20) or 20)
+                # explicit mapping: 20 -> 1h, 35 -> 2h, 100 -> 3h; otherwise choose nearest bracket
+                if limit <= 20:
+                    allowed_hours = 1
+                elif limit <= 35:
+                    allowed_hours = 2
+                else:
+                    allowed_hours = 3
+
+                allowed_mins = allowed_hours * 60
+
+                # Display estimated time and a warning if it exceeds allowed time
+                st.metric("Estimated Time", time_str)
+                if total_time_mins > allowed_mins:
+                    st.error(f"Estimated time ({time_str}) exceeds the recommended limit of {allowed_hours}h for a {limit}-mark paper.")
+                else:
+                    st.success(f"Estimated time ({time_str}) is within the recommended limit of {allowed_hours}h for a {limit}-mark paper.")
+            except Exception:
+                st.info("Estimated time unavailable")
 
             st.subheader("Difficulty Breakdown")
             try:
-                import plotly.express as px
+                import plotly.graph_objects as go
                 if diff_counts:
-                    fig = px.pie(values=list(diff_counts.values()), names=list(diff_counts.keys()), title="By Difficulty")
+                    labels = list(diff_counts.keys())
+                    values = [diff_counts.get(l, 0) for l in labels]
+                    # explicit hex color mapping for difficulty
+                    hex_map = {"easy": "#2ecc71", "medium": "#f1c40f", "hard": "#e74c3c"}
+                    colors = [hex_map.get(lbl.lower().strip(), "#95a5a6") for lbl in labels]
+                    fig = go.Figure(data=[go.Pie(labels=labels, values=values, marker=dict(colors=colors))])
+                    fig.update_layout(title_text="By Difficulty")
                     st.plotly_chart(fig, use_container_width=True)
                 else:
                     st.info("No difficulty info available.")
@@ -1248,6 +1284,50 @@ elif st.session_state.wizard_step == 5:
                     st.write(f"- {t}: {c} question(s)")
             else:
                 st.info("No topic metadata available.")
+
+            # Bloom's Taxonomy / Cognitive level distribution (placed above Actions)
+            try:
+                st.subheader("Bloom's Taxonomy")
+                levels = ["remembering", "understanding", "applying", "analyzing", "evaluating", "creating"]
+                cog_counts = {lvl: 0 for lvl in levels}
+                for q in sel:
+                    cl = (q.get("cognitive_level") or q.get("cognitive") or "").strip().lower()
+                    if not cl:
+                        continue
+                    if cl.startswith("remember"):
+                        key = "remembering"
+                    elif cl.startswith("understand"):
+                        key = "understanding"
+                    elif cl.startswith("apply"):
+                        key = "applying"
+                    elif cl.startswith("analy"):
+                        key = "analyzing"
+                    elif cl.startswith("evalu"):
+                        key = "evaluating"
+                    elif cl.startswith("creat"):
+                        key = "creating"
+                    else:
+                        key = cl
+                    cog_counts.setdefault(key, 0)
+                    cog_counts[key] += 1
+
+                labels = list(cog_counts.keys())
+                values = [cog_counts.get(l, 0) for l in labels]
+                color_map = {
+                    "remembering": "#2ecc71",
+                    "understanding": "#f1c40f",
+                    "applying": "#e67e22",
+                    "analyzing": "#e74c3c",
+                    "evaluating": "#c0392b",
+                    "creating": "#9b59b6",
+                }
+                colors = [color_map.get(l, "#95a5a6") for l in labels]
+                import plotly.graph_objects as go
+                bar = go.Figure(data=[go.Bar(x=labels, y=values, marker_color=colors)])
+                bar.update_layout(title_text="Cognitive Level Distribution (Bloom's Taxonomy)", xaxis_title="Cognitive Level", yaxis_title="Count")
+                st.plotly_chart(bar, use_container_width=True)
+            except Exception:
+                st.write("Bloom's taxonomy unavailable")
 
             st.subheader("Actions")
             pdf_col1, pdf_col2 = st.columns([1, 1])
