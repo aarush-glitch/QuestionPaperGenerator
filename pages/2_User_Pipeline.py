@@ -1037,7 +1037,7 @@ elif st.session_state.wizard_step == 3:
 
 # Step 4: Index & Search
 elif st.session_state.wizard_step == 4:
-    step_card("Build Index & Search (optional)", 4)
+    step_card("Search and Select Questions for Question Paper", 4)
     query = st.text_input("Search for questions (natural language)", value="", placeholder="e.g. explain convolutional layers", key="wizard_query")
 
     # layout: left column for search & results, right column for selection basket
@@ -1054,20 +1054,20 @@ elif st.session_state.wizard_step == 4:
         with col3:
             cognitive = st.selectbox("Target cognitive", ["remembering", "understanding", "applying", "analyzing", "evaluating", "creating"], index=2, key="wizard_cog")
 
-        build_idx = st.button("Build Index (if available)", key="wizard_build_idx")
-        if build_idx:
-            if FAISS is None or OllamaEmbeddings is None:
-                st.error("Indexing requires FAISS and Ollama embeddings to be installed and available.")
-            elif not st.session_state.cleaned_questions:
-                st.warning("No cleaned questions available to index.")
-            else:
-                # show progress during manual build
-                with st.spinner("Building index — this may take some time"):
-                    success, msg = build_index_from_cleaned(st.session_state.cleaned_questions, show_progress=True)
-                    if success:
-                        st.success(msg)
-                    else:
-                        st.error(msg)
+        # build_idx = st.button("Build Index (if available)", key="wizard_build_idx")
+        # if build_idx:
+        #     if FAISS is None or OllamaEmbeddings is None:
+        #         st.error("Indexing requires FAISS and Ollama embeddings to be installed and available.")
+        #     elif not st.session_state.cleaned_questions:
+        #         st.warning("No cleaned questions available to index.")
+        #     else:
+        #         # show progress during manual build
+        #         with st.spinner("Building index — this may take some time"):
+        #             success, msg = build_index_from_cleaned(st.session_state.cleaned_questions, show_progress=True)
+        #             if success:
+        #                 st.success(msg)
+        #             else:
+        #                 st.error(msg)
 
         # Search button (uses the filter values above). Results are stored in session so
         # changing filters does not automatically clear previously displayed results.
