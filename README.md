@@ -1,3 +1,6 @@
+To Run the application: Install Create venv, install dependencies and run Home.py
+
+
 ## Data Preprocessing steps
 ### Overview of My Contribution
 
