@@ -61,24 +61,9 @@ except Exception:
     fitz = None
 
 
-st.set_page_config(page_title="CoE Project", layout="wide")
+st.set_page_config(page_title="Question Paper Generator - Pipeline", layout="wide", initial_sidebar_state="expanded")
 
-
-def show_header():
-    st.markdown(
-        """
-    <div style='text-align:center; padding:1.2rem; border-radius:0.8rem; background:#23272f; color:#e0f7fa;'>
-      <h2 style='margin:0.1rem 0 0.2rem 0;'>Question Generator — Complete Workflow</h2>
-      <!--<div style='opacity:0.9'>A focused, user-first flow: Upload → Generate (optional) → Clean → Search → Export</div>-->
-    </div>
-    """,
-        unsafe_allow_html=True,
-    )
-
-
-show_header()
-
-# Match main container width/padding with other pages
+# Match main container width/padding with Home page
 try:
     st.markdown(
         """
@@ -104,11 +89,91 @@ try:
 except Exception:
     pass
 
-# show selected course in a small header/banner
+# --- STYLES (matching Home.py) ---
+st.markdown("""
+<style>
+.gradient-header {
+    background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+    padding: 2.5rem 0 1.5rem 0;
+    border-radius: 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+}
+.soft-card {
+    background: linear-gradient(120deg, #23272f 60%, #43cea2 100%);
+    border-radius: 1rem;
+    padding: 1.7rem;
+    margin-bottom: 1.5rem;
+    color: #f5f6fa;
+    box-shadow: 0 2px 8px #0002;
+}
+.big-title {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #f5f6fa;
+    text-align: center;
+    margin-bottom: 0.2em;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 8px #185a9d44;
+}
+.subtitle {
+    font-size: 1.3rem;
+    color: #e0f7fa;
+    text-align: center;
+    margin-bottom: 1.5em;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    letter-spacing: 1px;
+}
+.step-badge {
+    display: inline-block;
+    background: #43cea2;
+    color: #23272f;
+    border-radius: 0.5em;
+    padding: 0.3em 0.8em;
+    margin: 0.2em 0.4em;
+    font-weight: 600;
+    font-size: 1.05rem;
+    box-shadow: 0 1px 4px #185a9d22;
+}
+.course-banner {
+    text-align: center;
+    padding: 0.6rem;
+    border-radius: 0.8rem;
+    background: linear-gradient(120deg, #e8f5e9 60%, #a5d6a7 100%);
+    color: #1b5e20;
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+</style>
+""", unsafe_allow_html=True)
+
+
+def show_header():
+    st.markdown(
+        """
+        <div style='padding: 2.5rem 0 1.5rem 0; border-radius: 1.5rem; text-align: center; margin-bottom: 2rem; box-shadow: 0 4px 24px rgba(0,0,0,0.15); background: #23272f;'>
+            <div class='big-title'>Question Paper Generator</div>
+            <div class='subtitle'>Upload → Generate → Search → Export</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+show_header()
+
+# show selected course in a banner matching Home.py style
 def show_selected_course_banner():
     course = st.session_state.get("selected_course")
     if course:
-        st.markdown(f"<div style='text-align:center; padding:0.4rem; border-radius:0.4rem; background:#e8f5e9; color:#1b5e20; margin-bottom:0.8rem;'>Selected course: <strong>{course}</strong></div>", unsafe_allow_html=True)
+        st.markdown(
+            f"<div class='course-banner'>📚 Selected Course: <strong>{course}</strong></div>",
+            unsafe_allow_html=True
+        )
 
 
 show_selected_course_banner()
@@ -1451,6 +1516,12 @@ elif st.session_state.wizard_step == 4:
                     # display time with unit (minutes)
                     display_time = item.get('time')
                     display_time_str = f"{display_time} min" if display_time not in (None, "") else "N/A"
+                    
+                    # Show complete question text
+                    st.write(f"**Question**: {item['question']}")
+                    st.write("---")
+                    
+                    # Show metadata
                     st.write(f"**Topic**: {item['topic']}  \n"
                              f"**Subtopic**: {item['subtopic']}  \n"
                              f"**Marks**: {item['marks']}  \n"
