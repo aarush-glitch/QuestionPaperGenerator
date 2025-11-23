@@ -1,7 +1,7 @@
 {
   "1_mark": [
     {
-      "question": "discuss the impact of the `ze` value on performance (i.e., how the size of the hash table affects runtime.)",
+      "question": "Discuss the impact of the `ze` value on performance (i.e., how the size of the hash table affects runtime.)",
       "marks": 1,
       "difficulty": "easy",
       "cognitive_level": "understanding",
@@ -11,7 +11,7 @@
       "source_file": "Initial_Questions"
     },
     {
-      "question": "Here’s the Which of the following relationships best describes the parent-child hierarchy presented in the text? (a) A is the direct child of B, and B is the direct child of A. (b) A is a direct child of B, and B is a direct child of A. (c) A is a distant relative of B, and B is a distant relative of A. (d) A is a descendant of B, and B is a descendant of A. Justify your answer, referencing specific details from the text.",
+      "question": "Which of the following relationships best describes the parent-child hierarchy presented in the text? (a) A is the direct child of B, and B is the direct child of A. (b) A is a direct child of B, and B is a direct child of A. (c) A is a distant relative of B, and B is a distant relative of A. (d) A is a descendant of B, and B is a descendant of A. Justify your answer, referencing specific details from the text.",
       "marks": 1,
       "difficulty": "easy",
       "cognitive_level": "understanding",
@@ -41,7 +41,7 @@
       "source_file": "Initial_Questions"
     },
     {
-      "question": "Here’s the How does the data access mechanism differ between a stack and a queue in the context of checker implementation, and which approach is more efficient for processing data based on the provided scenario? Explain the differences with a specific example.",
+      "question": "How does the data access mechanism differ between a stack and a queue in the context of checker implementation, and which approach is more efficient for processing data based on the provided scenario? Explain the differences with a specific example.",
       "marks": 1,
       "difficulty": "easy",
       "cognitive_level": "understanding",
@@ -51,23 +51,13 @@
       "source_file": "Initial_Questions"
     },
     {
-      "question": "Here’s the How does the data access mechanism differ between a stack and a queue in the context of checker implementation, and which approach is more efficient for processing data based on the provided scenario? Explain the differences with a specific example.",
+      "question": "How does the data access mechanism differ between a stack and a queue in the context of checker implementation, and which approach is more efficient for processing data based on the provided scenario? Explain the differences with a specific example.",
       "marks": 1,
       "difficulty": "easy",
       "cognitive_level": "understanding",
       "topic": "Stacks",
       "subtopic": "Data Access Mechanisms",
       "time": 5,
-      "source_file": "Initial_Questions"
-    },
-    {
-      "question": "A small bakery specializes in custom cake designs. They need to create a cake for a birthday party – a large, round cake for approximately 50 guests. They want the cake to have a unique, swirling pattern of chocolate and vanilla frosting, and the overall design should resemble a stylized, oversized flower. Considering these constraints, which of the following is the MOST appropriate method for creating this complex design with minimal waste of frosting? (a) Using a pre-made cake stencil with a simple floral pattern and then applying frosting to it. (b) Creating the design layer by layer, starting with a base of chocolate frosting and gradually adding vanilla, ensuring the swirl effect is achieved with each layer. (c) Employing a digital design tool to create a complex pattern, then manually transferring it to the cake, resulting in a slightly less visually dynamic outcome. (d) Employing a single color frosting that can be layered and blended to create the swirling effect.",
-      "marks": 1,
-      "difficulty": "easy",
-      "cognitive_level": "understanding",
-      "topic": "Algorithms",
-      "subtopic": "Cake Design & Frosting",
-      "time": 4,
       "source_file": "Initial_Questions"
     },
     {
@@ -181,7 +171,7 @@
       "source_file": "Initial_Questions"
     },
     {
-      "question": "here’s the  Describe the purpose of the ‘insert’ operation in the binomial heap and explain how it maintains the heap property. Provide a simple example of how inserting a single element would affect the heap structure.",
+      "question": "Describe the purpose of the ‘insert’ operation in the binomial heap and explain how it maintains the heap property. Provide a simple example of how inserting a single element would affect the heap structure.",
       "marks": 1,
       "difficulty": "easy",
       "cognitive_level": "understanding",
@@ -211,7 +201,7 @@
       "source_file": "Initial_Questions"
     },
     {
-      "question": "A small business owner wants to track their daily sales. They currently use a spreadsheet that is manually updated. They want to automate this process to improve efficiency. Which of the following is the MOST effective approach to automate this process? (a) Manually input each sale into the spreadsheet. (b) Create a new spreadsheet with a formula that automatically calculates total sales daily. (c) Develop a small program using a scripting language to update the spreadsheet based on sales data. ---",
+      "question": "A small business owner wants to track their daily sales. They currently use a spreadsheet that is manually updated. They want to automate this process to improve efficiency. Which of the following is the MOST effective approach to automate this process? (a) Manually input each sale into the spreadsheet. (b) Create a new spreadsheet with a formula that automatically calculates total sales daily. (c) Develop a small program using a scripting language to update the spreadsheet based on sales data. ",
       "marks": 1,
       "difficulty": "easy",
       "cognitive_level": "understanding",
@@ -423,7 +413,7 @@
       "source_file": "Initial_Questions"
     },
     {
-      "question": "Here's the question text:  In a hierarchical structure represented by a 2D array (2DA), each element represents a node and its parent. You are given a 2DA representing the hierarchical structure of a system, where `0` in the `parent` field signifies that a node does not have a parent. Your task is to identify the node (label of the node) with the maximum number of direct and indirect parent-child relationships. Consider a 2DA where the `parent` field contains a sequence of numbers from 1 to `n`, where `n` represents the total number of nodes in the hierarchy. The goal is to find a node whose `parent` values are arranged in a way that maximizes the total count of `parent` values (direct and indirect) compared to all other nodes. Provide a concise explanation of your approach – specifically, how you'd traverse the 2DA to determine this maximum. Assume the 2DA can contain at most `n` nodes.",
+      "question": "In a hierarchical structure represented by a 2D array (2DA), each element represents a node and its parent. You are given a 2DA representing the hierarchical structure of a system, where `0` in the `parent` field signifies that a node does not have a parent. Your task is to identify the node (label of the node) with the maximum number of direct and indirect parent-child relationships. Consider a 2DA where the `parent` field contains a sequence of numbers from 1 to `n`, where `n` represents the total number of nodes in the hierarchy. The goal is to find a node whose `parent` values are arranged in a way that maximizes the total count of `parent` values (direct and indirect) compared to all other nodes. Provide a concise explanation of your approach – specifically, how you'd traverse the 2DA to determine this maximum. Assume the 2DA can contain at most `n` nodes.",
       "marks": 5,
       "difficulty": "hard",
       "cognitive_level": "evaluating",
@@ -463,7 +453,7 @@
       "source_file": "Initial_Questions"
     },
     {
-      "question": "Here’s the Analyze the time and space complexity of Breadth-First Search (BFS) and Depth-First Search (DFS) algorithms for traversing a graph, focusing on their implementation and justification. Derive the mathematical expression representing the time complexity of each algorithm. Provide a detailed comparison of their approaches, considering how they handle graph representation and traversal. Specifically, discuss the difference in their memory usage and the potential for recursive calls. For example, consider a graph with 10 nodes and 20 edges. Describe how BFS and DFS would differ in terms of the number of nodes and edges they need to process before reaching a leaf node. Illustrate with a simple example—imagine a connected graph where a path must be found to traverse all the nodes. Justify which algorithm is more suitable for this scenario, considering factors like the presence of cycles or the need to explore all paths.",
+      "question": "Analyze the time and space complexity of Breadth-First Search (BFS) and Depth-First Search (DFS) algorithms for traversing a graph, focusing on their implementation and justification. Derive the mathematical expression representing the time complexity of each algorithm. Provide a detailed comparison of their approaches, considering how they handle graph representation and traversal. Specifically, discuss the difference in their memory usage and the potential for recursive calls. For example, consider a graph with 10 nodes and 20 edges. Describe how BFS and DFS would differ in terms of the number of nodes and edges they need to process before reaching a leaf node. Illustrate with a simple example—imagine a connected graph where a path must be found to traverse all the nodes. Justify which algorithm is more suitable for this scenario, considering factors like the presence of cycles or the need to explore all paths.",
       "marks": 5,
       "difficulty": "hard",
       "cognitive_level": "evaluating",
@@ -1807,7 +1797,7 @@
       "source_file": "Initial_Questions"
     },
     {
-      "question": "Here's the question text: Question 1: Real-Time Data Synchronization Consider a scenario where you need to synchronize a stream of sensor readings across multiple devices in a field operation. Each device transmits data with a variable latency (measured in milliseconds). You have no access to any pre-existing data structures like arrays or linked lists to efficiently store or sort the readings. Describe a strategy for maintaining data consistency during this synchronization process. Justify your chosen approach, highlighting its key components and potential challenges. Question 2: Post-Order Traversal Perform the post-order traversal of the following tree: w HM M L GIG Q) ) Question 3: Algorithm Analysis Analyze the time and space complexity of a binary search algorithm implemented using an array. Derive the mathematical expression for the time complexity. Explain how the complexity changes as the input size increases.",
+      "question": "Real-Time Data Synchronization Consider a scenario where you need to synchronize a stream of sensor readings across multiple devices in a field operation. Each device transmits data with a variable latency (measured in milliseconds). You have no access to any pre-existing data structures like arrays or linked lists to efficiently store or sort the readings. Describe a strategy for maintaining data consistency during this synchronization process. Justify your chosen approach, highlighting its key components and potential challenges. Question 2: Post-Order Traversal Perform the post-order traversal of the following tree: w HM M L GIG Q) ) Question 3: Algorithm Analysis Analyze the time and space complexity of a binary search algorithm implemented using an array. Derive the mathematical expression for the time complexity. Explain how the complexity changes as the input size increases.",
       "marks": 3,
       "difficulty": "medium",
       "cognitive_level": "analyzing",

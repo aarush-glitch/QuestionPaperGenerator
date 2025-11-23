@@ -1,9 +1,9 @@
 {
   "1_mark": [
     {
-      "question": "Which of the following is a characteristic of the session handling mechanism described in the text?",
-      "topic": "Session Handling",
-      "subtopic": "Session Management",
+      "question": "Which of the following describes the relationship between node 2, node 5, and node 9?",
+      "topic": "Network Structure Analysis",
+      "subtopic": "Network Topology Analysis",
       "question_type": "mcq",
       "difficulty_level": "easy",
       "time": 1,
@@ -12,9 +12,9 @@
       "image": null
     },
     {
-      "question": "What specific type of CSRF vulnerability is described in the text?",
-      "topic": "Csrf Vulnerability",
-      "subtopic": "Attack Vector",
+      "question": "Why is considering the graph G(V,E,w) when determining the minimum cost crucial?",
+      "topic": "Graph Shortest Path Analysis",
+      "subtopic": "Network Flow Optimization",
       "question_type": "mcq",
       "difficulty_level": "easy",
       "time": 1,
@@ -23,9 +23,9 @@
       "image": null
     },
     {
-      "question": "What is the primary focus of the diagram on page 8?",
-      "topic": "Mathematical Modeling",
-      "subtopic": "Modeling and Simulation",
+      "question": "What is the primary purpose of a university syllabus?",
+      "topic": "Mathematical Calculations",
+      "subtopic": "Learning Objectives",
       "question_type": "mcq",
       "difficulty_level": "easy",
       "time": 1,
@@ -34,9 +34,9 @@
       "image": null
     },
     {
-      "question": "What is a potential consequence of a CSRF attack targeting a normal user when the target end user is an administrator?",
-      "topic": "Csrf Attack",
-      "subtopic": "Security Risk Management",
+      "question": "Which of the following is the primary objective of the provided text?\n\na) Calculate the total cost of all cities and their connections.\nb) Determine the shortest path distance between every pair of cities in the graph.\nc) Implement Dijkstra’s algorithm to find shortest paths between all pairs of vertices.\nd) Provide a function to compute the final cost of each vertex pair.",
+      "topic": "Shortest Path Algorithm",
+      "subtopic": "Graph Algorithms",
       "question_type": "mcq",
       "difficulty_level": "easy",
       "time": 1,
@@ -45,9 +45,9 @@
       "image": null
     },
     {
-      "question": "What is the primary focus of the lesson described in the text?",
-      "topic": "Cross-Site Scripting",
-      "subtopic": "Web Security",
+      "question": "Which of the following best describes the primary objective of the telecom company in this scenario?\n\na) To maximize the number of SIM cards distributed.\nb) To calculate the minimum cost of travelling between all cities.\nc) To identify optimal routes for SIM card delivery.",
+      "topic": "Network Routing Optimization",
+      "subtopic": "Route Optimization",
       "question_type": "mcq",
       "difficulty_level": "easy",
       "time": 1,
@@ -58,9 +58,9 @@
   ],
   "2_mark": [
     {
-      "question": "What is the recommended operating system for configuring the Burpsuite in Kali Linux?",
-      "topic": "Csrf Vulnerability Lab",
-      "subtopic": "OS Configuration Focus",
+      "question": "What is the parent-child relationship for node 9, node 2, and node 5, and how does this structure determine the number of direct relationships?",
+      "topic": "Graph Relationships",
+      "subtopic": "Relationship Modeling",
       "question_type": "short",
       "difficulty_level": "medium",
       "time": 3,
@@ -69,9 +69,9 @@
       "image": null
     },
     {
-      "question": "What is the primary focus of this lesson?",
-      "topic": "Cross-Site Scripting",
-      "subtopic": "Web Security",
+      "question": "(a) Briefly outline a general approach to minimizing the total travel cost for all SIM card distribution scenarios within a weighted graph, considering the core logic of the algorithm.\n\nA general approach involves a greedy algorithm. Start by assigning the minimum cost edge to each pair of vertices. Then iteratively refine the assignments by minimizing the total cost of the remaining edges, ensuring that each edge's cost is always less than or equal to the cost of the previous assignment. This continues until all edges have been assigned.\n\n(b) Describe the role of the cost parameter w within the graph G(V,E,w), explaining why it-s crucial to consider it when determining the minimum.\n\nThe cost parameter 'w' represents the overall cost of a particular path through the graph.  It is crucial to consider 'w' because it quantifies the \"distance\" or \"cost\" of traversing the graph.  A higher 'w' value signifies a more costly path; therefore, the algorithm should prioritize paths with the lowest total cost, minimizing the overall travel expense.  Without considering 'w', the algorithm might choose paths that are significantly longer, ultimately increasing the overall travel cost.",
+      "topic": "Graph Optimization",
+      "subtopic": "Graph Optimization Cost",
       "question_type": "short",
       "difficulty_level": "medium",
       "time": 3,
@@ -80,9 +80,9 @@
       "image": null
     },
     {
-      "question": "What is a crucial condition required for a CSRF attack to be possible, according to the text?",
-      "topic": "Csrf Attack Exploitation",
-      "subtopic": "Security Vulnerability Analysis",
+      "question": "What is the primary focus of the text regarding the distance between the subjects being analyzed?",
+      "topic": "Graph Shortest Paths",
+      "subtopic": "Path distance analysis",
       "question_type": "short",
       "difficulty_level": "medium",
       "time": 3,
@@ -91,20 +91,9 @@
       "image": null
     },
     {
-      "question": "Which of the following HTTP response headers is designed to mitigate XSS vulnerabilities by ensuring content interpretation based on the intended content?\n\na) Content-Type\nb) X-Content-Type-Options\nc) Content-Security-Policy\nd) X-Cross-Site-Scripting",
-      "topic": "Xss Prevention",
-      "subtopic": "Security Headers",
-      "question_type": "short",
-      "difficulty_level": "medium",
-      "time": 3,
-      "cognitive_level": "understanding",
-      "marks": 2,
-      "image": null
-    },
-    {
-      "question": "What does the Ref: https://portswigger.net/web-security/csrf describe?",
-      "topic": "Csrf Vulnerability Protection",
-      "subtopic": "Web Security – CSRF",
+      "question": "Determine the minimum cost of traveling between all cities using a weighted graph G(V,E,w), where V represents the city number, E represents the edges (connections) between cities, and w represents the cost of traveling between cities.",
+      "topic": "Route Optimization",
+      "subtopic": "Graph Theory Optimization",
       "question_type": "short",
       "difficulty_level": "medium",
       "time": 3,
@@ -113,118 +102,6 @@
       "image": null
     }
   ],
-  "3_mark": [
-    {
-      "question": "Describe the primary function of the ‘calculus’ symbol in the text and explain how it’s used in the context of the passage.",
-      "topic": "Mathematical Notation",
-      "subtopic": "Symbolic Notation Analysis",
-      "question_type": "descriptive",
-      "difficulty_level": "hard",
-      "time": 5,
-      "cognitive_level": "applying",
-      "marks": 3,
-      "image": null
-    },
-    {
-      "question": "Describe the potential risks associated with the use of Cross-Site Scripting (XSS) vulnerabilities, specifically focusing on how they can impact a user’s experience and potentially lead to malicious activity.",
-      "topic": "Xss",
-      "subtopic": "Security Risk Analysis",
-      "question_type": "descriptive",
-      "difficulty_level": "hard",
-      "time": 5,
-      "cognitive_level": "applying",
-      "marks": 3,
-      "image": null
-    },
-    {
-      "question": "Describe the primary vulnerabilities in CSRF attacks detailed in the provided text, focusing on how each vulnerability impacts the token validation process.",
-      "topic": "Csrf Token Validation",
-      "subtopic": "Security Testing",
-      "question_type": "descriptive",
-      "difficulty_level": "hard",
-      "time": 5,
-      "cognitive_level": "applying",
-      "marks": 3,
-      "image": null
-    },
-    {
-      "question": "Describe the potential consequences of a successful Cross-Site Request Forgery (CSRF) attack, focusing on how the attacker might exploit vulnerabilities in a web application’s authentication mechanism.",
-      "topic": "Csrf",
-      "subtopic": "Authentication Exploitation",
-      "question_type": "descriptive",
-      "difficulty_level": "hard",
-      "time": 5,
-      "cognitive_level": "applying",
-      "marks": 3,
-      "image": null
-    },
-    {
-      "question": "Describe the mechanism of a CSRF attack, referencing the text provided.",
-      "topic": "Csrf Attack",
-      "subtopic": "Client-Side Exploitation",
-      "question_type": "descriptive",
-      "difficulty_level": "hard",
-      "time": 5,
-      "cognitive_level": "applying",
-      "marks": 3,
-      "image": null
-    }
-  ],
-  "5_mark": [
-    {
-      "question": "How does the text advocate for a specific strategy for mitigating Cross-Site Scripting (XSS) vulnerabilities, specifically focusing on input validation and output encoding within an HTTP context?",
-      "topic": "Xss Filter Prevention",
-      "subtopic": "Input Validation Strategy",
-      "question_type": "long",
-      "difficulty_level": "hard",
-      "time": 8,
-      "cognitive_level": "evaluating",
-      "marks": 5,
-      "image": null
-    },
-    {
-      "question": "Which of the following mathematical concepts, as presented in the diagram, is MOST directly relevant to the analysis of the data displayed on page 3?",
-      "topic": "Mathematical Analysis",
-      "subtopic": "Data Analysis Techniques",
-      "question_type": "long",
-      "difficulty_level": "hard",
-      "time": 8,
-      "cognitive_level": "evaluating",
-      "marks": 5,
-      "image": null
-    },
-    {
-      "question": "Considering the provided text, which emphasizes the importance of CSRF tokens for security, explain how a high-entropy, session-tied token mitigates the risk of a successful CSRF attack, referencing the specific requirements outlined in the document.",
-      "topic": "Csrf Token Protection",
-      "subtopic": "Session-Based Token Protection",
-      "question_type": "long",
-      "difficulty_level": "hard",
-      "time": 8,
-      "cognitive_level": "evaluating",
-      "marks": 5,
-      "image": null
-    },
-    {
-      "question": "What is the primary significance of the established mathematical notation used in the text, specifically referencing the ‘[No diagrams/images found]’ and ‘[MATH SYMBOLS DETECTED]’ sections, in relation to the subsequent analysis of the data presented on page 9?",
-      "topic": "Mathematical Notation",
-      "subtopic": "Data Analysis Significance",
-      "question_type": "long",
-      "difficulty_level": "hard",
-      "time": 8,
-      "cognitive_level": "evaluating",
-      "marks": 5,
-      "image": null
-    },
-    {
-      "question": "Which of the following mathematical theorems directly explains the concept of convergence of a series, particularly in the context of numerical analysis?",
-      "topic": "Mathematical Notation",
-      "subtopic": "Convergence Theory",
-      "question_type": "long",
-      "difficulty_level": "hard",
-      "time": 8,
-      "cognitive_level": "evaluating",
-      "marks": 5,
-      "image": null
-    }
-  ]
+  "3_mark": [],
+  "5_mark": []
 }

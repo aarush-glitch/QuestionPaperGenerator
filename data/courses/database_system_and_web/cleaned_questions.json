@@ -21,7 +21,7 @@
       "marks": 1
     },
     {
-      "question": "(CO2, 6 Marks)\n\nConvert the above EER diagram into fully normalized relational schema",
+      "question": "(CO2, 1 Marks)\n\nConvert the above ER diagram into fully normalized relational schema",
       "topic": "Database System and Web",
       "subtopic": "Database System and Web",
       "question_type": "short",
@@ -31,7 +31,7 @@
       "marks": 1
     },
     {
-      "question": "(CO2, 5 Marks)\n\nConvert the Fitness App EER into BCNF-compliant relational schema with explanation of each transformation",
+      "question": "(CO2, 1 Marks)\n\nConvert the Fitness App EER into BCNF-compliant relational schema with explanation of each transformation",
       "topic": "Database System and Web",
       "subtopic": "Database System and Web",
       "question_type": "short",
@@ -41,7 +41,7 @@
       "marks": 1
     },
     {
-      "question": "(CO2, 5 Marks)\n\nMap the Event Management ERD into relations",
+      "question": "(CO2, 1 Marks)\n\nMap the Event Management ERD into relations",
       "topic": "Database System and Web",
       "subtopic": "Database System and Web",
       "question_type": "short",
@@ -105,7 +105,7 @@
   ],
   "3_mark": [
     {
-      "question": "(CO2, 5 Marks)\n\nDesign an EER diagram for a “Freelancer Marketplace” with the following requirements:\n• Freelancers have multiple skills, each skill has proficiency levels",
+      "question": "(CO2, 3 Marks)\n\nDesign an EER diagram for a “Freelancer Marketplace” with the following requirements:\n• Freelancers have multiple skills, each skill has proficiency levels",
       "topic": "Database System and Web",
       "subtopic": "Database System and Web",
       "question_type": "descriptive",
@@ -125,7 +125,7 @@
       "marks": 3
     },
     {
-      "question": "(CO2, 5 Marks)\n\nCreate an EER model for a “Fitness App” with:\n• Users, trainers, diet plans, progress charts\n• Weekly assessments with scores\n• Subscription levels with constraints\nInclude ISA hierarchy for trainer types",
+      "question": "(CO2, 3 Marks)\n\nCreate an EER model for a “Fitness App” with:\n• Users, trainers, diet plans, progress charts\n• Weekly assessments with scores\n• Subscription levels with constraints\nInclude ISA hierarchy for trainer types",
       "topic": "Database System and Web",
       "subtopic": "Database System and Web",
       "question_type": "descriptive",
@@ -135,7 +135,7 @@
       "marks": 3
     },
     {
-      "question": "(CO2, 6 Marks)\n\nDraw an ER diagram for an Event Management System:\n• Events\n• Venues\n• Organizers\n• Sponsors\n• Ticketing system with multiple ticket categories\nDefine all constraints clearly (key, participation, cardinality)",
+      "question": "(CO2, 3 Marks)\n\nDraw an ER diagram for an Event Management System:\n• Events\n• Venues\n• Organizers\n• Sponsors\n• Ticketing system with multiple ticket categories\nDefine all constraints clearly (key, participation, cardinality)",
       "topic": "Database System and Web",
       "subtopic": "Database System and Web",
       "question_type": "descriptive",
@@ -145,7 +145,7 @@
       "marks": 3
     },
     {
-      "question": "(CO2, 5 Marks)\n\nGiven the ER design of a Hospital with Doctors, Departments, Wards, Patients, Nurses, Surgeries:\nNormalize all relations to 3NF and show the process",
+      "question": "(CO2, 3 Marks)\n\nGiven the ER design of a Hospital with Doctors, Departments, Wards, Patients, Nurses, Surgeries:\nNormalize all relations to 3NF and show the process",
       "topic": "Database System and Web",
       "subtopic": "Database System and Web",
       "question_type": "descriptive",
