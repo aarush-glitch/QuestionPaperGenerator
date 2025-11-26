@@ -42,5 +42,5 @@ def store_in_faiss(docs, index_path="new_faiss_index"):
     print(f"✅ Stored in FAISS at: {index_path}")
 
 if __name__ == "__main__":
-    questions = load_questions("/Users/sanatwalia/Desktop/Zomato_Showcasing/coe-project/questions.json")
+    questions = load_questions("/Users/aarus/Desktop/Projects/coe-project/questions.json")
     store_in_faiss(questions)

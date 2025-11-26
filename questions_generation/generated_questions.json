@@ -1,9 +1,9 @@
 {
   "1_mark": [
     {
-      "question": "Which of the following describes the relationship between node 2, node 5, and node 9?",
-      "topic": "Network Structure Analysis",
-      "subtopic": "Network Topology Analysis",
+      "question": "Which of the following is the primary focus of the team’s analysis?\n\na)  Determining the optimal number of sales force members.\nb)  Calculating metrics to improve forecasting and planning.\nc)  Analyzing the effectiveness of incentive compensation plans.\nd)  Evaluating the overall organizational structure.",
+      "topic": "Salesforce Structure Analysis",
+      "subtopic": "Organizational Structure",
       "question_type": "mcq",
       "difficulty_level": "easy",
       "time": 1,
@@ -12,9 +12,9 @@
       "image": null
     },
     {
-      "question": "Why is considering the graph G(V,E,w) when determining the minimum cost crucial?",
-      "topic": "Graph Shortest Path Analysis",
-      "subtopic": "Network Flow Optimization",
+      "question": "Which of the following best describes the structure of the data presented in Table 1?",
+      "topic": "Hcp Management And Regions",
+      "subtopic": "Data Analysis",
       "question_type": "mcq",
       "difficulty_level": "easy",
       "time": 1,
@@ -23,9 +23,9 @@
       "image": null
     },
     {
-      "question": "What is the primary purpose of a university syllabus?",
-      "topic": "Mathematical Calculations",
-      "subtopic": "Learning Objectives",
+      "question": "What does the diagram show related to the mathematical symbols?",
+      "topic": "Mathematical Modeling",
+      "subtopic": "Symbolic Representation",
       "question_type": "mcq",
       "difficulty_level": "easy",
       "time": 1,
@@ -34,9 +34,9 @@
       "image": null
     },
     {
-      "question": "Which of the following is the primary objective of the provided text?\n\na) Calculate the total cost of all cities and their connections.\nb) Determine the shortest path distance between every pair of cities in the graph.\nc) Implement Dijkstra’s algorithm to find shortest paths between all pairs of vertices.\nd) Provide a function to compute the final cost of each vertex pair.",
-      "topic": "Shortest Path Algorithm",
-      "subtopic": "Graph Algorithms",
+      "question": "What is the main purpose of the table presented on page 5?",
+      "topic": "Drug Sales Analysis",
+      "subtopic": "Sales Performance Review",
       "question_type": "mcq",
       "difficulty_level": "easy",
       "time": 1,
@@ -45,9 +45,9 @@
       "image": null
     },
     {
-      "question": "Which of the following best describes the primary objective of the telecom company in this scenario?\n\na) To maximize the number of SIM cards distributed.\nb) To calculate the minimum cost of travelling between all cities.\nc) To identify optimal routes for SIM card delivery.",
-      "topic": "Network Routing Optimization",
-      "subtopic": "Route Optimization",
+      "question": "Which of the following best describes the management team’s primary concern regarding their sales force structure?",
+      "topic": "Sales Force Structure Analysis",
+      "subtopic": "Organizational Structure",
       "question_type": "mcq",
       "difficulty_level": "easy",
       "time": 1,
@@ -58,9 +58,9 @@
   ],
   "2_mark": [
     {
-      "question": "What is the parent-child relationship for node 9, node 2, and node 5, and how does this structure determine the number of direct relationships?",
-      "topic": "Graph Relationships",
-      "subtopic": "Relationship Modeling",
+      "question": "What does MZ Thank you Impact focus on?",
+      "topic": "Impact Analysis",
+      "subtopic": "Behavioral analysis",
       "question_type": "short",
       "difficulty_level": "medium",
       "time": 3,
@@ -69,9 +69,9 @@
       "image": null
     },
     {
-      "question": "(a) Briefly outline a general approach to minimizing the total travel cost for all SIM card distribution scenarios within a weighted graph, considering the core logic of the algorithm.\n\nA general approach involves a greedy algorithm. Start by assigning the minimum cost edge to each pair of vertices. Then iteratively refine the assignments by minimizing the total cost of the remaining edges, ensuring that each edge's cost is always less than or equal to the cost of the previous assignment. This continues until all edges have been assigned.\n\n(b) Describe the role of the cost parameter w within the graph G(V,E,w), explaining why it-s crucial to consider it when determining the minimum.\n\nThe cost parameter 'w' represents the overall cost of a particular path through the graph.  It is crucial to consider 'w' because it quantifies the \"distance\" or \"cost\" of traversing the graph.  A higher 'w' value signifies a more costly path; therefore, the algorithm should prioritize paths with the lowest total cost, minimizing the overall travel expense.  Without considering 'w', the algorithm might choose paths that are significantly longer, ultimately increasing the overall travel cost.",
-      "topic": "Graph Optimization",
-      "subtopic": "Graph Optimization Cost",
+      "question": "What is the primary purpose of this document?",
+      "topic": "Data Security & Compliance",
+      "subtopic": "Risk Management",
       "question_type": "short",
       "difficulty_level": "medium",
       "time": 3,
@@ -80,9 +80,9 @@
       "image": null
     },
     {
-      "question": "What is the primary focus of the text regarding the distance between the subjects being analyzed?",
-      "topic": "Graph Shortest Paths",
-      "subtopic": "Path distance analysis",
+      "question": "What is the primary focus of the research described in the passage?",
+      "topic": "Artificial Intelligence Systems",
+      "subtopic": "Machine Learning Focus",
       "question_type": "short",
       "difficulty_level": "medium",
       "time": 3,
@@ -91,9 +91,9 @@
       "image": null
     },
     {
-      "question": "Determine the minimum cost of traveling between all cities using a weighted graph G(V,E,w), where V represents the city number, E represents the edges (connections) between cities, and w represents the cost of traveling between cities.",
-      "topic": "Route Optimization",
-      "subtopic": "Graph Theory Optimization",
+      "question": "What is the primary purpose of the data model presented in the text?",
+      "topic": "Data Modeling",
+      "subtopic": "Data Structure Analysis",
       "question_type": "short",
       "difficulty_level": "medium",
       "time": 3,

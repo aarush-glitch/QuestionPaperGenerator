@@ -89,7 +89,7 @@ try:
 except Exception:
     pass
 
-# --- STYLES (matching Home.py) ---
+# --- STYLES ---
 st.markdown("""
 <style>
 .gradient-header {
@@ -1427,7 +1427,7 @@ elif st.session_state.wizard_step == 3:
 # Step 4: Index & Search
 elif st.session_state.wizard_step == 4:
     step_card("Search and Select Questions for Question Paper", 4)
-    query = st.text_input("Search for questions (natural language)", value="", placeholder="e.g. explain convolutional layers", key="wizard_query")
+    query = st.text_input("Search for questions (natural language)", value="", placeholder="e.g. AVL Tree", key="wizard_query")
 
     # layout: left column for search & results, right column for selection basket
     results_col, sel_col = st.columns([2, 1])
@@ -1591,7 +1591,7 @@ elif st.session_state.wizard_step == 4:
 
         if sel:
             finalize_disabled = len(sel) == 0
-            if st.button("Finalize & Generate PDF", disabled=finalize_disabled):
+            if st.button("Finalize & Create PDF", disabled=finalize_disabled):
                 # open the review dashboard instead of immediate PDF generation
                 st.session_state["dashboard_mode"] = True
                 st.session_state["wizard_step"] = 5

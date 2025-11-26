@@ -1,4 +1,29 @@
 --- Page 1 ---
+[DIAGRAM or IMAGE DETECTED] (2 images on this page)
+[No special patterns found]
+Mi ZS SQL Case Study Prepared for ZS Preboarding 2023 This document is solely for the use of ZS campus preboarding. No part of it may be circulated, quoted or reproduced for distribution outside of ZS without prior written approval of ZS. Impact where it matters.
+
+--- Page 2 ---
 [No diagrams/images found]
 [MATH SYMBOLS DETECTED]
-Question Paper Generated for JIIT Q1. (3 marks) [Time: 14 min] A telecom company wants to distribute SIM cards to different cities of a state. Since the cities are connected directly/indirectly, for the SIM card distribution the company first decided to compute the minimum cost of travelling between all cities using a weighted graph G(V,E,w). Where V represents the city number, E represents the edges (connections) between different cities and w is the cost of travelling from one city to another. Determine the shortest path distance between every pair of vertices in the weighted graph G(V,E,w). Write the function to compute the final cost of each vertex pair. [7] Provide a function that implements Dijkstra-s algorithm to calculate the shortest path distances between all pairs of cities in the graph G(V, E, w), and return the final cost matrix. Justify your approach by highlighting the core steps and how they address the problems requirements. Topic: Graphs Subtopic: Graphs Marks: 3 Time: 14 Q2. (3 marks) [Time: 11 min] Analyze the relationship between a node:s parentage and its direct and indirect descendants. Specifically, identify the parent-child relationships for node 9, node 2, and node 5, and then explain how the parent-child structure determines the number of direct and indirect descendants of node 9. Provide a detailed example illustrating the process, including the number of direct and indirect descendants you identify. Topic: Algorithms Subtopic: Parent-Child Relationships Marks: 3 Time: 11 Q3. (5 marks) [Time: 20 min] A telecom company wants to distribute SIM cards to different cities of a state. Since the cities are connected directly/indirectly, for the SIM card distribution the company first decided to compute the minimum cost of traveling between all cities using a weighted graph G(V,E,w). Where V represents the city number, E represents the edges (connections) between different cities and w is the cost of travelling from one city to another. Your task is to determine the shortest path for each vertex pair in the weighted graph G(V,E,w). Write the function to compute the final cost of each vertex pair. [7] (a) Briefly outline a general approach to minimizing the total travel cost for all SIM card distribution scenarios within a weighted graph, considering the core logic of the algorithm. (b) Describe the role of the cost parameter w within the graph G(V,E,w), explaining why it-s crucial to consider it when determining the minimum cost. (c) Assuming the graph G(V,E,w) has a total of 10 cities (V=1 to 10), provide a concise, step-by-step implementation of your function in pseudocode or Python. Specifically, show how the function would calculate the shortest path cost for each pair of cities (v, w) where v is a city and w is the distance between them. Justify your choice of approach considering efficiency. Topic: Graphs Subtopic: Graphs And Shortest Paths Marks: 5 Time: 20 Total Marks: 11
+Case Overview E ABC is a new pharmaceutical organization starting its sales operations in this month. They will be launching a new drug Domeperidone capsules for nausea and vomiting. Since this is a new drug, they do not anticipate much sales for this product in the launch quarter. Hence, they have kept minimum sales force who will go to physicians/outlets to sell their drugs. The management team wants to analyze if the sales force structure is appropriate calculate their incentive compensation. The case study is about calculating metrics and helping business analyze their data in a smart way to better forecast and plan for their future development.
+
+--- Page 3 ---
+[DIAGRAM or IMAGE DETECTED] (1 images on this page)
+[MATH SYMBOLS DETECTED]
+Available Data The management team have prepared a data model for this case study as well as few example rows from the complete dataset below to get you familiar with their tables Entity Relationship Diagram Region_ID _Region Name __[Varchar(9) HCP_SALES HCP_ID Prescription Date Sales Volume
+
+--- Page 4 ---
+[DIAGRAM or IMAGE DETECTED] (2 images on this page)
+[MATH SYMBOLS DETECTED]
+Table 1 : Regions The management team have divided the country into 5 regions. Each region is supervised by one sales representative. A region can have one or more hospitals under it where a HCP sits and prescribes medicines. The Region table contains region_id and their respective region_name values 3 Central 4 East Table 2 : HCP HOSP Each HCP sits in a hospital and there can be multiple hospitals within a region. ]HCP_ID_ Region_IDHosp_id a ee
+
+--- Page 5 ---
+[DIAGRAM or IMAGE DETECTED] (1 images on this page)
+[MATH SYMBOLS DETECTED]
+Table 3: HCP SALES This table consists of the sales volume of each of the HCP and the date when he prescribed the drug. Each doctor can write multiple prescriptions. HCPID__ Prescription_Date Sales_Volume _ pt Mar-23 pt Mar-23 20 p _2} __feb-23_ 10 Mar-2 [af Maza 8] prea tT p20 a ae a a a ee p29 pS 6 p19 a 8 p10 8 pA 8 a ae a) a ae
+
+--- Page 6 ---
+[DIAGRAM or IMAGE DETECTED] (2 images on this page)
+[No special patterns found]
+MZ Thank you Impact where it matters.
