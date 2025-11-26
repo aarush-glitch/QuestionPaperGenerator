@@ -192,3 +192,12 @@ with st.container():
         else:
             st.error("No output generated. Please check your file or backend modules.")
     st.markdown("</div>", unsafe_allow_html=True)
+
+# --- FOOTER ---
+st.markdown("<hr style='border:1px solid #43cea2;margin:2em 0;'>", unsafe_allow_html=True)
+st.markdown("""
+<div style='text-align:center; padding:2rem 0; color:#e0f7fa; font-size:0.95rem;'>
+    <b>Made with ❤️ for educators everywhere</b><br>
+    <span style='opacity:0.8;'>Created by Aarush Gupta, Shivaprasad Arunkumar Farale, Aayush Jalali</span>
+</div>
+""", unsafe_allow_html=True)
