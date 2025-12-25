@@ -282,8 +282,9 @@ def _on_course_selected():
     finally:
         st.session_state["_ui_trigger"] = not st.session_state.get("_ui_trigger", False)
 
-# load available courses from disk (or sensible defaults)
 if "available_courses" not in st.session_state:
+    # load available courses from disk (or sensible defaults)
+
     loaded = load_courses()
     if not loaded:
         loaded = [
@@ -315,6 +316,7 @@ def _slugify(name: str) -> str:
     return ''.join(c if c.isalnum() else '_' for c in name.strip().lower()).strip('_')
 
 
+# Detect predetermined courses and their assets and provide user choice
 def detect_course_assets(course_name: str) -> dict:
     """Detect presence of precomputed assets for a course. Returns a dict:
     { 'has_cleaned': bool, 'has_index': bool, 'manifest': dict|None, 'base': Path }
